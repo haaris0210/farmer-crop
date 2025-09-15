@@ -183,16 +183,16 @@
       justify-content: center;
       animation: fadein 0.44s cubic-bezier(0.56,2,0.38,1) both;
     }
-    /* MODAL: BIGGER DIALOG IMPROVEMENT */
+    /* BIGGER ROOMIER MODAL DIALOG! */
     .modal-dialog {
       background: #fff;
       border-radius: 18px;
-      padding: 2.7rem 2.5rem 2.2rem 2.5rem;
-      max-width: 480px;
-      min-width: 330px;
-      width: 98%;
+      padding: 3.2rem 3.5rem 2.8rem 3.5rem;
+      max-width: 600px;
+      min-width: 370px;
+      width: 99vw;
       text-align: center;
-      box-shadow: 0px 8px 38px rgba(9,161,121,0.13);
+      box-shadow: 0px 12px 42px rgba(9,161,121,0.17);
       position: relative;
       animation: bouncein 0.66s cubic-bezier(.33,1.6,.16,.99);
     }
@@ -218,16 +218,16 @@
       box-shadow: 0 2px 10px #f9ac1d10;
     }
     .lang-btn:hover, .action-btn:hover { background: linear-gradient(90deg,var(--accent),var(--orange)); transform: scale(1.06);}
-    /* INPUT FIELD IMPROVED */
+    /* BIGGER INPUT FIELDS! */
     .input-row{margin-bottom:1.1rem; text-align:left;}
     .input-label{display:block; margin-bottom:0.43rem; color:var(--accent-dark); font-weight:600;}
     .input-field{
-      width:100%; 
-      border:2px solid #e2f6d9; 
-      border-radius:7px; 
-      padding:0.9rem 1.1rem; 
-      background:#fafdff; 
-      font-size:1.11rem; 
+      width:100%;
+      border:2px solid #e2f6d9;
+      border-radius:9px;
+      padding:1.2rem 1.2rem;
+      background:#fafdff;
+      font-size:1.22rem;
       transition:border 0.16s;
     }
     .input-field:focus { border-color: var(--accent);}
@@ -238,7 +238,7 @@
     @keyframes popfade { from { opacity: 0; transform:scale(0.93) translateY(12px);} to { opacity: 1; transform:scale(1) translateY(0);} }
     @keyframes fadein { from { opacity:0;} to   { opacity:1;} }
     @keyframes bouncein { 0% {opacity:0; transform:scale(0.85) translateY(36px);} 90% {opacity:1; transform:scale(1.04) translateY(-2px);} 100% {opacity:1; transform:scale(1) translateY(0);} }
-    @media (max-width:680px){
+    @media (max-width:690px){
       .dashboard-grid{ gap: 1.1rem; }
       #sideMenu { width:170px; min-width:120px; padding-top:28px; }
       .menu-item { padding:13px 10px; font-size:0.97em;}
