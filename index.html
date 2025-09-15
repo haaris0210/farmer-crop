@@ -1,190 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>Solutioneers • Smart Agriculture Dashboard</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background: linear-gradient(180deg,#eef7ee 0%, #fbfdfb 100%);
-    color:#14261a;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.4;
-  }
-  /* NAVBAR */
-  .navbar{
-    position:sticky;top:0;z-index:1300;
-    display:flex;justify-content:space-between;align-items:center;
-    padding:12px 22px;background:rgba(255,255,255,0.96);
-    backdrop-filter: blur(6px);
-    box-shadow:0 8px 26px rgba(18,60,30,0.05);
-  }
-  .nav-left{display:flex;align-items:center;gap:12px}
-  .menu-btn{
-    display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:none;
-    background:linear-gradient(180deg,#fff,#eef7ee);box-shadow:0 6px 16px rgba(18,85,40,0.06);font-size:20px;cursor:pointer
-  }
-  .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#195b32}
-  .brand .logo{
-    width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);
-    display:flex;align-items:center;justify-content:center;font-weight:900;color:#195b32;box-shadow:0 6px 16px rgba(27,94,51,0.06)
-  }
-  .brand .meta{font-size:12px;color:#4a6c53}
-  .nav-time{font-size:13px;color:#475b4a;margin-left:8px}
-  .nav-right{display:flex;align-items:center;gap:10px}
-  .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e9f7ee}
-  .btn{padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
-  .btn.login{background:transparent;border:1px solid #e2e8e2;color:#164f2b}
-  .btn.cta{background:#1e7b3f;color:#fff;box-shadow:0 8px 24px rgba(30,123,63,0.12)}
-  /* SIDEBAR */
-  #sidebar{
-    position:fixed;top:0;left:-280px;width:260px;height:100%;background:linear-gradient(180deg,#1f7a3f,#0f5c2a);
-    color:#fff;padding:22px;border-top-right-radius:10px;border-bottom-right-radius:10px;z-index:1400;
-    box-shadow: 14px 0 30px rgba(4,40,20,0.12);transition:left .34s cubic-bezier(.2,.9,.2,1);
-  }
-  #sidebar.open{left:0}
-  #sidebar h3{margin-bottom:14px;font-size:16px}
-  #sidebar a{display:block;color:rgba(255,255,255,0.95);text-decoration:none;padding:10px 6px;border-radius:8px;margin-bottom:8px;font-weight:700}
-  #sidebar a:hover{background:rgba(255,255,255,0.06)}
-  /* HERO / LARGE ANNOUNCEMENT */
-  .hero{
-    margin:20px 22px;border-radius:18px;overflow:hidden;
-    background:linear-gradient(90deg,#eaf7ee,#f8fff9);
-    box-shadow:0 26px 60px rgba(20,60,30,0.06);
-    display:flex;align-items:center;justify-content:space-between;gap:28px;padding:40px 40px;
-    min-height:240px;
-  }
-  .hero .left{max-width:66%}
-  .hero h1{font-size:36px;line-height:1.02;color:#0f5c2a;margin-bottom:10px}
-  .hero p{color:#254f39;opacity:0.95;font-size:16px}
-  .cta-row{margin-top:18px;display:flex;gap:12px}
-  .cta{padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:800}
-  .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 12px 30px rgba(30,123,63,0.12)}
-  .cta.ghost{background:transparent;border:1px solid #dfeee1;color:#196f35}
-  .hero .right{width:380px;height:200px;border-radius:12px;background-size:cover;background-position:center;
-    box-shadow:inset 0 0 0 110px rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.18)}
-  /* MID BIG ANNOUNCEMENTS BAR (extra big) */
-  .big-announcement{
-    margin:18px 22px;border-radius:14px;padding:24px;background:linear-gradient(90deg,#dff6e8,#eafaf0);
-    color:#114b27;font-weight:800;font-size:18px;box-shadow:0 18px 40px rgba(20,60,30,0.04);
-  }
-  /* INFO + NEWS */
-  .section{display:grid;grid-template-columns:1fr 360px;gap:20px;margin:22px}
-  .card-large{border-radius:14px;background:#fff;padding:22px;box-shadow:0 12px 32px rgba(16,64,28,0.05);opacity:1;transform:none;}
-  .about h3{color:#146631;margin-bottom:10px;font-size:20px}
-  .about p{color:#2c4d3a;opacity:.95}
-  .news-box{border-radius:14px;padding:18px;background:linear-gradient(180deg,#fff,#fbfffd);box-shadow:0 12px 32px rgba(16,64,28,0.04)}
-  .news-box h3{color:#146631;margin-bottom:12px}
-  .news-scroll{height:180px;overflow:hidden;position:relative}
-  .news-track{display:flex;flex-direction:column;gap:12px;animation:newsScroll 12s linear infinite}
-  .news-item{font-size:14px;color:#264c36;padding:10px;background:rgba(40,120,60,0.035);border-radius:8px}
-  @keyframes newsScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-  /* BIG CARD GRID */
-  .grid{margin:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:22px}
-  .big-card{
-    position:relative;overflow:hidden;border-radius:16px;height:320px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
-    box-shadow:0 24px 60px rgba(6,40,18,0.06);transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s;background-size:cover;background-position:center;
-    opacity:1;transform:none;
-  }
-  .big-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 36%,rgba(3,20,10,0.6));mix-blend-mode:multiply}
-  .big-card .title{position:relative;font-weight:900;font-size:22px;z-index:2}
-  .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:14px}
-  .big-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 34px 80px rgba(6,40,18,0.12)}
-  /* CHATBOT */
-  .chat-bubble{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;background:linear-gradient(180deg,#1e7b3f,#166531);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 12px 28px rgba(30,123,63,0.18);cursor:pointer;z-index:1300}
-  .chat-window{position:fixed;right:22px;bottom:100px;width:360px;height:480px;border-radius:12px;background:#fff;box-shadow:0 20px 60px rgba(20,40,20,0.12);overflow:hidden;display:flex;flex-direction:column;z-index:1300;transform:translateY(8px);opacity:0;pointer-events:none;transition:all .28s}
-  .chat-window.open{opacity:1;transform:translateY(0);pointer-events:auto}
-  .chat-head{background:linear-gradient(90deg,#1e7b3f,#136033);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:800}
-  .chat-body{padding:12px;flex:1;overflow:auto;background:#f7fbf8}
-  .chat-input{display:flex;border-top:1px solid #eee;padding:10px;background:#fff}
-  .chat-input input{flex:1;padding:10px;border:1px solid #e6efe6;border-radius:8px;margin-right:8px}
-  .chat-msg{background:#e9f7ee;padding:10px;border-radius:8px;margin-bottom:8px;max-width:85%}
-  .chat-msg.me{background:#dbefff;margin-left:auto;color:#06264a}
-  /* LOGIN MODAL */
-  .modal-wrap{position:fixed;inset:0;background:rgba(6,10,6,0.45);display:flex;align-items:center;justify-content:center;z-index:1400;opacity:0;pointer-events:none;transition:all .28s}
-  .modal-wrap.open{opacity:1;pointer-events:auto}
-  .modal{width:480px;background:#fff;border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(10,20,10,0.3)}
-  .modal h3{color:#164f2b;margin-bottom:8px}
-  .form-row input,.form-single input{width:100%;padding:12px;border-radius:8px;border:1px solid #e6efe6}
-  .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
-  .small-link{font-size:13px;color:#2e7d32;cursor:pointer}
-  /* Reveal helper */
-  .reveal{opacity:1;transform:none;transition:all .9s cubic-bezier(.2,.9,.2,1) !important}
-  @media (max-width:960px){
-    .section{grid-template-columns:1fr}
-    .hero{padding:24px;flex-direction:column;align-items:flex-start}
-    .hero .right{width:100%;height:160px;margin-top:12px}
-    .grid{grid-template-columns:1fr}
-    #sidebar{display:none}
-    .nav-left .nav-time{display:none}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kisan Mitra Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2d6a4f;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-right button {
+      background: white;
+      color: #2d6a4f;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .nav-right button:hover {
+      background: #95d5b2;
+      transform: scale(1.05);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #1b4332;
+      padding-top: 60px;
+      transition: 0.4s;
+      z-index: 2000;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .sidebar a:hover {
+      background: #40916c;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: url('https://images.unsplash.com/photo-1606041008023-472dfb5e530f') no-repeat center/cover;
+      color: white;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin: 0;
+      animation: fadeIn 2s;
+    }
+
+    /* Announcements */
+    .announcements {
+      margin: 30px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .announcements h3 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .announcement {
+      background: #e9f5f2;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h4 {
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      color: #2d6a4f;
+    }
+
+    .card-content p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
 </head>
 <body>
-  <!-- SIDEBAR -->
-  <aside id="sidebar" aria-hidden="true">
-    <h3>📋 Dashboard</h3>
-    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-      <a href="#about">About Us</a>
-      <a href="#msp">MSP</a>
-      <a href="#yield">Yield Comparison</a>
-    </nav>
-  </aside>
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-left">
-      <button id="menuBtn" class="menu-btn" title="Menu">☰</button>
-      <div class="brand">
-        <div class="logo">S</div>
-        <div>
-          <div style="font-size:16px">Solutioneers</div>
-          <div class="meta">Smart Agriculture Group</div>
-        </div>
-      </div>
-      <div class="nav-time" id="navTime">Loading IST...</div>
-    </div>
-    <div class="nav-right">
-      <select class="lang-select" id="langSel">
-        <option>English</option>
-        <option>हिन्दी</option>
-        <option>ਪੰਜਾਬੀ</option>
-      </select>
-      <button id="btnLogin" class="btn login">Login</button>
-      <button id="btnSignup" class="btn cta">Sign Up</button>
-    </div>
-  </header>
-  <!-- HERO / ANNOUNCEMENT -->
-  <main>
-    <section class="hero" role="banner" aria-label="Announcement">
-      <div class="left">
-        <h1>Grow smarter. Harvest better.</h1>
-        <p>Real-time advisories, market prices, subsidies and soil insights — built for farmers, powered by data.</p>
-        <div class="cta-row">
-          <button class="cta primary">Explore Dashboard</button>
-          <button class="cta ghost">How it works</button>
-        </div>
-      </div>
-      <div class="right" style="background-image:url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?q=80&amp;w=1400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;s=6c3c6b0d4f0b9d7b2d5a3f1e2b2f4a47')">
-        Farmers • Community
-      </div>
-    </section>
-    <!-- EXTRA BIG ANNOUNCEMENT BAR -->
-    <div class="big-announcement">
-      🚜 Important: Subsidy applications open this month — check "Govt Schemes" and see eligibility. Click a card below to explore.
-    </div>
-    <!-- Info + News -->
-    <section class="section">
-      <div id="about" class="card-large about">
-        <h3>About Solutioneers</h3>
-        <p>We bring practical digital tools to farmers — weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.</p>
-        <p style="margin-top:12px;color:#2e7b3f;font-weight:800">Your land. Your data. Better yields.</p>
-      </div>
-      <aside id="news" class="news-box">
-        <h3>Latest News</h3>
-        <div class="
 
+  <!-- Navbar -->
+  <div class="navbar">
+    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
+    <h1>Kisan Mitra Portal</h1>
+    <div class="nav-right">
+      <button>Login</button>
+      <button>Sign Up</button>
+      <button>EN | HI | PA</button>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="#">Dashboard</a>
+    <a href="#">Schemes</a>
+    <a href="#">Market Prices</a>
+    <a href="#">Weather</a>
+    <a href="#">Support</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h2>Empowering Farmers, Empowering India 🌾</h2>
+  </div>
+
+  <!-- Announcements -->
+  <div class="announcements">
+    <h3>📢 Announcements</h3>
+    <div class="announcement">Government announces new MSP policy for wheat and rice.</div>
+    <div class="announcement">Heavy rainfall expected in Punjab region this week.</div>
+    <div class="announcement">Crop insurance deadline extended till 30th September.</div>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" alt="Farmer 1">
+      <div class="card-content">
+        <h4>Farming Schemes</h4>
+        <p>Access the latest government schemes for farmers.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3" alt="Farmer 2">
+      <div class="card-content">
+        <h4>Market Prices</h4>
+        <p>Check the latest mandi and market rates for crops.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1524492449090-4e1c84c5bffa" alt="Farmer 3">
+      <div class="card-content">
+        <h4>Weather Updates</h4>
+        <p>Stay updated with real-time weather forecasts.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Farmer 4">
+      <div class="card-content">
+        <h4>AI Chatbot</h4>
+        <p>Get instant help and answers with our AI-powered chatbot.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px";
+      } else {
+        sidebar.style.left = "0px";
+      }
+    }
+  </script>
+
+</body>
+</html>
