@@ -6,245 +6,278 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
       font-family: "Montserrat", sans-serif;
       background: #f8f9fc;
       color: #333;
+      overflow-x: hidden;
     }
 
-    /* ===== POPUPS ===== */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3000;
-    }
-    .popup {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      width: 320px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    }
-    .popup h3 { margin-bottom: 15px; }
-    .popup input, .popup select {
-      width: 90%;
-      padding: 10px;
-      margin: 6px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .popup button {
-      margin: 8px;
-      padding: 10px 20px;
-      border: none;
-      background: #4CAF50;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .hidden { display: none; }
-
-    /* ===== NAVBAR ===== */
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #2c3e50;
-      color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .navbar .logo {
-      font-weight: 600;
-      font-size: 1.2rem;
+    .navbar-left {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 16px;
     }
-    .navbar .time {
+    .navbar-left h2 {
+      font-weight: 700;
+      color: #2e7d32;
+    }
+    .navbar-time {
       font-size: 0.9rem;
+      color: #444;
     }
-
-    /* ===== SIDEBAR ===== */
-    .sidebar {
-      position: fixed;
-      left: -220px;
-      top: 0;
-      width: 200px;
-      height: 100%;
-      background: #34495e;
-      color: white;
-      padding-top: 60px;
-      transition: 0.3s;
-      z-index: 2000;
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .sidebar a {
-      display: block;
-      padding: 12px;
-      text-decoration: none;
-      color: white;
-    }
-    .sidebar a:hover { background: #2c3e50; }
-    .menu-btn {
-      font-size: 1.5rem;
+    .navbar-right select,
+    .navbar-right button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      margin-right: 20px;
+      font-weight: 500;
+    }
+    .navbar-right select {
+      background: #e8f5e9;
+    }
+    .navbar-right button {
+      background: #2e7d32;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .navbar-right button:hover {
+      background: #256028;
+      transform: scale(1.05);
     }
 
-    /* ===== PLACEHOLDER BAR ===== */
-    .placeholder-bar {
-      background: #ddd;
-      height: 40px;
-      margin: 0;
+    /* Medium bar */
+    .mid-bar {
+      width: 100%;
+      padding: 14px;
+      background: #f1f8e9;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      font-style: italic;
+      color: #777;
     }
 
-    /* ===== TWO BLOCKS ===== */
-    .two-blocks {
+    /* Info + News section */
+    .info-news {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      padding: 20px;
+      padding: 24px;
     }
-    .block {
+    .info-box, .news-box {
       background: white;
-      border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      overflow: hidden;
+      min-height: 220px;
     }
-    .news {
+    .info-box h3, .news-box h3 {
+      margin-bottom: 12px;
+      color: #2e7d32;
+    }
+
+    /* News scroller */
+    .news-container {
       height: 150px;
       overflow: hidden;
       position: relative;
     }
-    .news ul {
-      position: absolute;
-      animation: scrollNews 8s linear infinite;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      animation: scrollNews 10s linear infinite;
     }
-    .news li { padding: 5px 0; }
+    .news-item {
+      padding: 6px 0;
+      font-size: 0.9rem;
+    }
     @keyframes scrollNews {
-      0% { top: 100%; }
-      100% { top: -100%; }
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100%); }
     }
 
-    /* ===== DASHBOARD CARDS ===== */
+    /* Card Grid */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 24px;
     }
     .card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       padding: 20px;
       border-radius: 14px;
-      text-decoration: none;
-      color: inherit;
       background: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
     }
+    .card-icon { font-size: 2rem; margin-bottom: 12px; }
+    .card-title { font-weight: 600; margin-bottom: 8px; }
+    .card-desc { font-size: 0.9rem; color: #444; text-align: center; }
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-    }
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .card-desc {
-      font-size: 0.9rem;
-      color: #444;
-      text-align: center;
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
     }
 
-    /* Themed backgrounds */
+    /* Reveal animation */
+    .reveal {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: all 0.8s ease;
+    }
+
+    /* Card colors */
     .seeds { background: #eaf9f0; }
     .schemes { background: #fdf3e7; }
     .weather { background: #eaf3fc; }
     .calendar { background: #f4ecf9; }
     .fertilizer { background: #f9fce7; }
     .soil { background: #f2f2f2; }
+    .msp { background: #e7f9f9; }
+    .yield { background: #f9e7f7; }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 14px;
+      width: 350px;
+      max-width: 90%;
+      transform: scale(0.8);
+      animation: popup 0.3s ease forwards;
+      position: relative;
+    }
+    @keyframes popup {
+      to { transform: scale(1); }
+    }
+    .modal h3 {
+      margin-bottom: 12px;
+      color: #2e7d32;
+      text-align: center;
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .modal input, .modal select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .modal button {
+      padding: 10px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .modal button:hover {
+      background: #256028;
+    }
+    .toggle-link {
+      text-align: center;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      color: #2e7d32;
+      cursor: pointer;
+    }
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .info-news { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-
-  <!-- ===== LANGUAGE POPUP ===== -->
-  <div id="languagePopup" class="overlay">
-    <div class="popup">
-      <h3>Select Language</h3>
-      <button onclick="chooseLang('English')">English</button>
-      <button onclick="chooseLang('Hindi')">हिंदी</button>
-      <button onclick="chooseLang('Punjabi')">ਪੰਜਾਬੀ</button>
-    </div>
-  </div>
-
-  <!-- ===== LOGIN / REGISTER POPUP ===== -->
-  <div id="authPopup" class="overlay hidden">
-    <div class="popup">
-      <h3 id="authTitle">Login</h3>
-      <input type="text" id="username" placeholder="Name" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <input type="password" id="password2" placeholder="Confirm Password" class="hidden">
-      <input type="number" id="landSize" placeholder="Land Size (acres)" class="hidden">
-      <input type="text" id="cropType" placeholder="Crop Type" class="hidden">
-      <button onclick="login()">Login</button>
-      <button onclick="toggleRegister()">Register</button>
-    </div>
-  </div>
-
-  <!-- ===== SIDEBAR ===== -->
-  <div id="sidebar" class="sidebar">
-    <a href="#">About Us</a>
-    <a href="#">MSP</a>
-    <a href="#">Yield Comparison</a>
-  </div>
-
-  <!-- ===== NAVBAR ===== -->
+  <!-- Navbar -->
   <div class="navbar">
-    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
-    <div class="logo">🌾 Solutioneers</div>
-    <div class="time" id="timeDisplay"></div>
+    <div class="navbar-left">
+      <h2>🌾 Solutioneers</h2>
+      <div class="navbar-time" id="datetime"></div>
+    </div>
+    <div class="navbar-right">
+      <select>
+        <option>English</option>
+        <option>हिन्दी</option>
+        <option>ਪੰਜਾਬੀ</option>
+      </select>
+      <button onclick="openModal('login')">Login</button>
+      <button onclick="openModal('signup')">Sign Up</button>
+    </div>
   </div>
 
-  <!-- ===== PLACEHOLDER BAR ===== -->
-  <div class="placeholder-bar"></div>
+  <!-- Medium Bar -->
+  <div class="mid-bar">[ Space reserved for future announcements ]</div>
 
-  <!-- ===== TWO BLOCKS ===== -->
-  <div class="two-blocks">
-    <div class="block">
+  <!-- Info + News Section -->
+  <div class="info-news">
+    <div class="info-box">
       <h3>About Solutioneers</h3>
-      <p>Content coming soon...</p>
+      <p>This space will contain details about our mission, vision, and solutions provided to farmers.</p>
     </div>
-    <div class="block news">
-      <h3>Latest Updates</h3>
-      <ul>
-        <li>New crop insurance policy released.</li>
-        <li>MSP for wheat increased by 4%.</li>
-        <li>Heavy rainfall expected this week.</li>
-        <li>Training sessions for farmers announced.</li>
-      </ul>
+    <div class="news-box">
+      <h3>Latest News</h3>
+      <div class="news-container">
+        <div class="news-list">
+          <div class="news-item">🌱 New fertilizer subsidy announced.</div>
+          <div class="news-item">☁️ IMD predicts above-normal rainfall this week.</div>
+          <div class="news-item">💰 MSP for wheat increased by ₹150.</div>
+          <div class="news-item">🔥 Stubble management machines distributed in Punjab.</div>
+          <div class="news-item">📊 New high-yield seed variety released.</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ===== DASHBOARD CARDS ===== -->
+  <!-- Card Section -->
   <div class="card-grid">
     <a href="seeds.html" class="card seeds">
       <div class="card-icon">🌱</div>
@@ -254,12 +287,12 @@
     <a href="schemes.html" class="card schemes">
       <div class="card-icon">📜</div>
       <div class="card-title">Govt Schemes</div>
-      <div class="card-desc">Explore agriculture policies & subsidies.</div>
+      <div class="card-desc">Explore latest agriculture policies & subsidies.</div>
     </a>
     <a href="weather.html" class="card weather">
       <div class="card-icon">☁️</div>
       <div class="card-title">Weather Forecast</div>
-      <div class="card-desc">Stay updated with 7-day forecasts.</div>
+      <div class="card-desc">Stay updated with 7-day forecasts for your area.</div>
     </a>
     <a href="calendar.html" class="card calendar">
       <div class="card-icon">📅</div>
@@ -269,79 +302,111 @@
     <a href="fertilizer.html" class="card fertilizer">
       <div class="card-icon">🪴</div>
       <div class="card-title">Fertilizer Advisory</div>
-      <div class="card-desc">Get pest & fertilizer recommendations.</div>
+      <div class="card-desc">Get pest control & fertilizer recommendations.</div>
     </a>
     <a href="soil.html" class="card soil">
       <div class="card-icon">🌍</div>
       <div class="card-title">Soil Health</div>
-      <div class="card-desc">Check soil quality & improvements.</div>
+      <div class="card-desc">Check soil quality & improvement methods.</div>
+    </a>
+    <a href="msp.html" class="card msp">
+      <div class="card-icon">💰</div>
+      <div class="card-title">MSP & Market Rates</div>
+      <div class="card-desc">Latest MSP rates & eNAM updates.</div>
+    </a>
+    <a href="yield.html" class="card yield">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Yield Comparison</div>
+      <div class="card-desc">Compare crop yields across regions.</div>
     </a>
   </div>
 
+  <!-- Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">✖</span>
+      <h3 id="modalTitle">Login</h3>
+      <form id="authForm">
+        <!-- Login Fields -->
+        <div id="loginFields">
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </div>
+        <!-- Signup Fields -->
+        <div id="signupFields" style="display:none;">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <input type="password" placeholder="Confirm Password" required>
+          <input type="number" placeholder="Land Size (acres)" required>
+          <input type="text" placeholder="Crop Type" required>
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+      <div class="toggle-link" onclick="toggleAuth()">Don’t have an account? Sign Up</div>
+    </div>
+  </div>
+
   <script>
-    // ===== LANGUAGE POPUP =====
-    function chooseLang(lang) {
-      document.getElementById("languagePopup").style.display = "none";
-      document.getElementById("authPopup").classList.remove("hidden");
-    }
-
-    // ===== LOGIN / REGISTER =====
-    let isRegister = false;
-    function toggleRegister() {
-      isRegister = !isRegister;
-      document.getElementById("authTitle").innerText = isRegister ? "Register" : "Login";
-      document.getElementById("password2").classList.toggle("hidden", !isRegister);
-      document.getElementById("landSize").classList.toggle("hidden", !isRegister);
-      document.getElementById("cropType").classList.toggle("hidden", !isRegister);
-    }
-
-    function login() {
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-
-      if (isRegister) {
-        let pass2 = document.getElementById("password2").value;
-        let land = document.getElementById("landSize").value;
-        let crop = document.getElementById("cropType").value;
-        if (!user || !pass || !pass2 || !land || !crop) {
-          alert("Please fill all fields!");
-          return;
-        }
-        if (pass !== pass2) {
-          alert("Passwords do not match!");
-          return;
-        }
-        localStorage.setItem("solutioneersUser", JSON.stringify({ user, pass, land, crop }));
-        alert("Account created! Please login.");
-        toggleRegister();
-        return;
-      } else {
-        let saved = JSON.parse(localStorage.getItem("solutioneersUser"));
-        if (!saved || saved.user !== user || saved.pass !== pass) {
-          alert("Invalid credentials or account not found!");
-          return;
-        }
-        document.getElementById("authPopup").classList.add("hidden");
-        alert("Welcome " + saved.user + "!");
-      }
-    }
-
-    // ===== SIDEBAR =====
-    function toggleSidebar() {
-      let sidebar = document.getElementById("sidebar");
-      sidebar.style.left = sidebar.style.left === "0px" ? "-220px" : "0px";
-    }
-
-    // ===== TIME =====
+    // Show IST time + date
     function updateTime() {
-      let now = new Date();
-      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      let timeStr = now.toLocaleTimeString("en-IN", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById("timeDisplay").innerText =
-        timeStr + " | " + now.toLocaleDateString("en-IN", options);
+      const now = new Date();
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+                        hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById("datetime").innerText = now.toLocaleString("en-IN", options);
     }
     setInterval(updateTime, 1000);
     updateTime();
+
+    // Reveal cards on scroll
+    const cards = document.querySelectorAll('.card');
+    const revealOnScroll = () => {
+      const trigger = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect().top;
+        if (rect < trigger) card.classList.add('reveal');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Modal Logic
+    const modal = document.getElementById("authModal");
+    const loginFields = document.getElementById("loginFields");
+    const signupFields = document.getElementById("signupFields");
+    const modalTitle = document.getElementById("modalTitle");
+    const toggleLink = document.querySelector(".toggle-link");
+
+    function openModal(type) {
+      modal.style.display = "flex";
+      if (type === "login") {
+        loginFields.style.display = "block";
+        signupFields.style.display = "none";
+        modalTitle.innerText = "Login";
+        toggleLink.innerText = "Don’t have an account? Sign Up";
+      } else {
+        loginFields.style.display = "none";
+        signupFields.style.display = "block";
+        modalTitle.innerText = "Sign Up";
+        toggleLink.innerText = "Already have an account? Login";
+      }
+    }
+    function closeModal() {
+      modal.style.display = "none";
+    }
+    function toggleAuth() {
+      if (loginFields.style.display === "block") {
+        openModal("signup");
+      } else {
+        openModal("login");
+      }
+    }
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
   </script>
 </body>
 </html>
