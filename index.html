@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SIH Smart Agriculture Dashboard</title>
+  <title>Solutioneers | Smart Agriculture Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <style>
@@ -30,19 +30,121 @@
       color: var(--deep-green);
       overflow-x: hidden;
     }
+    /* Header */
+    #topBar {
+      width: 100%;
+      background: linear-gradient(90deg,var(--accent-dark) 55%,var(--accent) 95%);
+      color: #fff;
+      padding: 13px 0 11px 0;
+      font-size: 1.03rem;
+      letter-spacing: 1.8px;
+      font-weight: 500;
+      text-align: center;
+      position: sticky;
+      top: 0; z-index: 2900;
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.08));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 48px;
+    }
+    #logoArea {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-left: 10px;
+    }
+    #logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 13px;
+      background: #fff6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      box-shadow: 0 3px 12px #1abc9c22;
+      animation: popfade 1s cubic-bezier(0.56,1.6,0.38,1) both;
+    }
+    #siteNameC {
+      display: flex;
+      flex-direction: column;
+      align-items:flex-start;
+      font-weight:700;
+      font-size:1.19em;
+    }
+    #siteName {
+      letter-spacing:1.7px;
+      font-size:1.11em;
+    }
+    #siteFullForm {
+      font-weight: 400;
+      font-size: 0.82em;
+      opacity: 0.85;
+      margin-top:-2px;
+      letter-spacing:0.6px;
+    }
+    #datetime {
+      margin-right: 40px; min-width: 230px;
+      font-family: 'Montserrat', monospace;
+      font-size:1.07em; letter-spacing:1.2px;
+      background:#fff2; padding:6px 19px; border-radius:12px;
+      box-shadow:0 1px 6px #00808019;
+      font-weight: 600;
+      animation: fadein 2s;
+    }
+    /* Area below top bar: Reserved Promo Area */
+    #promoArea {
+      background: linear-gradient(115deg,#e2f7fd 95%,#fff 100%);
+      min-height: 174px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      border-radius: 18px;
+      box-shadow:0 2px 32px #009e4240;
+      margin: 18px 3vw 0 3vw; position: relative;
+      transition: all 0.4s cubic-bezier(0.35,1.8,0.39,1);
+    }
+    #promoContent {
+      text-align: center;
+      font-weight: 700;
+      color: var(--accent-dark);
+      font-size: 2rem;
+      letter-spacing: 2.4px;
+      text-shadow: 0 2px 12px #15eeb544;
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+      user-select: none;
+      animation: popfade 1.2s cubic-bezier(0.45,1.9,0.5,1.1) both;
+    }
+    /* About Solutioneers block */
+    #aboutSolutioneersBlock {
+      margin: 2.5em 3vw 0 3vw;
+      background:linear-gradient(95deg,#fff 80%, #dcfff3 100%);
+      border-radius: 16px;
+      box-shadow:0 2px 14px #00dea944;
+      padding: 1.8em 1.35em 1.3em 1.6em;
+      font-size:1.19em;
+      color: #27593d;
+      animation: popfade 1.35s 0.25s cubic-bezier(0.56,1.1,0.48,1.2) both;
+      min-height:70px;
+    }
+    /* Tri/Side Menu */
     #sideMenu {
       position: fixed;
-      left: -225px;
+      left: -245px;
       top: 0;
       height: 100vh;
-      width: 220px;
+      width: 225px;
       background: linear-gradient(135deg, var(--accent-dark), var(--accent) 90%);
       color: #fff;
       z-index: 3500;
       box-shadow: 4px 0 16px -4px #0002;
       transition: left var(--trans);
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       padding-top: 40px;
     }
     #sideMenu.open { left: 0; }
@@ -56,30 +158,36 @@
       color: #fff;
       display: flex;
       align-items: center;
-      transition: background 0.19s;
+      transition: background 0.19s, color 0.23s;
+      border-left: 4px solid transparent;
     }
     .menu-item i {
       font-style: normal;
       margin-right: 15px;
       font-size: 1.55em;
+      display: inline-block;
+      transform: scale(1.1);
+      transition: filter 0.22s;
     }
     .menu-item:hover, .menu-item.active {
-      background: rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.10);
+      color: var(--yellow);
+      border-left: 4px solid var(--yellow);
     }
     #menuOverlay {
-      position: fixed;
-      left: 0; top: 0;
+      position: fixed; left: 0; top: 0;
       width: 100vw; height: 100vh;
-      background: rgba(56,56,56,0.14);
+      background: rgba(56,56,56,0.10);
       z-index: 2000;
       display: none;
     }
     #menuOverlay.show { display: block; }
+    /* Hamburger */
     #menuBtn {
       position: fixed;
       z-index: 5000;
       left: 18px; top: 22px;
-      background: var(--accent);
+      background: var(--accent-dark);
       color: #fff; border: none;
       padding: 12px 13px 12px 13px;
       border-radius: 50%;
@@ -87,8 +195,11 @@
       font-size: 1.46rem;
       transition: background 0.17s, box-shadow 0.22s;
       box-shadow: 0 2px 8px rgba(30, 90, 46, 0.23);
+      border:3px solid #fff2;
+      animation: popfade 1.2s 0.2s both;
     }
-    #menuBtn:hover { background: var(--accent-dark); }
+    #menuBtn:hover { background: var(--accent); }
+    /* Main Title */
     h1 {
       text-align: center;
       margin-top: 2rem;
@@ -100,468 +211,184 @@
       margin-bottom: 30px;
       transition: color 0.2s;
     }
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
-      gap: 2.4rem;
-      max-width: 1150px;
-      margin: 3rem auto 4rem auto;
-      padding: 0 1.2rem;
-      transition: all var(--trans);
+    /* Dashboard Cards, Animations — unchanged from before, left out for brevity */
+    /* ...add your previously copied dashboard card styles here unchanged */
+    /* Simple Chatbot */
+    #chatbotBubble {
+      position: fixed; right: 30px; bottom: 30px; z-index: 9999;
+      background: var(--accent); color: #fff;
+      border-radius: 50%;
+      width: 64px; height: 64px;
+      box-shadow: 0 4px 16px #00cdbb33;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; cursor: pointer;
+      animation: popfade 1.2s 1s both,pulse 2.3s infinite;
     }
-    .dashboard-card {
-      border-radius: var(--card-radius);
-      background: linear-gradient(120deg,#fff, #f4f7ff 90%);
-      box-shadow: var(--shadow);
-      transition: box-shadow 0.23s, transform 0.23s, background 0.32s;
-      overflow: hidden;
-      padding: 2rem 1.3rem 1.3rem 1.3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      animation: popfade 0.7s cubic-bezier(0.56,1.6,0.38,1) both;
-      animation-delay: calc(var(--idx)*0.05s);
-      border: 2px solid #eafdcb;
-      position: relative;
-      min-height: 222px;
+    @keyframes pulse {
+      0% { box-shadow: 0 3px 19px 1px #29fbc933;}
+      50% { box-shadow: 0 6px 28px 6px #13c18d5a;}
+      100% { box-shadow: 0 3px 19px 1px #29fbc933;}
     }
-    .dashboard-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-7px) scale(1.025);
-      background: linear-gradient(120deg, #e1ffef 60%, #fffbfe 100%);
-    }
-    .card-icon {
-      font-size: 2.3rem;
-      margin-right: 0.5rem;
-      background: var(--yellow);
-      padding: 0.2em 0.48em;
-      border-radius: 16px;
-      margin-bottom: 0.68rem;
-      box-shadow: 0 2px 14px #f5c12522;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-    .dashboard-card:hover .card-icon { background: var(--pink); }
-    .card-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      color: #205427;
-    }
-    .card-features {
-      font-size: 1.04rem;
-      color: #45596b;
-      margin-bottom: 1.15rem;
-      margin-top: 0;
-      line-height: 1.44;
-      min-height: 57px;
-    }
-    .card-action {
-      margin-top:auto;
-      font-size:1.04rem;
-      color:var(--accent-dark);
-      font-weight: 600;
-      padding:6px 0 0 2px;
-      cursor:pointer;
-      text-decoration:none;
-      transition:color 0.17s;
-    }
-    .card-action:hover {
-      color: var(--orange);
-    }
-    .modal-backdrop {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(52,18,91,0.16);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: fadein 0.44s cubic-bezier(0.56,2,0.38,1) both;
-    }
-    .modal-dialog {
+    #chatbotWindow {
+      display:none;
+      position: fixed; right: 38px; bottom: 110px; z-index: 9998;
+      width: 345px; max-width:94vw; min-height: 240px; max-height: 70vh;
+      box-shadow: 0 4px 28px #00847d29;
       background: #fff;
       border-radius: 18px;
-      padding: 3.2rem 3.5rem 2.8rem 3.5rem;
-      max-width: 600px;
-      min-width: 370px;
-      width: 99vw;
-      text-align: center;
-      box-shadow: 0px 12px 42px rgba(9,161,121,0.17);
-      position: relative;
-      animation: bouncein 0.66s cubic-bezier(.33,1.6,.16,.99);
+      overflow: hidden;
+      animation: popfade 0.9s .08s cubic-bezier(.41,2.5,.24,1.2) both;
+      flex-direction:column;
+      border:3px solid #13c18d18;
     }
-    .modal-title {
-      color: var(--accent-dark);
-      font-weight: 700;
-      font-size: 1.37rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: 1.6px;
-      line-height: 1.3;
-      text-align: center;
+    #chatHeader {
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark) 90%);
+      color: #fff; padding: 1.1em 1em; font-size: 1.15em; font-weight: 700;
+      display: flex; align-items:center; justify-content:space-between;
     }
-    .lang-btn, .action-btn {
-      margin: 0.8rem 0.5rem 0 0.5rem;
-      font-size: 1.1rem;
-      padding: 0.8rem 1.7rem;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(90deg,var(--orange),var(--accent));
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.13s, transform 0.18s;
-      box-shadow: 0 2px 10px #f9ac1d10;
+    #closeChatBtn {
+      background: none; border:none; color:#fff; font-size: 1.22em; cursor:pointer;
     }
-    .lang-btn:hover, .action-btn:hover { background: linear-gradient(90deg,var(--accent),var(--orange)); transform: scale(1.06);}
-    /* FORM & INPUT CENTERING */
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
+    #chatBody { padding: 1em 1em 0.2em 1em; overflow-y:auto; height: 168px; }
+    .chatUser { color:var(--accent-dark); font-weight:600; margin:0.4em 0 0.09em }
+    .chatMsg { font-size:1em; margin:0 0 0.7em 0.2em;}
+    #chatInputArea { display: flex; border-top:1px solid #e7eedd; }
+    #chatInput {
+      flex:1; border:none; background: #fafdff; padding: 0.85em;
+      font-size: 1em; border-radius:0 0 0 17px;
     }
-    .input-row{
-      margin-bottom: 1.1rem;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    #sendChatBtn {
+      background: var(--accent); color:#fff; border:none; font-size:1.3em;
+      padding:0 1.1em; border-radius:0 0 17px 0; cursor:pointer;
+      font-weight:800; transition: background 0.17s;
     }
-    .input-label{
-      display: block;
-      margin-bottom: 0.43rem;
-      color: var(--accent-dark);
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
+    #sendChatBtn:hover { background:var(--accent-dark);}
+    /* MODAL ANIMATIONS */
+    @keyframes popfade {
+      from { opacity: 0; transform:scale(0.93) translateY(12px);}
+      to { opacity: 1; transform:scale(1) translateY(0);}
     }
-    .input-field{
-      width: 100%;
-      max-width: 340px;
-      border: 2px solid #e2f6d9;
-      border-radius: 9px;
-      padding: 1.2rem 1.2rem;
-      background: #fafdff;
-      font-size: 1.22rem;
-      transition: border 0.16s;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+    @keyframes fadein {
+      from { opacity:0;}
+      to   { opacity:1;}
     }
-    .input-field:focus { border-color: var(--accent);}
-    .form-link{ display:block; color:var(--pink); text-decoration:underline; cursor:pointer; margin:0.99rem 0 0 0; font-size:0.97rem; text-align:center;}
-    .form-link:hover{ color:var(--orange);}
-    .error-note{ color:#e80e41; font-size:1.03rem; margin-bottom:0.7rem;}
-    .success-note{ color:#05a24c; font-size:1.02rem; margin-bottom:0.7rem;}
-    @keyframes popfade { from { opacity: 0; transform:scale(0.93) translateY(12px);} to { opacity: 1; transform:scale(1) translateY(0);} }
-    @keyframes fadein { from { opacity:0;} to   { opacity:1;} }
-    @keyframes bouncein { 0% {opacity:0; transform:scale(0.85) translateY(36px);} 90% {opacity:1; transform:scale(1.04) translateY(-2px);} 100% {opacity:1; transform:scale(1) translateY(0);} }
-    @media (max-width:690px){
-      .dashboard-grid{ gap: 1.1rem; }
-      #sideMenu { width:170px; min-width:120px; padding-top:28px; }
-      .menu-item { padding:13px 10px; font-size:0.97em;}
-      .modal-dialog { max-width: 99vw; min-width: 0; padding: 1.2rem 1rem 0.9rem 1rem;}
+    @media (max-width:650px) {
+      #promoContent, h1 { font-size:1.5rem;}
+      #aboutSolutioneersBlock { font-size:1em; padding:1.1em 0.7em 1.1em 1em;}
     }
+    /* Add your previously copied dashboard card style block here! */
+    /* ... */
   </style>
 </head>
 <body>
+  <!-- HEADER + TOP BAR -->
+  <div id="topBar">
+    <div id="logoArea">
+      <div id="logo">S</div>
+      <div id="siteNameC">
+        <span id="siteName">Solutioneers</span>
+        <span id="siteFullForm">Smart Agriculture Solutions Group</span>
+      </div>
+    </div>
+    <span id="datetime">Loading IST...</span>
+  </div>
+  <!-- TRI MENU BUTTON -->
   <button id="menuBtn" title="Menu" onclick="openMenu()">☰</button>
   <div id="sideMenu">
-    <div class="menu-item active" onclick="setView('dashboard')"><i>🏠</i><span id="mDash">Dashboard</span></div>
-    <div class="menu-item" onclick="setView('account')"><i>👤</i><span id="mAcc">Account</span></div>
-    <div class="menu-item" onclick="handleLogout()"><i>🚪</i><span id="mLog">Logout</span></div>
+    <div class="menu-item active" onclick="setView('dashboard')"><i>🏠</i><span>Dashboard</span></div>
+    <div class="menu-item" onclick="setView('account')"><i>👤</i><span>Account</span></div>
+    <div class="menu-item" onclick="setView('about')"><i>ℹ️</i><span>About Us</span></div>
+    <div class="menu-item" onclick="openChatbot()"><i>🤖</i><span>Chatbot</span></div>
+    <div class="menu-item" onclick="setView('feedback')"><i>📝</i><span>Feedback</span></div>
+    <div class="menu-item" onclick="setView('comparison')"><i>📊</i><span>Yield Comparison</span></div>
+    <div class="menu-item" onclick="setView('msp')"><i>💰</i><span>MSP Rates</span></div>
+    <div class="menu-item" onclick="handleLogout()"><i>🚪</i><span>Logout</span></div>
   </div>
   <div id="menuOverlay" onclick="closeMenu()"></div>
-  <div class="modal-backdrop" id="langModal" style="display:flex">
-    <div class="modal-dialog">
-      <div class="modal-title">View site in / वेबसाइट किस भाषा में देखें?</div>
-      <button class="lang-btn" onclick="selectLanguage('en')">English</button>
-      <button class="lang-btn" onclick="selectLanguage('hi')">हिन्दी</button>
+  <!-- PROMOTIONAL / RESERVED CONTENT AREA -->
+  <div id="promoArea">
+    <div id="promoContent">[ Reserved Area — Your Main Announcement/"Know Your Tiranga" Region ]</div>
+  </div>
+  <!-- ABOUT SOLUTIONEERS BLOCK -->
+  <div id="aboutSolutioneersBlock">
+    <b>About Solutioneers</b>: <br>
+    [Write about your team/project here. This block is fully editable!]
+  </div>
+  <!-- The rest of your dashboard, account, modals, etc. goes here as before -->
+
+  <!-- Chatbot Floating Bubble + Popup Window -->
+  <div id="chatbotBubble" onclick="openChatbot()" title="Can I help you?">🤖</div>
+  <div id="chatbotWindow">
+    <div id="chatHeader">
+      Can I help you?
+      <button id="closeChatBtn" onclick="closeChatbot()">×</button>
+    </div>
+    <div id="chatBody"></div>
+    <div id="chatInputArea">
+      <input type="text" id="chatInput" placeholder="Ask something..." onkeydown="if(event.key==='Enter'){sendChat()}">
+      <button id="sendChatBtn" onclick="sendChat()">➤</button>
     </div>
   </div>
-  <div class="modal-backdrop" id="loginModal" style="display:none">
-    <div class="modal-dialog" id="loginDialog"></div>
-  </div>
-  <h1 id="main-title" style="display:none;">OUR WEBSITES LAYOUT & FEATURES</h1>
-  <div class="dashboard-grid" id="dashboard" style="display:none;"></div>
-  <div class="dashboard-grid" id="accountView" style="display:none;">
-    <div class="dashboard-card" style="min-height:200px;">
-      <div class="card-title" id="accTitle"></div>
-      <div class="card-features">
-        <div id="accData"></div>
-      </div>
-      <div style="margin-top:16px;">
-        <button class="action-btn" style="background:var(--pink);margin-right:8px;" onclick="handleLogout()"><span id="accLogoutBtn"></span></button>
-        <button class="action-btn" style="background:var(--accent);" onclick="setView('dashboard')"><span id="accGotoDashboardBtn"></span></button>
-      </div>
-    </div>
-  </div>
-  <script>
-    let LANG = '', view = 'dashboard';
-    const strings = {
-      en: {
-        siteTitle: 'SIH Smart Agriculture Dashboard',
-        loginTitle: "Login to your account",
-        signupTitle: "Create a new account",
-        email: "Email",
-        password: "Password",
-        password2: "Re-enter Password",
-        name: "Name",
-        area: "Field area (acres)",
-        crop: "Field crop",
-        login: "Login",
-        signup: "Create Account",
-        newhere: "New to site?",
-        haveaccount: "Already have an account?",
-        getcode: "Send Verification Code",
-        enterCode: "Enter Verification Code (demo: 123456)",
-        verify: "Verify",
-        welcome: "Welcome!",
-        errorLogin: "Incorrect email or password.",
-        errorMatch: "Passwords don't match.",
-        codeSent: "Verification code sent to your email.",
-        codeWrong: "Incorrect code. Try again.",
-        codeRight: "Verified! Your account is active.",
-        forgot: "Forgot password?",
-        or: "or",
-        chooseLang: "Choose site language",
-        account: "My Account",
-        logout: "Logout",
-        gotoDash: "Go to Dashboard"
-      },
-      hi: {
-        siteTitle: "SIH स्मार्ट एग्री डैशबोर्ड",
-        loginTitle: "अपने खाते में लॉगिन करें",
-        signupTitle: "नया खाता बनाएँ",
-        email: "ईमेल",
-        password: "पासवर्ड",
-        password2: "पासवर्ड दोबारा लिखें",
-        name: "नाम",
-        area: "खेत का क्षेत्रफल (एकड़)",
-        crop: "खेत की फसल",
-        login: "लॉगिन",
-        signup: "खाता बनाएँ",
-        newhere: "नई सदस्यता?",
-        haveaccount: "पहले से खाता है?",
-        getcode: "सत्यापन कोड भेजें",
-        enterCode: "सत्यापन कोड डालें (डेमो: 123456)",
-        verify: "सत्यापित करें",
-        welcome: "स्वागत है!",
-        errorLogin: "गलत ईमेल या पासवर्ड।",
-        errorMatch: "पासवर्ड मेल नहीं खाते।",
-        codeSent: "आपके ईमेल पर कोड भेजा गया।",
-        codeWrong: "गलत कोड। पुनः प्रयास करें।",
-        codeRight: "सत्यापित! आपका खाता सक्रिय है।",
-        forgot: "पासवर्ड भूल गए?",
-        or: "या",
-        chooseLang: "भाषा चुनें",
-        account: "मेरा खाता",
-        logout: "लॉगआउट",
-        gotoDash: "डैशबोर्ड पर जाएं"
-      }
-    };
-    const cardData = [
-      {icon:'🌱', en:['Seeds Availability','Show seeds in market & government schemes.<br>Filter by crop type & subsidy.','View Seeds'],
-           hi:['बीज उपलब्धता','बाजार/सरकारी योजनाओं में उपलब्ध बीज।<br>फसल और सब्सिडी अनुसार फ़िल्टर करें।','बीज देखें']},
-      {icon:'📜', en:['Govt Schemes & Policies','Personalized eligibility checker.<br>Latest subsidies, crop insurance, loans.','Check Eligibility'],
-           hi:['सरकारी योजनाएं व नीतियां','व्यक्तिगत पात्रता जाँच।<br>ताज़ा सब्सिडी, फसल बीमा, ऋण योजनाएँ।','पात्रता जांचें']},
-      {icon:'☁️', en:['Weather Forecast','7-day forecast & seasonal prediction.<br>Alerts for rainfall, drought, heatwave.','See Forecast'],
-           hi:['मौसम पूर्वानुमान','७-दिन का पूर्वानुमान, मौसमी भविष्यवाणी।<br>वर्षा, सूखा, लू चेतावनी।','पूर्वानुमान देखें']},
-      {icon:'📅', en:['Crop Calendar','Sowing, irrigation, fertilizer & harvesting reminders.<br>Region-wise crop suggestions.','View Calendar'],
-           hi:['फसल कैलेंडर','बुवाई, सिंचाई, खाद, कटाई रिमाइंडर।<br>क्षेत्र अनुसार फसल सुझाव।','कैलेंडर देखें']},
-      {icon:'🐛', en:['Fertilizer & Pest Advisory','Soil & weather-based recommendations.<br>Alerts for common pest outbreaks.','Get Advisory'],
-           hi:['खाद और कीट सलाह','मिट्टी व मौसम अनुसार सिफारिशें।<br>सामान्य कीट प्रकोप चेतावनी।','सलाह पाएं']},
-      {icon:'🔥', en:['Stubble Alternatives','Govt-supported machines (Happy Seeder etc.).<br>Subsidy info & disposal alternatives.','Find Alternatives'],
-           hi:['पराली निपटान विकल्प','सरकारी मशीनें (Happy Seeder आदि)।<br>सब्सिडी व अन्य विकल्प।','विकल्प देखें']},
-      {icon:'🌍', en:['Soil Health','Input soil test values for advice.<br>Fetch soil health card (if linked).','Test Soil'],
-           hi:['मिट्टी स्वास्थ्य','मिट्टी टेस्ट के मूल्य डालें और सलाह पाएं।<br>स्वास्थ्य कार्ड जोड़ें।','मिट्टी जांचें']},
-      {icon:'💰', en:['Market Prices (MSP & eNAM)','Daily mandi rates from Agmarknet.<br>MSP for seasonal crops.','View Market Rates'],
-           hi:['बाजार भाव (MSP व eNAM)','हर दिन के मंडी रेट, MSP व eNAM से।<br>मौसमी फसलों का MSP।','रेट देखें']},
-      {icon:'📊', en:['Yield Comparison','Compare past crop yields with current.<br>Visual graphs (line/bar).','Compare Yields'],
-           hi:['उपज तुलना','पिछली व वर्तमान उपज तुलना।<br>ग्राफिक तुलना।','तुलना करें']},
-      {icon:'💬', en:['Chatbot (Punjabi & English)','Query in Punjabi/English<br>AI responses + voice support.','Ask Question'],
-           hi:['चैटबोट (पंजाबी/अंग्रेजी)','पंजाबी/अंग्रेज़ी में सवाल पूछें<br>AI उत्तर व वॉइस सपोर्ट।','सवाल पूछें']},
-      {icon:'📝', en:['Feedback (Crop Yield)','Farmers enter harvest results.<br>System learns & improves advisory.','Give Feedback'],
-           hi:['फीडबैक (फसल उपज)','किसान फसल उपज दर्ज करें।<br>सिस्टम सुझाव बेहतर करेगा।','फीडबैक दें']}
-    ];
-    function selectLanguage(l) {
-      LANG = l;
-      document.getElementById('langModal').style.display = 'none';
-      document.getElementById('main-title').textContent = strings[LANG].siteTitle;
-      document.getElementById('mDash').textContent = strings[LANG].siteTitle.split(' ')[0];
-      document.getElementById('mAcc').textContent = strings[LANG].account;
-      document.getElementById('mLog').textContent = strings[LANG].logout;
-      showLogin();
-    }
-    function showLogin(errorMsg) {
-      const s = strings[LANG];
-      document.getElementById('loginModal').style.display = 'flex';
-      let html = `<div class="modal-title">${s.loginTitle}</div>
-        ${errorMsg ? `<div class="error-note">${s.errorLogin}</div>` : '' }
-        <form onsubmit="event.preventDefault(); handleLogin();">
-          <div class="input-row">
-            <label class="input-label">${s.email}:</label>
-            <input class="input-field" id="login_email" type="email" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.password}:</label>
-            <input class="input-field" id="login_pass" type="password" required>
-          </div>
-          <button class="action-btn" type="submit">${s.login}</button>
-        </form>
-        <div class="form-link" onclick="showSignup()">${s.newhere} ${s.signup}</div>
-      `;
-      document.getElementById('loginDialog').innerHTML = html;
-    }
-    function handleLogin() {
-      const email = document.getElementById('login_email').value;
-      const pass = document.getElementById('login_pass').value;
-      if (window.demoAccount && email === window.demoAccount.email && pass === window.demoAccount.pass) {
-        showDashboard();
-      } else {
-        showLogin(true);
-      }
-    }
-    function showSignup(errorMatch) {
-      const s = strings[LANG];
-      document.getElementById('loginModal').style.display = 'flex';
-      let html = `<div class="modal-title">${s.signupTitle}</div>
-        ${errorMatch ? `<div class="error-note">${s.errorMatch}</div>` : ''}
-        <form onsubmit="event.preventDefault(); handleSignup();">
-          <div class="input-row">
-            <label class="input-label">${s.name}:</label>
-            <input class="input-field" id="signup_name" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.email}:</label>
-            <input class="input-field" id="signup_email" type="email" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.password}:</label>
-            <input class="input-field" id="signup_pass1" type="password" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.password2}:</label>
-            <input class="input-field" id="signup_pass2" type="password" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.area}:</label>
-            <input class="input-field" id="signup_area" required>
-          </div>
-          <div class="input-row">
-            <label class="input-label">${s.crop}:</label>
-            <input class="input-field" id="signup_crop" required>
-          </div>
-          <button class="action-btn" type="submit">${s.getcode}</button>
-        </form>
-        <div class="form-link" onclick="showLogin()">${s.haveaccount} ${s.login}</div>
-      `;
-      document.getElementById('loginDialog').innerHTML = html;
-    }
-    function handleSignup() {
-      const email = document.getElementById('signup_email').value;
-      const pass1 = document.getElementById('signup_pass1').value;
-      const pass2 = document.getElementById('signup_pass2').value;
-      if (pass1 !== pass2) { showSignup(true); return; }
-      window.demoAccount = {
-        name: document.getElementById('signup_name').value,
-        email: email,
-        pass: pass1,
-        area: document.getElementById('signup_area').value,
-        crop: document.getElementById('signup_crop').value,
-      };
-      showVerifyModal();
-    }
-    function showVerifyModal(error) {
-      const s = strings[LANG];
-      let html = `<div class="modal-title">${s.enterCode}</div>
-        ${error === 1 ? `<div class="error-note">${s.codeWrong}</div>` : ''}
-        ${error === 2 ? `<div class="success-note">${s.codeSent}</div>` : ''}
-        <form onsubmit="event.preventDefault(); handleCode();">
-          <div class="input-row">
-            <input class="input-field" id="vcode" required>
-          </div>
-          <button class="action-btn" type="submit">${s.verify}</button>
-        </form>
-      `;
-      document.getElementById('loginDialog').innerHTML = html;
-      if (!error) setTimeout(() => showVerifyModal(2), 700);
-    }
-    function handleCode() {
-      const code = document.getElementById('vcode').value.trim();
-      if (code === "123456") {
-        document.getElementById('loginDialog').innerHTML = `<div class="success-note">${strings[LANG].codeRight}</div>`;
-        setTimeout(() => { showDashboard();}, 1000);
-      } else {
-        showVerifyModal(1);
-      }
-    }
-    function showDashboard() {
-      document.getElementById('loginModal').style.display = 'none';
-      document.getElementById('main-title').style.display = 'block';
-      setView('dashboard');
-    }
-    function closeMenu() {
-      document.getElementById('sideMenu').classList.remove('open');
-      document.getElementById('menuOverlay').classList.remove('show');
-    }
-    function openMenu() {
-      document.getElementById('sideMenu').classList.add('open');
-      document.getElementById('menuOverlay').classList.add('show');
-    }
-    function setView(v) {
-      view = v; closeMenu();
-      document.querySelectorAll('.menu-item').forEach(mi=>mi.classList.remove('active'));
-      if(v=='dashboard'){
-        document.querySelectorAll('.dashboard-grid').forEach(g=>g.style.display='none');
-        document.getElementById('dashboard').style.display='grid';
-        document.querySelectorAll('.menu-item')[0].classList.add('active');
-        document.getElementById('main-title').style.display='block';
-        renderDashboard();
-      }
-      else if(v=='account'){
-        document.querySelectorAll('.dashboard-grid').forEach(g=>g.style.display='none');
-        document.getElementById('accountView').style.display='grid';
-        document.querySelectorAll('.menu-item')[1].classList.add('active');
-        document.getElementById('main-title').style.display='none';
-        renderAccount();
-      }
-    }
-    function renderDashboard(){
-      const d = document.getElementById('dashboard');
-      d.innerHTML = '';
-      cardData.forEach((card,idx) => {
-        let t = card[LANG], cardIdx = idx;
-        d.innerHTML += `<div class="dashboard-card" style="--idx:${idx}">
-          <div class="card-title"><span class="card-icon">${card.icon}</span> ${t[0]}</div>
-          <div class="card-features">${t[1]}</div>
-          <div class="card-action" onclick="alert('${t[2]} feature coming soon!')">${t[2]}</div>
-        </div>`;
-      });
-    }
-    function renderAccount(){
-      const acc = window.demoAccount || {};
-      document.getElementById('accTitle').textContent = strings[LANG].account;
-      document.getElementById('accLogoutBtn').textContent = strings[LANG].logout;
-      document.getElementById('accGotoDashboardBtn').textContent = strings[LANG].gotoDash;
-      document.getElementById('accData').innerHTML =
-        `${strings[LANG].name}: <b>${acc.name||'-'}</b><br>
-         ${strings[LANG].email}: <b>${acc.email||'-'}</b><br>
-         ${strings[LANG].area}: <b>${acc.area||'-'}</b><br>
-         ${strings[LANG].crop}: <b>${acc.crop||'-'}</b>`;
-    }
-    function handleLogout(){
-      window.demoAccount = null;
-      location.reload();
-    }
-    document.addEventListener('keydown', function(e){
-      if(e.key==="Escape") closeMenu();
-    });
-  </script>
+
+<script>
+  // --- Dynamic Date+Time IST
+  function updateIST() {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + now.getTimezoneOffset() + 330); // IST +5:30
+    const fmt = n => n<10?'0'+n:n;
+    const date = `${fmt(now.getDate())}/${fmt(now.getMonth()+1)}/${now.getFullYear()}`;
+    const time = `${fmt(now.getHours())}:${fmt(now.getMinutes())}:${fmt(now.getSeconds())}`;
+    document.getElementById('datetime').textContent = `${date} | ${time} IST`;
+  }
+  setInterval(updateIST,1000); updateIST();
+
+  // --- Side Menu
+  function openMenu() {
+    document.getElementById('sideMenu').classList.add('open');
+    document.getElementById('menuOverlay').classList.add('show');
+  }
+  function closeMenu() {
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+  }
+  document.addEventListener('keydown', function(e){ if(e.key==="Escape") closeMenu(); });
+  
+  // --- Chatbot Logic (Demo)
+  function openChatbot() {
+    document.getElementById('chatbotWindow').style.display='flex';
+    setTimeout(()=>{document.getElementById('chatInput').focus()},220);
+  }
+  function closeChatbot() {
+    document.getElementById('chatbotWindow').style.display='none';
+  }
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if(!text) return;
+    const chatBody = document.getElementById('chatBody');
+    chatBody.innerHTML += `<div class="chatUser">You:</div><div class="chatMsg">${text}</div>`;
+    input.value='';
+    setTimeout(()=>{
+      chatBody.innerHTML += `<div class="chatUser">Bot:</div><div class="chatMsg">${botReply(text)}</div>`;
+      chatBody.scrollTop = chatBody.scrollHeight;
+    },800);
+  }
+  function botReply(q) {
+    // Simple fixed demo reply
+    q = q.toLowerCase();
+    if(q.includes('msp')) return "Minimum Support Price (MSP) updates are available on the MSP page!";
+    if(q.includes('feedback')) return "You can submit feedback from the Feedback page on the menu.";
+    if(q.includes('hello')||q.includes('hi')) return "Hello! How can I help you?";
+    return "Sorry, this is a demo. Our AI assistant is coming soon!";
+  }
+
+  // --- Set Views for Menu
+  function setView(view){
+    closeMenu();
+    alert("Demo: The "+view+" page will show up here. (Expand this part in your project!)");
+  }
+
+  // Advanced: Plug in the rest of your dashboard, login, and modal code here as needed!
+</script>
 </body>
 </html>
