@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f6f8;
+      background: linear-gradient(to bottom, #f0fdf4, #ffffff);
     }
 
     /* Navbar */
@@ -26,12 +26,13 @@
 
     .navbar h1 {
       margin: 0;
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .nav-right {
       display: flex;
-      gap: 15px;
+      gap: 12px;
+      align-items: center;
     }
 
     .nav-right button {
@@ -49,7 +50,7 @@
     }
 
     .menu-btn {
-      font-size: 22px;
+      font-size: 24px;
       cursor: pointer;
     }
 
@@ -57,31 +58,38 @@
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px; /* Hidden by default */
-      width: 250px;
+      left: -260px; /* hidden by default */
+      width: 240px;
       height: 100%;
-      background: #1b4332;
-      padding-top: 60px;
-      transition: 0.4s;
-      z-index: 2000;
+      background: #1e7b3f;
+      color: #fff;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 1100;
     }
-
-    .sidebar a {
-      display: block;
-      padding: 15px;
-      color: white;
-      text-decoration: none;
+    .sidebar.open {
+      left: 0; /* slide in */
+    }
+    .sidebar h3 {
+      margin-bottom: 16px;
       font-size: 18px;
+      color: #fff;
     }
-
+    .sidebar a {
+      padding: 8px 0;
+      display: block;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
     .sidebar a:hover {
-      background: #40916c;
+      text-decoration: underline;
     }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 60px 20px;
+      padding: 70px 20px;
       background: url('https://images.unsplash.com/photo-1606041008023-472dfb5e530f') no-repeat center/cover;
       color: white;
     }
@@ -89,6 +97,7 @@
     .hero h2 {
       font-size: 34px;
       margin: 0;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
     }
 
     /* Announcements */
@@ -105,6 +114,7 @@
       margin-bottom: 20px;
       font-size: 26px;
       text-align: center;
+      color: #2d6a4f;
     }
 
     .announcement {
@@ -118,7 +128,7 @@
     /* Cards */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       padding: 40px;
       max-width: 1200px;
@@ -130,11 +140,12 @@
       border-radius: 14px;
       box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
     }
 
     .card img {
@@ -163,7 +174,7 @@
 
   <!-- Navbar -->
   <div class="navbar">
-    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
+    <span class="menu-btn" id="menuBtn">☰</span>
     <h1>Kisan Mitra Portal</h1>
     <div class="nav-right">
       <button>Login</button>
@@ -174,10 +185,10 @@
 
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
-    <a href="#">Dashboard</a>
-    <a href="#">Schemes</a>
-    <a href="#">Market Prices</a>
-    <a href="#">Weather</a>
+    <h3>Dashboard</h3>
+    <a href="#">About Us</a>
+    <a href="#">MSP</a>
+    <a href="#">Yield Comparison</a>
     <a href="#">Support</a>
   </div>
 
@@ -197,28 +208,28 @@
   <!-- Cards -->
   <div class="cards">
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" alt="Farmer 1">
+      <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" alt="Schemes">
       <div class="card-content">
         <h4>Farming Schemes</h4>
         <p>Access the latest government schemes for farmers.</p>
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3" alt="Farmer 2">
+      <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3" alt="Market">
       <div class="card-content">
         <h4>Market Prices</h4>
         <p>Check the latest mandi and market rates for crops.</p>
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1524492449090-4e1c84c5bffa" alt="Farmer 3">
+      <img src="https://images.unsplash.com/photo-1524492449090-4e1c84c5bffa" alt="Weather">
       <div class="card-content">
         <h4>Weather Updates</h4>
         <p>Stay updated with real-time weather forecasts.</p>
       </div>
     </div>
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Farmer 4">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Chatbot">
       <div class="card-content">
         <h4>AI Chatbot</h4>
         <p>Get instant help and answers with our AI-powered chatbot.</p>
@@ -227,14 +238,12 @@
   </div>
 
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById("sidebar");
-      if (sidebar.style.left === "0px") {
-        sidebar.style.left = "-250px"; // hide
-      } else {
-        sidebar.style.left = "0px"; // show
-      }
-    }
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
   </script>
 
 </body>
