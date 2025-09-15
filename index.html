@@ -20,7 +20,10 @@
       max-width:1250px;
       padding:30px 24px;
       border-radius:30px;
-      background:rgba(255,255,255,0.55);
+      /* 👇 colored/gradient background inside dashboard card area */
+      background:linear-gradient(135deg,#e4ffe9 0,#b3efe3 80%,#dbf2ff 100%);
+      /* makes card glassy on top of color */
+      background-blend-mode: soft-light;
       box-shadow:0 6px 60px rgba(50, 85, 70, 0.14), 0 1.5px 12px rgba(90,155,120,0.09);
       backdrop-filter:blur(8px);
     }
@@ -46,8 +49,7 @@
     .menu-btn{
       display:inline-flex;align-items:center;justify-content:center;
       width:44px;height:44px;border-radius:10px;border:none;
-      background:linear-gradient(180deg,#fff,#f1f5f1);
-      font-size:20px;cursor:pointer;
+      background:linear-gradient(180deg,#fff,#f1f5f1);font-size:20px;cursor:pointer;
     }
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;}
     .brand .logo {width:44px;height:44px;border-radius:10px;
@@ -136,7 +138,6 @@
       <a href="#" style="color:#fff;text-decoration:none;font-weight:600">MSP</a>
       <a href="#" style="color:#fff;text-decoration:none;font-weight:600">Yield Comparison</a>
     </nav>
-    <!-- NEW: RELIABLE IMAGES -->
     <section class="grid" aria-label="Features">
       <a class="big-card overlay-green" href="seeds.html"
         style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');">
@@ -164,7 +165,7 @@
         <div class="desc">Soil-based recommendations & early pest warnings.</div>
       </a>
       <a class="big-card overlay-blue" href="soil.html"
-        style="background-image:url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=600&q=80');">
+        style="background-image:url('https://images.unsplash.com/photo-1465101178521-c1c06b3e74e8?auto=format&fit=crop&w=600&q=80');">
         <div class="title">Soil Health</div>
         <div class="desc">Upload soil reports & get improvement plans.</div>
       </a>
@@ -174,7 +175,7 @@
         <div class="desc">Daily mandi rates, eNAM prices, and trend charts.</div>
       </a>
       <a class="big-card overlay-purple" href="yield.html"
-        style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80');">
+        style="background-image:url('https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&w=600&q=80');">
         <div class="title">Yield Comparison</div>
         <div class="desc">Compare historical yields and forecast potential improvements.</div>
       </a>
@@ -243,7 +244,7 @@
         </div>
       </aside>
     </section>
-    <!-- DASHBOARD GRID ON MAIN PAGE, NEW IMAGES -->
+    <!-- DASHBOARD GRID ON MAIN PAGE, RELIABLE IMAGES AND BG -->
     <section class="dashboard-bg">
       <section class="grid" aria-label="Features">
         <a class="big-card overlay-green" href="seeds.html"
@@ -272,7 +273,7 @@
           <div class="desc">Soil-based recommendations & early pest warnings.</div>
         </a>
         <a class="big-card overlay-blue" href="soil.html"
-          style="background-image:url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=600&q=80');">
+          style="background-image:url('https://images.unsplash.com/photo-1465101178521-c1c06b3e74e8?auto=format&fit=crop&w=600&q=80');">
           <div class="title">Soil Health</div>
           <div class="desc">Upload soil reports & get improvement plans.</div>
         </a>
@@ -282,7 +283,7 @@
           <div class="desc">Daily mandi rates, eNAM prices, and trend charts.</div>
         </a>
         <a class="big-card overlay-purple" href="yield.html"
-          style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80');">
+          style="background-image:url('https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&w=600&q=80');">
           <div class="title">Yield Comparison</div>
           <div class="desc">Compare historical yields and forecast potential improvements.</div>
         </a>
