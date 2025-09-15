@@ -1,188 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Solutioneers • Smart Agriculture Dashboard</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
-  <style>
-    /* ---------- Reset ---------- */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: "Montserrat",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: #f3f6f8;
-      color:#213;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.35;
-    }
+<meta charset="utf-8" />
+<title>Solutioneers • Smart Agriculture Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,#f3f6f8 0%, #eef6ee 100%);
+    color:#14261a;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.35;
+  }
 
-    /* ---------- NAVBAR ---------- */
-    .navbar{
-      position:sticky;top:0;z-index:1200;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:14px 26px;
-      background:rgba(255,255,255,0.92);
-      backdrop-filter: blur(6px);
-      box-shadow:0 6px 18px rgba(20,30,20,0.06);
-    }
-    .nav-left{display:flex;align-items:center;gap:14px}
-    .menu-btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:44px;height:44px;border-radius:10px;border:none;
-      background:linear-gradient(180deg,#fff,#f1f5f1);box-shadow:0 3px 10px rgba(28,86,41,0.07);
-      font-size:20px;cursor:pointer;
-    }
-    .brand{
-      display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;
-    }
-    .brand .logo {
-      width:44px;height:44px;border-radius:10px;
-      background:linear-gradient(135deg,#dff6e8,#b9e8c1);
-      display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;
-      box-shadow:0 6px 18px rgba(27,94,51,0.08);
-      font-size:20px;
-    }
-    .brand .title{font-size:18px}
-    .nav-time{font-size:13px;color:#3a3a3a;margin-left:6px}
+  /* NAVBAR */
+  .navbar{
+    position:sticky;top:0;z-index:1200;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 28px;background:rgba(255,255,255,0.95);
+    backdrop-filter: blur(6px);
+    box-shadow:0 8px 28px rgba(20,30,20,0.05);
+  }
+  .nav-left{display:flex;align-items:center;gap:14px}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;border:none;
+    background:linear-gradient(180deg,#ffffff,#eef7ee);box-shadow:0 6px 16px rgba(18,85,40,0.06);font-size:20px;cursor:pointer}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:#1b6b36}
+  .brand .logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);
+    display:flex;align-items:center;justify-content:center;font-weight:900;color:#195b32;box-shadow:0 6px 18px rgba(27,94,51,0.08)}
+  .brand .meta{font-size:12px;color:#476f51}
+  .nav-time{font-size:13px;color:#475b4a;margin-left:6px}
 
-    .nav-right{display:flex;align-items:center;gap:8px}
-    .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e8f6ee}
-    .btn {padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:600}
-    .btn.login{background:transparent;border:1px solid #ddd;color:#175a30}
-    .btn.cta{background:#1e7b3f;color:#fff;box-shadow:0 8px 20px rgba(30,123,63,0.12)}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e9f7ee}
+  .btn{padding:9px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+  .btn.login{background:transparent;border:1px solid #e2e8e2;color:#164f2b}
+  .btn.cta{background:#1e7b3f;color:#fff;box-shadow:0 10px 26px rgba(30,123,63,0.12)}
 
-    /* ---------- HERO / ANNOUNCEMENT ---------- */
-    .hero{
-      margin:18px;
-      border-radius:18px;
-      overflow:hidden;
-      background:linear-gradient(135deg,#e8f7ee,#f1f9f2);
-      box-shadow:0 20px 40px rgba(25,111,61,0.06);
-      display:flex;align-items:center;justify-content:space-between;gap:30px;
-      padding:42px;min-height:160px;
-    }
-    .hero .left{
-      max-width:72%;
-    }
-    .hero h1{font-size:34px;line-height:1.02;color:#114b27;margin-bottom:8px}
-    .hero p{color:#2c5b3a;opacity:0.95;font-size:15px}
-    .hero .cta-row{margin-top:16px;display:flex;gap:12px}
-    .hero .cta{padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
-    .hero .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 10px 26px rgba(30,123,63,0.12)}
-    .hero .cta.ghost{background:transparent;border:1px solid #d6eee0;color:#1e7b3f}
+  /* SIDEBAR */
+  #sidebar{
+    position:fixed;top:0;left:-280px;width:260px;height:100%;background:linear-gradient(180deg,#1f7a3f,#0f5c2a);
+    color:#fff;padding:22px;border-top-right-radius:10px;border-bottom-right-radius:10px;z-index:1400;
+    box-shadow: 14px 0 30px rgba(4,40,20,0.12);transition:left .36s cubic-bezier(.2,.9,.2,1);
+  }
+  #sidebar.open{left:0}
+  #sidebar h3{margin-bottom:14px;font-size:16px}
+  #sidebar a{display:block;color:rgba(255,255,255,0.95);text-decoration:none;padding:10px 6px;border-radius:8px;margin-bottom:6px;font-weight:600}
+  #sidebar a:hover{background:rgba(255,255,255,0.06)}
 
-    .hero .right{
-      width:320px;height:120px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f2b3f2f1b2a0c4e1b49a5d2a9b3ed7f');
-      background-size:cover;background-position:center;
-      box-shadow:inset 0 0 0 120px rgba(255,255,255,0.18);
-      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
-      text-shadow:0 4px 20px rgba(0,0,0,0.3)
-    }
+  /* HERO / ANNOUNCEMENT */
+  .hero{
+    margin:22px;border-radius:18px;overflow:hidden;
+    background:linear-gradient(90deg,#ebf9ee,#f7fcf6);
+    box-shadow:0 24px 50px rgba(20,60,30,0.06);
+    display:flex;align-items:center;justify-content:space-between;gap:28px;padding:44px;
+    min-height:220px;
+  }
+  .hero .left{max-width:66%}
+  .hero h1{font-size:34px;line-height:1.02;color:#114b27;margin-bottom:10px}
+  .hero p{color:#2c5b3a;opacity:0.96;font-size:16px}
+  .cta-row{margin-top:18px;display:flex;gap:12px}
+  .cta{padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:800}
+  .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 12px 30px rgba(30,123,63,0.12)}
+  .cta.ghost{background:transparent;border:1px solid #dfeee1;color:#196f35}
 
-    /* ---------- INFO + NEWS ---------- */
-    .section{
-      display:grid;grid-template-columns:1fr 420px;gap:22px;margin:22px;
-    }
-    .card-large{
-      border-radius:14px;background:#fff;padding:22px;box-shadow:0 10px 30px rgba(16,64,28,0.06);
-    }
-    .about h3{color:#1b6b36;margin-bottom:10px;font-size:20px}
-    .about p{color:#2c4d3a;opacity:.9}
+  .hero .right{width:360px;height:160px;border-radius:12px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 110px rgba(255,255,255,0.16);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;text-shadow:0 6px 18px rgba(0,0,0,0.18)}
 
-    /* news box */
-    .news-box{border-radius:14px;background:linear-gradient(180deg,#fff,#fbfffd);padding:18px;box-shadow:0 10px 30px rgba(16,64,28,0.04)}
-    .news-box h3{color:#1b6b36;margin-bottom:12px}
-    .news-scroll{height:170px;overflow:hidden;position:relative}
-    .news-track{
-      display:flex;flex-direction:column;gap:10px;
-      animation:newsScroll 12s linear infinite;
-    }
-    .news-item{font-size:14px;color:#264c36;padding:8px;background:linear-gradient(90deg,rgba(40,120,60,0.03),transparent);border-radius:8px}
+  /* INFO + NEWS */
+  .section{display:grid;grid-template-columns:1fr 360px;gap:22px;margin:22px}
+  .card-large{border-radius:14px;background:#fff;padding:22px;box-shadow:0 12px 32px rgba(16,64,28,0.05)}
+  .about h3{color:#1b6b36;margin-bottom:10px;font-size:20px}
+  .about p{color:#2c4d3a;opacity:.95}
+  .news-box{border-radius:14px;padding:18px;background:linear-gradient(180deg,#fff,#fbfffd);box-shadow:0 12px 32px rgba(16,64,28,0.04)}
+  .news-box h3{color:#1b6b36;margin-bottom:12px}
+  .news-scroll{height:170px;overflow:hidden;position:relative}
+  .news-track{display:flex;flex-direction:column;gap:10px;animation:newsScroll 12s linear infinite}
+  .news-item{font-size:14px;color:#264c36;padding:10px;background:rgba(40,120,60,0.03);border-radius:8px}
 
-    @keyframes newsScroll {
-      0% { transform: translateY(0%); }
-      100% { transform: translateY(-50%); } /* duplicated items handled */
-    }
+  @keyframes newsScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 
-    /* ---------- BIG CARD GRID (two-per-row large) ---------- */
-    .grid{
-      margin:22px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
-      gap:20px;
-    }
-    .big-card{
-      position:relative;overflow:hidden;border-radius:18px;height:260px;
-      color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;
-      box-shadow:0 18px 40px rgba(10,40,20,0.06);
-      transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s;
-      background-size:cover;background-position:center;
-    }
-    .big-card::after{
-      content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48));mix-blend-mode:multiply;
-    }
-    .big-card .title{position:relative;font-weight:800;font-size:20px;z-index:2}
-    .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:13px}
-    .big-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 30px 60px rgba(12,48,22,0.12)}
+  /* BIG CARD GRID */
+  .grid{margin:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:22px}
+  .big-card{position:relative;overflow:hidden;border-radius:16px;height:300px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;
+    box-shadow:0 24px 60px rgba(6,40,18,0.06);transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s;background-size:cover;background-position:center}
+  .big-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(3,20,10,0.6));mix-blend-mode:multiply}
+  .big-card .title{position:relative;font-weight:900;font-size:22px;z-index:2}
+  .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:14px}
+  .big-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 34px 80px rgba(6,40,18,0.12)}
 
-    /* overlay color accents */
-    .overlay-green{background:linear-gradient(135deg, rgba(26,139,87,0.6), rgba(18,95,50,0.55));}
-    .overlay-yellow{background:linear-gradient(135deg, rgba(255,195,79,0.6), rgba(255,143,0,0.45));}
-    .overlay-blue{background:linear-gradient(135deg, rgba(95,150,255,0.45), rgba(65,120,255,0.38));}
-    .overlay-purple{background:linear-gradient(135deg, rgba(200,140,255,0.45), rgba(145,86,255,0.36));}
+  /* overlay classes for color tint fallback */
+  .overlay-green{background-blend-mode:overlay}
+  .overlay-blue{background-blend-mode:overlay}
+  .overlay-yellow{background-blend-mode:overlay}
+  .overlay-purple{background-blend-mode:overlay}
 
-    /* card backgrounds via inline style (images) fallback color */
-    .card-fallback{background:linear-gradient(135deg,#f4f6f5,#eef6ef);}
+  /* CHATBOT */
+  .chat-bubble{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;background:linear-gradient(180deg,#1e7b3f,#166531);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 12px 28px rgba(30,123,63,0.18);cursor:pointer;z-index:1300}
+  .chat-window{position:fixed;right:22px;bottom:100px;width:360px;height:480px;border-radius:12px;background:#fff;box-shadow:0 20px 60px rgba(20,40,20,0.12);overflow:hidden;display:flex;flex-direction:column;z-index:1300;transform:translateY(8px);opacity:0;pointer-events:none;transition:all .28s}
+  .chat-window.open{opacity:1;transform:translateY(0);pointer-events:auto}
+  .chat-head{background:linear-gradient(90deg,#1e7b3f,#136033);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:800}
+  .chat-body{padding:12px;flex:1;overflow:auto;background:#f7fbf8}
+  .chat-input{display:flex;border-top:1px solid #eee;padding:10px;background:#fff}
+  .chat-input input{flex:1;padding:10px;border:1px solid #e6efe6;border-radius:8px;margin-right:8px}
+  .chat-msg{background:#e9f7ee;padding:10px;border-radius:8px;margin-bottom:8px;max-width:85%}
+  .chat-msg.me{background:#dbefff;margin-left:auto;color:#06264a}
 
-    /* ---------- CHATBOT (bottom-right) ---------- */
-    .chat-bubble{
-      position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:50%;
-      background:linear-gradient(180deg,#1e7b3f,#166531);display:flex;align-items:center;justify-content:center;color:#fff;
-      box-shadow:0 12px 28px rgba(30,123,63,0.18);cursor:pointer;z-index:1300;
-    }
-    .chat-window{
-      position:fixed;right:20px;bottom:100px;width:360px;height:480px;border-radius:12px;background:#fff;
-      box-shadow:0 18px 50px rgba(20,40,20,0.12);overflow:hidden;display:flex;flex-direction:column;z-index:1300;
-      transform:translateY(10px);opacity:0;pointer-events:none;transition:all .28s;
-    }
-    .chat-window.open{opacity:1;transform:translateY(0);pointer-events:auto}
-    .chat-head{background:linear-gradient(90deg,#1e7b3f,#136033);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700}
-    .chat-body{padding:12px;flex:1;overflow:auto;background:#f7fdf7}
-    .chat-input{display:flex;border-top:1px solid #eee;padding:10px;background:#fff}
-    .chat-input input{flex:1;padding:10px;border:1px solid #e6efe6;border-radius:8px;margin-right:8px}
-    .chat-msg{background:#e9f7ee;padding:10px;border-radius:8px;margin-bottom:8px;max-width:85%}
-    .chat-msg.me{background:#dbefff;margin-left:auto;color:#06264a}
+  /* LOGIN MODAL */
+  .modal-wrap{position:fixed;inset:0;background:rgba(6,10,6,0.45);display:flex;align-items:center;justify-content:center;z-index:1400;opacity:0;pointer-events:none;transition:all .28s}
+  .modal-wrap.open{opacity:1;pointer-events:auto}
+  .modal{width:480px;background:#fff;border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(10,20,10,0.3)}
+  .modal h3{color:#164f2b;margin-bottom:8px}
+  .form-row input,.form-single input{width:100%;padding:12px;border-radius:8px;border:1px solid #e6efe6}
+  .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+  .small-link{font-size:13px;color:#2e7d32;cursor:pointer}
 
-    /* ---------- LOGIN MODAL ---------- */
-    .modal-wrap{position:fixed;inset:0;background:rgba(6,10,6,0.45);display:flex;align-items:center;justify-content:center;z-index:1400;opacity:0;pointer-events:none;transition:all .28s}
-    .modal-wrap.open{opacity:1;pointer-events:auto}
-    .modal{width:420px;background:#fff;border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(10,20,10,0.3)}
-    .modal h3{color:#164f2b;margin-bottom:8px}
-    .form-row{display:flex;gap:10px}
-    .form-row input,.form-single input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6efe6}
-    .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
-    .small-link{font-size:13px;color:#2e7d32;cursor:pointer}
+  /* Reveal helper */
+  .reveal{opacity:1;transform:none;transition:all .9s cubic-bezier(.2,.9,.2,1) !important}
+  .big-card,.card-large{opacity:0;transform:translateY(40px);}
 
-    /* responsive */
-    @media (max-width:960px){
-      .hero .left{max-width:100%}
-      .hero{flex-direction:column;align-items:flex-start}
-      .section{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+  @media (max-width:900px){
+    .section{grid-template-columns:1fr}
+    .hero{padding:22px;flex-direction:column;align-items:flex-start}
+    .hero .right{width:100%;height:160px;margin-top:12px}
+    .grid{grid-template-columns:1fr}
+    #sidebar{display:none}
+    .nav-left .nav-time{display:none}
+  }
+</style>
 </head>
 <body>
 
-  <!-- SIDEBAR (3-dash) -->
-  <aside id="sidebar" class="sidebar" aria-hidden="true">
-    <h3 style="margin-top:10px">📋 Dashboard</h3>
-    <nav style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
-      <a href="#" style="color:#fff;text-decoration:none;font-weight:600">About Us</a>
-      <a href="#" style="color:#fff;text-decoration:none;font-weight:600">MSP</a>
-      <a href="#" style="color:#fff;text-decoration:none;font-weight:600">Yield Comparison</a>
+  <!-- SIDEBAR -->
+  <aside id="sidebar" aria-hidden="true">
+    <h3>📋 Dashboard</h3>
+    <nav style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+      <a href="#">About Us</a>
+      <a href="#">MSP</a>
+      <a href="#">Yield Comparison</a>
     </nav>
   </aside>
 
@@ -193,36 +151,38 @@
       <div class="brand">
         <div class="logo">S</div>
         <div>
-          <div class="title">Solutioneers</div>
-          <div style="font-size:12px;color:#547a5a">Smart Agriculture Group</div>
+          <div style="font-size:16px">Solutioneers</div>
+          <div class="meta">Smart Agriculture Group</div>
         </div>
       </div>
       <div class="nav-time" id="navTime">Loading IST...</div>
     </div>
 
     <div class="nav-right">
-      <select class="lang-select" id="langSel" title="Language">
+      <select class="lang-select" id="langSel">
         <option>English</option>
         <option>हिन्दी</option>
         <option>ਪੰਜਾਬੀ</option>
       </select>
-      <button class="btn login" id="btnLogin">Login</button>
-      <button class="btn cta" id="btnSignup">Sign Up</button>
+      <button id="btnLogin" class="btn login">Login</button>
+      <button id="btnSignup" class="btn cta">Sign Up</button>
     </div>
   </header>
 
-  <!-- HERO / Announcement -->
+  <!-- HERO -->
   <main>
-    <section class="hero" role="banner" aria-label="Announcements">
+    <section class="hero" role="banner" aria-label="Announcement">
       <div class="left">
         <h1>Grow smarter. Harvest better.</h1>
-        <p>Real-time advisories, market prices, subsidies, and soil insights — built for farmers, powered by data.</p>
+        <p>Real-time advisories, market prices, subsidies and soil insights — built for farmers, powered by data.</p>
         <div class="cta-row">
           <button class="cta primary">Explore Dashboard</button>
           <button class="cta ghost">How it works</button>
         </div>
       </div>
-      <div class="right" aria-hidden="true">Farmers • Community</div>
+      <div class="right" style="background-image:url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6c3c6b0d4f0b9d7b2d5a3f1e2b2f4a47')">
+        Farmers • Community
+      </div>
     </section>
 
     <!-- Info + News -->
@@ -230,25 +190,24 @@
       <div class="card-large about">
         <h3>About Solutioneers</h3>
         <p>We bring practical digital tools to farmers — weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.</p>
-        <p style="margin-top:12px;color:#4b7b4f;font-weight:700">Your land. Your data. Better yields.</p>
+        <p style="margin-top:12px;color:#2e7b3f;font-weight:800">Your land. Your data. Better yields.</p>
       </div>
 
       <aside class="news-box">
         <h3>Latest News</h3>
         <div class="news-scroll">
           <div class="news-track" id="newsTrack">
-            <!-- duplicate the block once so scroll loops smoothly -->
             <div>
               <div class="news-item">🔥 Stubble management machines distributed in Punjab.</div>
               <div class="news-item">🌱 New high-yield seed variety released.</div>
-              <div class="news-item">💧Localized irrigation training programs starting next week.</div>
+              <div class="news-item">💧 Localized irrigation training programs starting next week.</div>
               <div class="news-item">💰 MSP updates pushed for rabi crops — check MSP page.</div>
               <div class="news-item">☁️ IMD predicts patchy showers across NW regions.</div>
             </div>
             <div>
               <div class="news-item">🔥 Stubble management machines distributed in Punjab.</div>
               <div class="news-item">🌱 New high-yield seed variety released.</div>
-              <div class="news-item">💧Localized irrigation training programs starting next week.</div>
+              <div class="news-item">💧 Localized irrigation training programs starting next week.</div>
               <div class="news-item">💰 MSP updates pushed for rabi crops — check MSP page.</div>
               <div class="news-item">☁️ IMD predicts patchy showers across NW regions.</div>
             </div>
@@ -257,52 +216,44 @@
       </aside>
     </section>
 
-    <!-- Big card grid -->
+    <!-- BIG CARD GRID -->
     <section class="grid" aria-label="Features">
-      <!-- Seeds -->
-      <a class="big-card overlay-green" href="seeds.html" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f2b3f2f1b2a0c4e1b49a5d2a9b3ed7f')">
+      <a class="big-card" href="seeds.html" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f2b3f2f1b2a0c4e1b49a5d2a9b3ed7f');">
         <div class="title">Seeds Availability</div>
         <div class="desc">Find certified seeds & local vendors near your village.</div>
       </a>
 
-      <!-- Schemes -->
-      <a class="big-card overlay-yellow" href="schemes.html" style="background-image:url('https://images.unsplash.com/photo-1496449903677-6b5f0dcd1d2c?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b1f3b3f8b2a1e0b271a5c3d1f7d8a5c')">
+      <a class="big-card" href="schemes.html" style="background-image:url('https://images.unsplash.com/photo-1520975911500-3bcd4d374dca?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3d9a5b4c1aef2a2d8f4b3c2d1e9e6a7b');">
         <div class="title">Govt Schemes & Policies</div>
         <div class="desc">Check eligibility, subsidies and applications for your area.</div>
       </a>
 
-      <!-- Weather -->
-      <a class="big-card overlay-blue" href="weather.html" style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=05c9cf2b0b1eb6f5a3a9b8c6d3f1e2d2')">
+      <a class="big-card" href="weather.html" style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=05c9cf2b0b1eb6f5a3a9b8c6d3f1e2d2');">
         <div class="title">Weather Forecast</div>
         <div class="desc">7-day forecasts & alerts for drought, rainfall and heatwaves.</div>
       </a>
 
-      <!-- Crop Calendar -->
-      <a class="big-card overlay-purple" href="calendar.html" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f4bb7e8a3f9c2d3ea84f13f2f4b0b75')">
+      <a class="big-card" href="calendar.html" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f4bb7e8a3f9c2d3ea84f13f2f4b0b75');">
         <div class="title">Crop Calendar</div>
         <div class="desc">Regional sowing & harvesting schedules tailored for you.</div>
       </a>
 
-      <!-- Fertilizer -->
-      <a class="big-card overlay-green" href="fertilizer.html" style="background-image:url('https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=4c3f9b1a3e1d2f3b6a7c8d9e0a1b2c3d')">
+      <a class="big-card" href="fertilizer.html" style="background-image:url('https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=4c3f9b1a3e1d2f3b6a7c8d9e0a1b2c3d');">
         <div class="title">Fertilizer & Pest Advisory</div>
         <div class="desc">Soil-based recommendations & early pest warnings.</div>
       </a>
 
-      <!-- Soil Health -->
-      <a class="big-card overlay-blue" href="soil.html" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a6d8f2e5a3b4c5d6e7f1a2b3c4d5e6f')">
+      <a class="big-card" href="soil.html" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a6d8f2e5a3b4c5d6e7f1a2b3c4d5e6f');">
         <div class="title">Soil Health</div>
         <div class="desc">Upload soil reports & get improvement plans.</div>
       </a>
 
-      <!-- MSP -->
-      <a class="big-card overlay-green" href="msp.html" style="background-image:url('https://images.unsplash.com/photo-1541534401786-3a00e1bf8e6b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9772a7b2c8d3a5f8e6a2b3c4d1e7f8a9')">
+      <a class="big-card" href="msp.html" style="background-image:url('https://images.unsplash.com/photo-1541534401786-3a00e1bf8e6b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9772a7b2c8d3a5f8e6a2b3c4d1e7f8a9');">
         <div class="title">MSP & Market Rates</div>
         <div class="desc">Daily mandi rates, eNAM prices, and trend charts.</div>
       </a>
 
-      <!-- Yield Comparison -->
-      <a class="big-card overlay-purple" href="yield.html" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f2b3f2f1b2a0c4e1b49a5d2a9b3ed7f')">
+      <a class="big-card" href="yield.html" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f2b3f2f1b2a0c4e1b49a5d2a9b3ed7f');">
         <div class="title">Yield Comparison</div>
         <div class="desc">Compare historical yields and forecast potential improvements.</div>
       </a>
@@ -329,19 +280,12 @@
   <div class="modal-wrap" id="modalWrap" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true">
       <h3 id="modalTitle">Sign in</h3>
-
       <form id="authForm">
-        <!-- Sign-in fields (default) -->
         <div id="formSignIn">
-          <div class="form-single">
-            <input type="email" id="siEmail" placeholder="Email" required />
-          </div>
-          <div class="form-single" style="margin-top:10px">
-            <input type="password" id="siPass" placeholder="Password" required />
-          </div>
+          <div class="form-single"><input type="email" id="siEmail" placeholder="Email" required /></div>
+          <div class="form-single" style="margin-top:10px"><input type="password" id="siPass" placeholder="Password" required /></div>
         </div>
 
-        <!-- Sign-up fields -->
         <div id="formSignUp" style="display:none">
           <div class="form-row">
             <input type="text" id="suName" placeholder="Full name" required />
@@ -357,53 +301,51 @@
           </div>
         </div>
 
-        <div class="actions">
-          <div style="flex:1;display:flex;align-items:center;gap:10px">
-            <div class="small-link" id="toggleAuth">Don't have an account? Sign up</div>
-          </div>
-          <div>
-            <button type="submit" class="btn cta" id="submitAuth">Continue</button>
-          </div>
+        <div class="actions" style="margin-top:16px">
+          <div style="flex:1;display:flex;align-items:center;gap:10px"><div class="small-link" id="toggleAuth">Don't have an account? Sign up</div></div>
+          <div><button type="submit" class="btn cta" id="submitAuth">Continue</button></div>
         </div>
       </form>
     </div>
   </div>
 
 <script>
-  // ---------- Time & Date (IST) ----------
-  function updateIST() {
+  // IST time
+  function updateIST(){
     const now = new Date();
-    // convert to IST
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const ist = new Date(utc + (3600000 * 5.5));
+    const utc = now.getTime() + (now.getTimezoneOffset()*60000);
+    const ist = new Date(utc + (3600000*5.5));
     const opts = { weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
     document.getElementById('navTime').innerText = ist.toLocaleString('en-IN', opts) + ' IST';
   }
-  setInterval(updateIST, 1000);
-  updateIST();
+  setInterval(updateIST,1000); updateIST();
 
-  // ---------- Sidebar toggle (disappear on single click) ----------
+  // Sidebar toggling (slides in/out)
   const sidebar = document.getElementById('sidebar');
   const menuBtn = document.getElementById('menuBtn');
-  let sidebarOpen = false;
+  let sidebarVisible = false;
   menuBtn.addEventListener('click', ()=> {
-    if(!sidebarOpen){
-      sidebar.classList.add('open');
-      sidebarOpen = true;
-      // disappear after 1 click (as requested: hide when clicked once)
-      setTimeout(()=> {
-        sidebar.classList.remove('open');
-        sidebarOpen = false;
-      }, 1); // immediate hide after single click — to emulate "disappear when clicked once"
-      // the above removes open immediately — if you want it to stay open then auto-hide after N ms,
-      // increase the timeout. The user requested "3 dash disappears when clicked once".
-    }
+    sidebarVisible = !sidebarVisible;
+    if(sidebarVisible) sidebar.classList.add('open'); else sidebar.classList.remove('open');
   });
 
-  // If you want a button to re-open the sidebar, we can allow clicking menuBtn twice:
-  // For better UX, change above behaviour to toggle. For now we follow "disappears when clicked once".
+  // Reveal on scroll using IntersectionObserver
+  const obs = new IntersectionObserver((entries, o) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('reveal');
+        o.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.big-card, .card-large').forEach(el => obs.observe(el));
 
-  // ---------- Chatbot UI (demo AI) ----------
+  // News scroll pause on hover
+  const newsTrack = document.getElementById('newsTrack');
+  newsTrack.parentElement.addEventListener('mouseenter', ()=> newsTrack.style.animationPlayState='paused');
+  newsTrack.parentElement.addEventListener('mouseleave', ()=> newsTrack.style.animationPlayState='running');
+
+  // Chatbot UI
   const chatBubble = document.getElementById('chatBubble');
   const chatWindow = document.getElementById('chatWindow');
   const closeChat = document.getElementById('closeChat');
@@ -411,59 +353,33 @@
   const chatInput = document.getElementById('chatInput');
   const sendBtn = document.getElementById('sendBtn');
 
-  chatBubble.addEventListener('click', ()=> {
-    chatWindow.classList.toggle('open');
-  });
+  chatBubble.addEventListener('click', ()=> chatWindow.classList.toggle('open'));
   closeChat.addEventListener('click', ()=> chatWindow.classList.remove('open'));
-
   function appendMsg(text, me=false){
-    const div = document.createElement('div');
-    div.className = 'chat-msg' + (me ? ' me' : '');
-    div.innerText = text;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    const d = document.createElement('div'); d.className = 'chat-msg' + (me ? ' me' : '');
+    d.innerText = text; chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
   }
-
-  // Simple demo "AI" responses (replace with actual API call)
-  async function getBotReply(question){
-    question = question.toLowerCase();
-    // Quick pattern replies:
-    if(question.includes('msp') || question.includes('market')) return "You can check MSP & mandi rates under the MSP section. Which crop do you want rates for?";
-    if(question.includes('weather') || question.includes('rain')) return "Enter your district on the Weather page for a 7-day forecast. Heavy rain alerts will push here.";
-    if(question.includes('soil')) return "Upload soil test results on the Soil Health page — we'll recommend fertilizer & organic inputs.";
-    if(question.includes('hello')||question.includes('hi')) return "Hi — I'm a demo assistant. Ask about MSP, weather, seeds or fertilizers.";
-    // if none matched:
-    return "Sorry — this demo assistant can answer a few keywords. To enable a real AI assistant, plug in an API key on the client or server and call your LLM endpoint.";
+  async function getBotReply(q){
+    q = q.toLowerCase();
+    if(q.includes('msp')||q.includes('market')) return 'Open the MSP page — which crop do you want MSP for?';
+    if(q.includes('weather')||q.includes('rain')) return 'Enter your district on Weather page. Alerts for heavy rain will show here.';
+    if(q.includes('soil')) return 'Upload soil report on Soil Health — we will compute recommendations.';
+    if(q.includes('hello')||q.includes('hi')) return 'Hi! I can help with MSP, weather and crop tips.';
+    return "Demo assistant — to enable a real AI, plug a server-side LLM endpoint and fetch replies.";
   }
-
   sendBtn.addEventListener('click', async ()=>{
-    const q = chatInput.value.trim();
-    if(!q) return;
-    appendMsg(q, true);
-    chatInput.value = '';
-    appendMsg('Typing…'); // quick UX
-    // simulate network latency
+    const q = chatInput.value.trim(); if(!q) return;
+    appendMsg(q, true); chatInput.value='';
+    appendMsg('Typing...');
     setTimeout(async ()=>{
-      // remove the "Typing…" helper
-      const msgs = chatBody.querySelectorAll('.chat-msg');
-      if(msgs.length) msgs[msgs.length-1].remove();
-      const reply = await getBotReply(q);
-      appendMsg(reply, false);
+      // remove last 'Typing...' message
+      const msgs = chatBody.querySelectorAll('.chat-msg'); if(msgs.length) msgs[msgs.length-1].remove();
+      const r = await getBotReply(q); appendMsg(r,false);
     }, 700);
   });
-  chatInput.addEventListener('keydown', (e)=> { if(e.key==='Enter') sendBtn.click(); });
+  chatInput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendBtn.click(); });
 
-  /* ===== Example: How to plug a real AI (OpenAI) =====
-     Replace getBotReply(...) implementation with an actual backend/API call.
-     Important: DO NOT call OpenAI API directly from browser with your secret key.
-     Instead:
-     - Create a server endpoint (e.g., /api/assistant) that accepts POST {prompt}
-     - Server calls OpenAI with your secret key and returns the assistant reply.
-     - From client call fetch('/api/assistant', {method:'POST', body:JSON.stringify({prompt})})
-     - Show the returned message.
-  */
-
-  // ---------- Login / Signup modal (localStorage demo) ----------
+  // Login/signup modal
   const modalWrap = document.getElementById('modalWrap');
   const btnLogin = document.getElementById('btnLogin');
   const btnSignup = document.getElementById('btnSignup');
@@ -471,43 +387,27 @@
   const formSignUp = document.getElementById('formSignUp');
   const modalTitle = document.getElementById('modalTitle');
   const toggleAuth = document.getElementById('toggleAuth');
-  let mode = 'signin'; // or signup
+  let mode = 'signin';
 
   function openModal(which='signin'){
-    mode = which;
-    modalWrap.classList.add('open');
-    if(which === 'signin'){
-      modalTitle.innerText = 'Sign in';
-      formSignIn.style.display = 'block';
-      formSignUp.style.display = 'none';
-      toggleAuth.innerText = "Don't have an account? Sign up";
-    } else {
-      modalTitle.innerText = 'Create account';
-      formSignIn.style.display = 'none';
-      formSignUp.style.display = 'block';
-      toggleAuth.innerText = "Already have an account? Sign in";
-    }
+    mode = which; modalWrap.classList.add('open');
+    if(which==='signin'){ modalTitle.innerText='Sign in'; formSignIn.style.display='block'; formSignUp.style.display='none'; toggleAuth.innerText="Don't have an account? Sign up"; }
+    else { modalTitle.innerText='Create account'; formSignIn.style.display='none'; formSignUp.style.display='block'; toggleAuth.innerText="Already have an account? Sign in"; }
   }
   function closeModal(){ modalWrap.classList.remove('open'); }
-
   btnLogin.addEventListener('click', ()=> openModal('signin'));
   btnSignup.addEventListener('click', ()=> openModal('signup'));
   toggleAuth.addEventListener('click', ()=> openModal(mode==='signin'?'signup':'signin'));
   modalWrap.addEventListener('click', (e)=> { if(e.target===modalWrap) closeModal(); });
 
-  // Form submit handler
   document.getElementById('authForm').addEventListener('submit', function(e){
     e.preventDefault();
-    if(mode === 'signin'){
+    if(mode==='signin'){
       const email = document.getElementById('siEmail').value.trim();
       const pass = document.getElementById('siPass').value;
       const stored = JSON.parse(localStorage.getItem('sol_user') || 'null');
-      if(!stored || stored.email !== email || stored.pass !== pass){
-        alert('Invalid credentials or account does not exist.');
-        return;
-      }
-      alert('Welcome back, ' + stored.name + '!');
-      closeModal();
+      if(!stored || stored.email !== email || stored.pass !== pass){ alert('Invalid credentials or account does not exist.'); return; }
+      alert('Welcome back, ' + stored.name + '!'); closeModal();
     } else {
       const name = document.getElementById('suName').value.trim();
       const email = document.getElementById('suEmail').value.trim();
@@ -517,32 +417,31 @@
       const crop = document.getElementById('suCrop').value.trim();
       if(!name||!email||!pass||!pass2||!land||!crop){ alert('Please fill all fields'); return; }
       if(pass !== pass2){ alert('Passwords do not match'); return; }
-      // Basic password strength check:
-      if(pass.length < 6){ if(!confirm('Password is short (<6 chars). Proceed?')) return; }
-      // store demo account (never store real passwords like this in production!)
+      if(pass.length < 6 && !confirm('Password is short (<6). Proceed?')) return;
       localStorage.setItem('sol_user', JSON.stringify({name,email,pass,land,crop}));
-      alert('Account created. Please sign in.');
-      openModal('signin');
+      alert('Account created. Please sign in.'); openModal('signin');
     }
   });
 
-  // ---------- Reveal on scroll (smooth Apple-like) ----------
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
+  // ensure all big cards will reveal (observer)
+  document.querySelectorAll('.big-card, .card-large').forEach(el => {
+    el.style.opacity = 0; el.style.transform = 'translateY(40px)';
+  });
+
+  const observer = new IntersectionObserver((entries, obsr) => {
+    entries.forEach(entry => {
       if(entry.isIntersecting){
         entry.target.classList.add('reveal');
-        observer.unobserve(entry.target);
+        obsr.unobserve(entry.target);
       }
     });
-  }, {threshold: 0.12});
-  document.querySelectorAll('.big-card, .card-large').forEach(el => observer.observe(el));
+  }, {threshold:0.12});
+  document.querySelectorAll('.big-card, .card-large').forEach(n => observer.observe(n));
 
-  // fix: news scroll pause on hover
-  const newsTrack = document.querySelector('.news-track');
+  // Pause news on hover
   const newsContainer = document.querySelector('.news-scroll');
   newsContainer.addEventListener('mouseenter', ()=> newsTrack.style.animationPlayState='paused');
   newsContainer.addEventListener('mouseleave', ()=> newsTrack.style.animationPlayState='running');
-
 </script>
 </body>
 </html>
