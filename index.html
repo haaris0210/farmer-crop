@@ -7,9 +7,8 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       background: #f4f6f8;
-      color: #333;
     }
 
     /* Navbar */
@@ -27,37 +26,38 @@
 
     .navbar h1 {
       margin: 0;
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 20px;
     }
 
     .nav-right {
       display: flex;
-      align-items: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     .nav-right button {
       background: white;
-      color: #2d6a4f;
       border: none;
-      padding: 8px 16px;
+      color: #2d6a4f;
+      padding: 8px 14px;
       border-radius: 20px;
       cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
+      font-weight: bold;
     }
 
     .nav-right button:hover {
       background: #95d5b2;
-      transform: scale(1.05);
+    }
+
+    .menu-btn {
+      font-size: 22px;
+      cursor: pointer;
     }
 
     /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px;
+      left: -250px; /* Hidden by default */
       width: 250px;
       height: 100%;
       background: #1b4332;
@@ -78,12 +78,6 @@
       background: #40916c;
     }
 
-    .menu-btn {
-      font-size: 24px;
-      cursor: pointer;
-      color: white;
-    }
-
     /* Hero Section */
     .hero {
       text-align: center;
@@ -93,9 +87,8 @@
     }
 
     .hero h2 {
-      font-size: 36px;
+      font-size: 34px;
       margin: 0;
-      animation: fadeIn 2s;
     }
 
     /* Announcements */
@@ -110,15 +103,15 @@
 
     .announcements h3 {
       margin-bottom: 20px;
-      font-size: 28px;
+      font-size: 26px;
       text-align: center;
     }
 
     .announcement {
       background: #e9f5f2;
-      padding: 20px;
+      padding: 18px;
       border-radius: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       font-size: 18px;
     }
 
@@ -134,15 +127,14 @@
 
     .card {
       background: white;
-      border-radius: 16px;
+      border-radius: 14px;
       box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
     }
 
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
     }
 
     .card img {
@@ -157,19 +149,13 @@
 
     .card-content h4 {
       margin: 0 0 10px 0;
-      font-size: 22px;
+      font-size: 20px;
       color: #2d6a4f;
     }
 
     .card-content p {
       margin: 0;
-      font-size: 16px;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      font-size: 15px;
     }
   </style>
 </head>
@@ -208,7 +194,7 @@
     <div class="announcement">Crop insurance deadline extended till 30th September.</div>
   </div>
 
-  <!-- Cards Section -->
+  <!-- Cards -->
   <div class="cards">
     <div class="card">
       <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314" alt="Farmer 1">
@@ -244,9 +230,9 @@
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       if (sidebar.style.left === "0px") {
-        sidebar.style.left = "-250px";
+        sidebar.style.left = "-250px"; // hide
       } else {
-        sidebar.style.left = "0px";
+        sidebar.style.left = "0px"; // show
       }
     }
   </script>
