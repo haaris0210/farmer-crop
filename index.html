@@ -10,11 +10,20 @@
     html,body{height:100%}
     body{
       font-family: "Montserrat",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-      background: #f3f6f8;
       color:#213;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.35;
+      /* Nice dashboard bkgd: */
+      background: linear-gradient(120deg, #f1f4f8 0%, #c2ebd6 40%, #e3ecf9 100%);
+      min-height:100vh;
+    }
+    .dashboard-bg {
+      margin:36px auto 0 auto;
+      max-width:1250px;
+      padding:30px 24px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.55);
+      box-shadow:0 6px 60px rgba(50, 85, 70, 0.14), 0 1.5px 12px rgba(90,155,120,0.09);
+      backdrop-filter:blur(8px);
     }
     .sidebar{
       position:fixed;left:0;top:0;bottom:0;width:350px;max-width:98vw;
@@ -22,109 +31,53 @@
       z-index:2000;
       padding:22px 12px 24px 18px;overflow-y:auto;display:none;
       box-shadow: 0 10px 40px rgba(27, 94, 51, 0.18);
+      transition:all 0.21s;
     }
     .sidebar .big-card {margin-bottom: 18px;}
     .sidebar h3 { color: #fff; }
     .sidebar nav a { color: #fff; }
-    /* ---------- NAVBAR ---------- */
+    .sidebar.open { display:block; }
     .navbar{
       position:sticky;top:0;z-index:1200;
       display:flex;justify-content:space-between;align-items:center;
       padding:14px 26px;
       background:rgba(255,255,255,0.92);
-      backdrop-filter: blur(6px);
       box-shadow:0 6px 18px rgba(20,30,20,0.06);
     }
     .nav-left{display:flex;align-items:center;gap:14px}
     .menu-btn{
       display:inline-flex;align-items:center;justify-content:center;
       width:44px;height:44px;border-radius:10px;border:none;
-      background:linear-gradient(180deg,#fff,#f1f5f1);box-shadow:0 3px 10px rgba(28,86,41,0.07);
+      background:linear-gradient(180deg,#fff,#f1f5f1);
       font-size:20px;cursor:pointer;
     }
-    .brand{
-      display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;
-    }
-    .brand .logo {
-      width:44px;height:44px;border-radius:10px;
-      background:linear-gradient(135deg,#dff6e8,#b9e8c1);
-      display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;
-      box-shadow:0 6px 18px rgba(27,94,51,0.08);
-      font-size:20px;
-    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;}
+    .brand .logo {width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:20px;}
     .brand .title{font-size:18px}
     .nav-time{font-size:13px;color:#3a3a3a;margin-left:6px}
     .nav-right{display:flex;align-items:center;gap:8px}
     .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e8f6ee}
     .btn {padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:600}
     .btn.login{background:transparent;border:1px solid #ddd;color:#175a30}
-    .btn.cta{background:#1e7b3f;color:#fff;box-shadow:0 8px 20px rgba(30,123,63,0.12)}
-    /* ---------- HERO / ANNOUNCEMENT ---------- */
-    .hero{
-      margin:18px;
-      border-radius:18px;
-      overflow:hidden;
-      background:linear-gradient(135deg,#e8f7ee,#f1f9f2);
-      box-shadow:0 20px 40px rgba(25,111,61,0.06);
-      display:flex;align-items:center;justify-content:space-between;gap:30px;
-      padding:42px;min-height:160px;
-    }
-    .hero .left{
-      max-width:72%;
-    }
-    .hero h1{font-size:34px;line-height:1.02;color:#114b27;margin-bottom:8px}
-    .hero p{color:#2c5b3a;opacity:0.95;font-size:15px}
-    .hero .cta-row{margin-top:16px;display:flex;gap:12px}
-    .hero .cta{padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
-    .hero .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 10px 26px rgba(30,123,63,0.12)}
-    .hero .cta.ghost{background:transparent;border:1px solid #d6eee0;color:#1e7b3f}
-    .hero .right{
-      width:320px;height:120px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&w=700&fit=crop');
-      background-size:cover;background-position:center;
-      box-shadow:inset 0 0 0 120px rgba(255,255,255,0.18);
-      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
-      text-shadow:0 4px 20px rgba(0,0,0,0.3)
-    }
-    /* ---------- INFO + NEWS ---------- */
-    .section{
-      display:grid;grid-template-columns:1fr 420px;gap:22px;margin:22px;
-    }
-    .card-large{
-      border-radius:14px;background:#fff;padding:22px;box-shadow:0 10px 30px rgba(16,64,28,0.06);
-    }
-    .about h3{color:#1b6b36;margin-bottom:10px;font-size:20px}
-    .about p{color:#2c4d3a;opacity:.9}
-    .news-box{border-radius:14px;background:linear-gradient(180deg,#fff,#fbfffd);padding:18px;box-shadow:0 10px 30px rgba(16,64,28,0.04)}
-    .news-box h3{color:#1b6b36;margin-bottom:12px}
-    .news-scroll{height:170px;overflow:hidden;position:relative}
-    .news-track{
-      display:flex;flex-direction:column;gap:10px;
-      animation:newsScroll 12s linear infinite;
-    }
-    .news-item{font-size:14px;color:#264c36;padding:8px;background:linear-gradient(90deg,rgba(40,120,60,0.03),transparent);border-radius:8px}
-    @keyframes newsScroll {
-      0% { transform: translateY(0%); }
-      100% { transform: translateY(-50%); }
-    }
-    /* ---------- BIG CARD GRID ---------- */
+    .btn.cta{background:#1e7b3f;color:#fff;}
+    /* ---- GRID ---- */
     .grid{
       margin:0;
       display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+      gap:18px;
     }
     .big-card{
       position:relative;overflow:hidden;border-radius:18px;height:180px;
       color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;
-      box-shadow:0 18px 40px rgba(10,40,20,0.06);
-      transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .45s;
       background-size:cover;background-position:center;
-      margin-bottom:14px;
       text-decoration:none;
+      margin-bottom:0;
+      box-shadow:0 6px 32px rgba(10,50,20,0.07);
+      transition:transform .28s, box-shadow .28s;
     }
-    .big-card::after{
-      content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48));mix-blend-mode:multiply;
-    }
+    .big-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48));mix-blend-mode:multiply;}
     .big-card .title{position:relative;font-weight:800;font-size:20px;z-index:2}
     .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:13px}
     .big-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 30px 60px rgba(12,48,22,0.12)}
@@ -132,42 +85,12 @@
     .overlay-yellow{background:linear-gradient(135deg, rgba(255,195,79,0.6), rgba(255,143,0,0.45));}
     .overlay-blue{background:linear-gradient(135deg, rgba(95,150,255,0.45), rgba(65,120,255,0.38));}
     .overlay-purple{background:linear-gradient(135deg, rgba(200,140,255,0.45), rgba(145,86,255,0.36));}
-    .card-fallback{background:linear-gradient(135deg,#f4f6f5,#eef6ef);}
-    /* ---------- CHATBOT, MODAL, ETC (unchanged styles) ---------- */
-    .chat-bubble{position:fixed;right:20px;bottom:20px;width:64px;height:64px;border-radius:50%;
-      background:linear-gradient(180deg,#1e7b3f,#166531);display:flex;align-items:center;justify-content:center;color:#fff;
-      box-shadow:0 12px 28px rgba(30,123,63,0.18);cursor:pointer;z-index:1300;}
-    .chat-window{position:fixed;right:20px;bottom:100px;width:360px;height:480px;border-radius:12px;background:#fff;
-      box-shadow:0 18px 50px rgba(20,40,20,0.12);overflow:hidden;display:flex;flex-direction:column;z-index:1300;
-      transform:translateY(10px);opacity:0;pointer-events:none;transition:all .28s;}
-    .chat-window.open{opacity:1;transform:translateY(0);pointer-events:auto}
-    .chat-head{background:linear-gradient(90deg,#1e7b3f,#136033);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700}
-    .chat-body{padding:12px;flex:1;overflow:auto;background:#f7fdf7}
-    .chat-input{display:flex;border-top:1px solid #eee;padding:10px;background:#fff}
-    .chat-input input{flex:1;padding:10px;border:1px solid #e6efe6;border-radius:8px;margin-right:8px}
-    .chat-msg{background:#e9f7ee;padding:10px;border-radius:8px;margin-bottom:8px;max-width:85%}
-    .chat-msg.me{background:#dbefff;margin-left:auto;color:#06264a}
-    .modal-wrap{position:fixed;inset:0;background:rgba(6,10,6,0.45);display:flex;align-items:center;justify-content:center;z-index:1400;opacity:0;pointer-events:none;transition:all .28s}
-    .modal-wrap.open{opacity:1;pointer-events:auto}
-    .modal{width:420px;background:#fff;border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(10,20,10,0.3)}
-    .modal h3{color:#164f2b;margin-bottom:8px}
-    .form-row{display:flex;gap:10px}
-    .form-row input,.form-single input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6efe6}
-    .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
-    .small-link{font-size:13px;color:#2e7d32;cursor:pointer}
-    @media (max-width:960px){
-      .hero .left{max-width:100%}
-      .hero{flex-direction:column;align-items:flex-start}
-      .section{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .sidebar{width:98vw;max-width:98vw;}
-    }
+    @media (max-width:960px){ .sidebar{width:98vw;max-width:98vw;} .dashboard-bg{padding:10px;} }
   </style>
 </head>
 <body>
   <!-- SIDEBAR (3-dash) -->
   <aside id="sidebar" class="sidebar" aria-hidden="true">
-    <!-- Cross button -->
     <button id="closeSidebar" style="position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#fff;z-index:10003;">✖</button>
     <h3 style="margin-top:6px;color:#fff;">📋 Dashboard</h3>
     <nav style="margin:16px 0 20px 0;display:flex;flex-direction:column;gap:10px">
@@ -176,6 +99,7 @@
       <a href="#" style="color:#fff;text-decoration:none;font-weight:600">Yield Comparison</a>
     </nav>
     <section class="grid" aria-label="Features">
+      <!-- 8 dashboard cards -->
       <a class="big-card overlay-green" href="seeds.html"
         style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600');">
         <div class="title">Seeds Availability</div>
@@ -229,7 +153,7 @@
           <div style="font-size:12px;color:#547a5a">Smart Agriculture Group</div>
         </div>
       </div>
-      <div class="nav-time" id="navTime">Loading IST...</div>
+      <div class="nav-time" id="navTime">IST</div>
     </div>
     <div class="nav-right">
       <select class="lang-select" id="langSel" title="Language">
@@ -281,30 +205,70 @@
         </div>
       </aside>
     </section>
-    <!-- The main grid is now ONLY in the sidebar -->
+    <!-- DASHBOARD GRID ON MAIN PAGE -->
+    <section class="dashboard-bg">
+      <section class="grid" aria-label="Features">
+        <a class="big-card overlay-green" href="seeds.html"
+          style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600');">
+          <div class="title">Seeds Availability</div>
+          <div class="desc">Find certified seeds & local vendors near your village.</div>
+        </a>
+        <a class="big-card overlay-yellow" href="schemes.html"
+          style="background-image:url('https://images.unsplash.com/photo-1496449903677-6b5f0dcd1d2c?auto=format&fit=crop&w=600');">
+          <div class="title">Govt Schemes & Policies</div>
+          <div class="desc">Check eligibility, subsidies and applications for your area.</div>
+        </a>
+        <a class="big-card overlay-blue" href="weather.html"
+          style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=600');">
+          <div class="title">Weather Forecast</div>
+          <div class="desc">7-day forecasts & alerts for drought, rainfall and heatwaves.</div>
+        </a>
+        <a class="big-card overlay-purple" href="calendar.html"
+          style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600');">
+          <div class="title">Crop Calendar</div>
+          <div class="desc">Regional sowing & harvesting schedules tailored for you.</div>
+        </a>
+        <a class="big-card overlay-green" href="fertilizer.html"
+          style="background-image:url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=600');">
+          <div class="title">Fertilizer & Pest Advisory</div>
+          <div class="desc">Soil-based recommendations & early pest warnings.</div>
+        </a>
+        <a class="big-card overlay-blue" href="soil.html"
+          style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600');">
+          <div class="title">Soil Health</div>
+          <div class="desc">Upload soil reports & get improvement plans.</div>
+        </a>
+        <a class="big-card overlay-green" href="msp.html"
+          style="background-image:url('https://images.unsplash.com/photo-1541534401786-3a00e1bf8e6b?auto=format&fit=crop&w=600');">
+          <div class="title">MSP & Market Rates</div>
+          <div class="desc">Daily mandi rates, eNAM prices, and trend charts.</div>
+        </a>
+        <a class="big-card overlay-purple" href="yield.html"
+          style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600');">
+          <div class="title">Yield Comparison</div>
+          <div class="desc">Compare historical yields and forecast potential improvements.</div>
+        </a>
+      </section>
+    </section>
   </main>
-  <!-- CHATBOT, MODAL SECTIONS (UNCHANGED CODE) -->
+  <script>
+    // Time (IST) update, optional
+    function updateIST() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const ist = new Date(utc + (3600000 * 5.5));
+      const opts = { weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
+      document.getElementById('navTime').innerText = ist.toLocaleString('en-IN', opts) + ' IST';
+    }
+    setInterval(updateIST, 1000);
+    updateIST();
 
-<script>
-  // ---------- Time & Date (IST) ----------
-  function updateIST() {
-    const now = new Date();
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const ist = new Date(utc + (3600000 * 5.5));
-    const opts = { weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit' };
-    document.getElementById('navTime').innerText = ist.toLocaleString('en-IN', opts) + ' IST';
-  }
-  setInterval(updateIST, 1000);
-  updateIST();
-
-  // SIDEBAR open/close logic
-  const sidebar = document.getElementById('sidebar');
-  const menuBtn = document.getElementById('menuBtn');
-  const closeSidebar = document.getElementById('closeSidebar');
-  menuBtn.addEventListener('click', ()=> { sidebar.style.display = 'block'; });
-  closeSidebar.addEventListener('click', ()=> { sidebar.style.display = 'none'; });
-
-  // The rest of your scripts (chatbot etc) remain unchanged...
-</script>
+    // Sidebar open/close
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeSidebar = document.getElementById('closeSidebar');
+    menuBtn.addEventListener('click', ()=> { sidebar.classList.add('open'); });
+    closeSidebar.addEventListener('click', ()=> { sidebar.classList.remove('open'); });
+  </script>
 </body>
 </html>
