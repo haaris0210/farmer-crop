@@ -6,389 +6,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f4fff7;
-      --accent: #13c18d;
-      --accent-dark: #099f76;
-      --deep-green: #2c3a26;
-      --yellow: #ffe27b;
-      --peach: #ffd0b7;
-      --orange: #fe9539;
-      --pink: #ff66bb;
-      --blue: #00baec;
-      --card-radius: 20px;
-      --trans: 0.3s cubic-bezier(0.66,0,0.34,1);
-      --shadow: 0 4px 28px rgba(16,96,56,0.12);
-      --shadow-hover: 0 10px 32px 0 rgba(93,170,69,0.22);
-    }
     body {
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: var(--bg);
       margin: 0;
-      padding: 0;
-      letter-spacing: 0.03em;
-      color: var(--deep-green);
-      overflow-x: hidden;
+      font-family: "Montserrat", sans-serif;
+      background: #f8f9fc;
+      color: #333;
     }
-    /* Header */
-    #topBar {
-      width: 100%;
-      background: linear-gradient(90deg,var(--accent-dark) 55%,var(--accent) 95%);
-      color: #fff;
-      padding: 13px 0 11px 0;
-      font-size: 1.03rem;
-      letter-spacing: 1.8px;
-      font-weight: 500;
-      text-align: center;
-      position: sticky;
-      top: 0; z-index: 2900;
-      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.08));
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 48px;
-    }
-    #logoArea {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin-left: 10px;
-    }
-    #logo {
-      width: 45px;
-      height: 45px;
-      border-radius: 13px;
-      background: #fff6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--accent);
-      box-shadow: 0 3px 12px #1abc9c22;
-      animation: popfade 1s cubic-bezier(0.56,1.6,0.38,1) both;
-    }
-    #siteNameC {
-      display: flex;
-      flex-direction: column;
-      align-items:flex-start;
-      font-weight:700;
-      font-size:1.19em;
-    }
-    #siteName {
-      letter-spacing:1.7px;
-      font-size:1.11em;
-    }
-    #siteFullForm {
-      font-weight: 400;
-      font-size: 0.82em;
-      opacity: 0.85;
-      margin-top:-2px;
-      letter-spacing:0.6px;
-    }
-    #datetime {
-      margin-right: 40px; min-width: 230px;
-      font-family: 'Montserrat', monospace;
-      font-size:1.07em; letter-spacing:1.2px;
-      background:#fff2; padding:6px 19px; border-radius:12px;
-      box-shadow:0 1px 6px #00808019;
-      font-weight: 600;
-      animation: fadein 2s;
-    }
-    /* Area below top bar: Reserved Promo Area */
-    #promoArea {
-      background: linear-gradient(115deg,#e2f7fd 95%,#fff 100%);
-      min-height: 174px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      border-radius: 18px;
-      box-shadow:0 2px 32px #009e4240;
-      margin: 18px 3vw 0 3vw; position: relative;
-      transition: all 0.4s cubic-bezier(0.35,1.8,0.39,1);
-    }
-    #promoContent {
-      text-align: center;
-      font-weight: 700;
-      color: var(--accent-dark);
-      font-size: 2rem;
-      letter-spacing: 2.4px;
-      text-shadow: 0 2px 12px #15eeb544;
-      font-family: 'Montserrat', sans-serif;
-      width: 100%;
-      user-select: none;
-      animation: popfade 1.2s cubic-bezier(0.45,1.9,0.5,1.1) both;
-    }
-    /* About Solutioneers block */
-    #aboutSolutioneersBlock {
-      margin: 2.5em 3vw 0 3vw;
-      background:linear-gradient(95deg,#fff 80%, #dcfff3 100%);
-      border-radius: 16px;
-      box-shadow:0 2px 14px #00dea944;
-      padding: 1.8em 1.35em 1.3em 1.6em;
-      font-size:1.19em;
-      color: #27593d;
-      animation: popfade 1.35s 0.25s cubic-bezier(0.56,1.1,0.48,1.2) both;
-      min-height:70px;
-    }
-    /* Tri/Side Menu */
-    #sideMenu {
-      position: fixed;
-      left: -245px;
-      top: 0;
-      height: 100vh;
-      width: 225px;
-      background: linear-gradient(135deg, var(--accent-dark), var(--accent) 90%);
-      color: #fff;
-      z-index: 3500;
-      box-shadow: 4px 0 16px -4px #0002;
-      transition: left var(--trans);
-      display: flex; flex-direction: column;
-      padding-top: 40px;
-    }
-    #sideMenu.open { left: 0; }
-    .menu-item {
-      padding: 18px 24px;
-      font-weight: 600;
-      font-size: 1.13rem;
-      cursor: pointer;
-      border: none;
-      background: none;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      transition: background 0.19s, color 0.23s;
-      border-left: 4px solid transparent;
-    }
-    .menu-item i {
-      font-style: normal;
-      margin-right: 15px;
-      font-size: 1.55em;
-      display: inline-block;
-      transform: scale(1.1);
-      transition: filter 0.22s;
-    }
-    .menu-item:hover, .menu-item.active {
-      background: rgba(255,255,255,0.10);
-      color: var(--yellow);
-      border-left: 4px solid var(--yellow);
-    }
-    #menuOverlay {
-      position: fixed; left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(56,56,56,0.10);
-      z-index: 2000;
-      display: none;
-    }
-    #menuOverlay.show { display: block; }
-    /* Hamburger */
-    #menuBtn {
-      position: fixed;
-      z-index: 5000;
-      left: 18px; top: 22px;
-      background: var(--accent-dark);
-      color: #fff; border: none;
-      padding: 12px 13px 12px 13px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.46rem;
-      transition: background 0.17s, box-shadow 0.22s;
-      box-shadow: 0 2px 8px rgba(30, 90, 46, 0.23);
-      border:3px solid #fff2;
-      animation: popfade 1.2s 0.2s both;
-    }
-    #menuBtn:hover { background: var(--accent); }
-    /* Main Title */
     h1 {
       text-align: center;
-      margin-top: 2rem;
-      color: var(--accent-dark);
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      filter: drop-shadow(0 2px 10px #0bda9977);
-      margin-bottom: 30px;
-      transition: color 0.2s;
+      padding: 20px;
+      font-weight: 600;
     }
-    /* Dashboard Cards, Animations — unchanged from before, left out for brevity */
-    /* ...add your previously copied dashboard card styles here unchanged */
-    /* Simple Chatbot */
-    #chatbotBubble {
-      position: fixed; right: 30px; bottom: 30px; z-index: 9999;
-      background: var(--accent); color: #fff;
-      border-radius: 50%;
-      width: 64px; height: 64px;
-      box-shadow: 0 4px 16px #00cdbb33;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.2rem; cursor: pointer;
-      animation: popfade 1.2s 1s both,pulse 2.3s infinite;
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
-    @keyframes pulse {
-      0% { box-shadow: 0 3px 19px 1px #29fbc933;}
-      50% { box-shadow: 0 6px 28px 6px #13c18d5a;}
-      100% { box-shadow: 0 3px 19px 1px #29fbc933;}
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      border-radius: 14px;
+      background: white;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    #chatbotWindow {
-      display:none;
-      position: fixed; right: 38px; bottom: 110px; z-index: 9998;
-      width: 345px; max-width:94vw; min-height: 240px; max-height: 70vh;
-      box-shadow: 0 4px 28px #00847d29;
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      animation: popfade 0.9s .08s cubic-bezier(.41,2.5,.24,1.2) both;
-      flex-direction:column;
-      border:3px solid #13c18d18;
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
-    #chatHeader {
-      background: linear-gradient(90deg, var(--accent), var(--accent-dark) 90%);
-      color: #fff; padding: 1.1em 1em; font-size: 1.15em; font-weight: 700;
-      display: flex; align-items:center; justify-content:space-between;
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
     }
-    #closeChatBtn {
-      background: none; border:none; color:#fff; font-size: 1.22em; cursor:pointer;
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-align: center;
     }
-    #chatBody { padding: 1em 1em 0.2em 1em; overflow-y:auto; height: 168px; }
-    .chatUser { color:var(--accent-dark); font-weight:600; margin:0.4em 0 0.09em }
-    .chatMsg { font-size:1em; margin:0 0 0.7em 0.2em;}
-    #chatInputArea { display: flex; border-top:1px solid #e7eedd; }
-    #chatInput {
-      flex:1; border:none; background: #fafdff; padding: 0.85em;
-      font-size: 1em; border-radius:0 0 0 17px;
+    .card-desc {
+      font-size: 0.9rem;
+      color: #444;
+      text-align: center;
     }
-    #sendChatBtn {
-      background: var(--accent); color:#fff; border:none; font-size:1.3em;
-      padding:0 1.1em; border-radius:0 0 17px 0; cursor:pointer;
-      font-weight:800; transition: background 0.17s;
-    }
-    #sendChatBtn:hover { background:var(--accent-dark);}
-    /* MODAL ANIMATIONS */
-    @keyframes popfade {
-      from { opacity: 0; transform:scale(0.93) translateY(12px);}
-      to { opacity: 1; transform:scale(1) translateY(0);}
-    }
-    @keyframes fadein {
-      from { opacity:0;}
-      to   { opacity:1;}
-    }
-    @media (max-width:650px) {
-      #promoContent, h1 { font-size:1.5rem;}
-      #aboutSolutioneersBlock { font-size:1em; padding:1.1em 0.7em 1.1em 1em;}
-    }
-    /* Add your previously copied dashboard card style block here! */
-    /* ... */
+
+    /* Themed colors */
+    .seeds { background: #eaf9f0; }
+    .schemes { background: #fdf3e7; }
+    .weather { background: #eaf3fc; }
+    .calendar { background: #f4ecf9; }
+    .fertilizer { background: #f9fce7; }
+    .stubble { background: #fff2e7; }
+    .soil { background: #f2f2f2; }
+    .msp { background: #e7f9f9; }
+    .yield { background: #f9e7f7; }
   </style>
 </head>
 <body>
-  <!-- HEADER + TOP BAR -->
-  <div id="topBar">
-    <div id="logoArea">
-      <div id="logo">S</div>
-      <div id="siteNameC">
-        <span id="siteName">Solutioneers</span>
-        <span id="siteFullForm">Smart Agriculture Solutions Group</span>
-      </div>
-    </div>
-    <span id="datetime">Loading IST...</span>
+  <h1>🌾 SIH Smart Agriculture Dashboard</h1>
+  <div class="card-grid">
+    <a href="seeds.html" class="card seeds">
+      <div class="card-icon">🌱</div>
+      <div class="card-title">Seeds Availability</div>
+      <div class="card-desc">Check seed stock & availability near you.</div>
+    </a>
+    <a href="schemes.html" class="card schemes">
+      <div class="card-icon">📜</div>
+      <div class="card-title">Govt Schemes</div>
+      <div class="card-desc">Explore latest agriculture policies & subsidies.</div>
+    </a>
+    <a href="weather.html" class="card weather">
+      <div class="card-icon">☁️</div>
+      <div class="card-title">Weather Forecast</div>
+      <div class="card-desc">Stay updated with 7-day forecasts for your area.</div>
+    </a>
+    <a href="calendar.html" class="card calendar">
+      <div class="card-icon">📅</div>
+      <div class="card-title">Crop Calendar</div>
+      <div class="card-desc">View sowing & harvesting schedules.</div>
+    </a>
+    <a href="fertilizer.html" class="card fertilizer">
+      <div class="card-icon">🪴</div>
+      <div class="card-title">Fertilizer Advisory</div>
+      <div class="card-desc">Get pest control & fertilizer recommendations.</div>
+    </a>
+    <a href="stubble.html" class="card stubble">
+      <div class="card-icon">🔥</div>
+      <div class="card-title">Stubble Alternatives</div>
+      <div class="card-desc">Eco-friendly solutions for stubble management.</div>
+    </a>
+    <a href="soil.html" class="card soil">
+      <div class="card-icon">🌍</div>
+      <div class="card-title">Soil Health</div>
+      <div class="card-desc">Check soil quality & improvement methods.</div>
+    </a>
+    <a href="msp.html" class="card msp">
+      <div class="card-icon">💰</div>
+      <div class="card-title">MSP & Market Rates</div>
+      <div class="card-desc">Latest MSP rates & eNAM updates.</div>
+    </a>
+    <a href="yield.html" class="card yield">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Yield Comparison</div>
+      <div class="card-desc">Compare crop yields across regions.</div>
+    </a>
   </div>
-  <!-- TRI MENU BUTTON -->
-  <button id="menuBtn" title="Menu" onclick="openMenu()">☰</button>
-  <div id="sideMenu">
-    <div class="menu-item active" onclick="setView('dashboard')"><i>🏠</i><span>Dashboard</span></div>
-    <div class="menu-item" onclick="setView('account')"><i>👤</i><span>Account</span></div>
-    <div class="menu-item" onclick="setView('about')"><i>ℹ️</i><span>About Us</span></div>
-    <div class="menu-item" onclick="openChatbot()"><i>🤖</i><span>Chatbot</span></div>
-    <div class="menu-item" onclick="setView('feedback')"><i>📝</i><span>Feedback</span></div>
-    <div class="menu-item" onclick="setView('comparison')"><i>📊</i><span>Yield Comparison</span></div>
-    <div class="menu-item" onclick="setView('msp')"><i>💰</i><span>MSP Rates</span></div>
-    <div class="menu-item" onclick="handleLogout()"><i>🚪</i><span>Logout</span></div>
-  </div>
-  <div id="menuOverlay" onclick="closeMenu()"></div>
-  <!-- PROMOTIONAL / RESERVED CONTENT AREA -->
-  <div id="promoArea">
-    <div id="promoContent">[ Reserved Area — Your Main Announcement/"Know Your Tiranga" Region ]</div>
-  </div>
-  <!-- ABOUT SOLUTIONEERS BLOCK -->
-  <div id="aboutSolutioneersBlock">
-    <b>About Solutioneers</b>: <br>
-    [Write about your team/project here. This block is fully editable!]
-  </div>
-  <!-- The rest of your dashboard, account, modals, etc. goes here as before -->
-
-  <!-- Chatbot Floating Bubble + Popup Window -->
-  <div id="chatbotBubble" onclick="openChatbot()" title="Can I help you?">🤖</div>
-  <div id="chatbotWindow">
-    <div id="chatHeader">
-      Can I help you?
-      <button id="closeChatBtn" onclick="closeChatbot()">×</button>
-    </div>
-    <div id="chatBody"></div>
-    <div id="chatInputArea">
-      <input type="text" id="chatInput" placeholder="Ask something..." onkeydown="if(event.key==='Enter'){sendChat()}">
-      <button id="sendChatBtn" onclick="sendChat()">➤</button>
-    </div>
-  </div>
-
-<script>
-  // --- Dynamic Date+Time IST
-  function updateIST() {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + now.getTimezoneOffset() + 330); // IST +5:30
-    const fmt = n => n<10?'0'+n:n;
-    const date = `${fmt(now.getDate())}/${fmt(now.getMonth()+1)}/${now.getFullYear()}`;
-    const time = `${fmt(now.getHours())}:${fmt(now.getMinutes())}:${fmt(now.getSeconds())}`;
-    document.getElementById('datetime').textContent = `${date} | ${time} IST`;
-  }
-  setInterval(updateIST,1000); updateIST();
-
-  // --- Side Menu
-  function openMenu() {
-    document.getElementById('sideMenu').classList.add('open');
-    document.getElementById('menuOverlay').classList.add('show');
-  }
-  function closeMenu() {
-    document.getElementById('sideMenu').classList.remove('open');
-    document.getElementById('menuOverlay').classList.remove('show');
-  }
-  document.addEventListener('keydown', function(e){ if(e.key==="Escape") closeMenu(); });
-  
-  // --- Chatbot Logic (Demo)
-  function openChatbot() {
-    document.getElementById('chatbotWindow').style.display='flex';
-    setTimeout(()=>{document.getElementById('chatInput').focus()},220);
-  }
-  function closeChatbot() {
-    document.getElementById('chatbotWindow').style.display='none';
-  }
-  function sendChat() {
-    const input = document.getElementById('chatInput');
-    const text = input.value.trim();
-    if(!text) return;
-    const chatBody = document.getElementById('chatBody');
-    chatBody.innerHTML += `<div class="chatUser">You:</div><div class="chatMsg">${text}</div>`;
-    input.value='';
-    setTimeout(()=>{
-      chatBody.innerHTML += `<div class="chatUser">Bot:</div><div class="chatMsg">${botReply(text)}</div>`;
-      chatBody.scrollTop = chatBody.scrollHeight;
-    },800);
-  }
-  function botReply(q) {
-    // Simple fixed demo reply
-    q = q.toLowerCase();
-    if(q.includes('msp')) return "Minimum Support Price (MSP) updates are available on the MSP page!";
-    if(q.includes('feedback')) return "You can submit feedback from the Feedback page on the menu.";
-    if(q.includes('hello')||q.includes('hi')) return "Hello! How can I help you?";
-    return "Sorry, this is a demo. Our AI assistant is coming soon!";
-  }
-
-  // --- Set Views for Menu
-  function setView(view){
-    closeMenu();
-    alert("Demo: The "+view+" page will show up here. (Expand this part in your project!)");
-  }
-
-  // Advanced: Plug in the rest of your dashboard, login, and modal code here as needed!
-</script>
 </body>
 </html>
