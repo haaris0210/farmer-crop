@@ -1,623 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <title>Solutioneers • Smart Agriculture Dashboard</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-  :root{
-    --green-700:#1e7b3f; --green-600:#196f3d; --muted:#6b7a6a;
-    --card-radius:16px;
-  }
-  html,body{height:100%;}
-  body {
-    font-family: Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    color: #213;
-    background: linear-gradient(120deg,#f1f4f8 0,#c2ebd6 40%,#e3ecf9 100%);
-    min-height:100vh;
-    line-height:1.35;
-    margin:0;
-  }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #f4f6f9; color: #333; }
 
-  /* TOP WHITE BAR (replaces cards on 3-dash) */
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:1400;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:12px 18px;
-    background:#fff;
-    box-shadow:0 6px 18px rgba(10,40,20,0.06);
-    border-bottom:1px solid rgba(10,40,20,0.03);
-  }
-  .top-left{display:flex;align-items:center;gap:12px}
-  .dash-icon{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--green-600);font-size:20px;}
-  .dash-title{font-weight:800;color:var(--green-600);font-size:18px;letter-spacing:0.2px}
-  .top-actions{display:flex;align-items:center;gap:10px}
+    /* Top bar */
+    .topbar {
+      background: #fff;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .topbar h1 { font-size: 22px; }
+    .topbar img { width: 35px; height: 35px; }
 
-  /* navbar area (secondary) */
-  .subnav{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px}
+    /* Language selector */
+    .lang-select {
+      border: 1px solid #ddd;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: #fafafa;
+      cursor: pointer;
+    }
 
-  /* container */
-  .wrap{max-width:1250px;margin:26px auto;padding:0 18px;}
+    /* Cards container */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .card h3 { margin-bottom: 8px; font-size: 18px; }
 
-  /* hero */
-  .hero{margin:10px 0 24px 0;border-radius:18px;background:linear-gradient(135deg,#e8f7ee,#f1f9f2);box-shadow:0 20px 40px rgba(25,111,61,0.06);display:flex;align-items:center;justify-content:space-between;gap:30px;padding:28px;min-height:140px;}
-  .hero h1{font-size:28px;line-height:1.02;color:#114b27;margin:0;font-weight:800;}
-  .hero p{color:#2c5b3a;opacity:.95;margin:6px 0 0 0;}
+    /* Auth forms */
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px;
+      gap: 30px;
+    }
+    .auth-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      width: 300px;
+    }
+    .auth-box h2 { margin-bottom: 15px; }
+    .auth-box input {
+      width: 100%; padding: 10px; margin-bottom: 12px;
+      border: 1px solid #ccc; border-radius: 6px;
+    }
+    .auth-box button {
+      width: 100%; padding: 10px; border: none;
+      background: #28a745; color: #fff; border-radius: 6px;
+      font-size: 15px; cursor: pointer;
+    }
+    .auth-box button:hover { background: #218838; }
 
-  /* layout */
-  .main-grid{display:grid;grid-template-columns:1fr 380px;gap:26px;align-items:start;}
-  @media (max-width:1100px){.main-grid{grid-template-columns:1fr;}.sidebar-panel{order:2}}
-
-  /* left dashboard cards area */
-  .dashboard-bg {
-    border-radius:18px;
-    padding:18px;
-    background:linear-gradient(135deg,#ffffffee,#f6fff7);
-    box-shadow:0 10px 40px rgba(10,50,20,0.04);
-  }
-
-  .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;}
-  .big-card{
-    position:relative;overflow:hidden;border-radius:var(--card-radius);height:150px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background-size:cover;background-position:center;text-decoration:none;box-shadow:0 6px 32px rgba(10,50,20,0.06);transition:transform .22s, box-shadow .22s;cursor:pointer;
-  }
-  .big-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,0.28));mix-blend-mode:multiply;}
-  .big-card .title{position:relative;font-weight:800;font-size:18px;z-index:2;}
-  .big-card .desc{position:relative;margin-top:6px;font-weight:600;opacity:.95;z-index:2;font-size:13px;}
-  .big-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 30px 60px rgba(12,48,22,0.10);}
-
-  .overlay-green{background:linear-gradient(135deg,rgba(26,139,87,0.75),rgba(18,95,50,0.75)), url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=800') center/cover no-repeat;}
-  .overlay-yellow{background:linear-gradient(135deg,rgba(255,170,30,0.72),rgba(220,120,0,0.55)), url('https://images.pexels.com/photos/248420/pexels-photo-248420.jpeg?auto=compress&w=800') center/cover no-repeat;}
-  .overlay-blue{background:linear-gradient(135deg,rgba(70,140,215,0.70),rgba(55,110,220,0.58)), url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&w=800') center/cover no-repeat;}
-  .overlay-purple{background:linear-gradient(135deg,rgba(145,86,255,0.60),rgba(120,80,200,0.46)), url('https://images.pexels.com/photos/2445746/pexels-photo-2445746.jpeg?auto=compress&w=800') center/cover no-repeat;}
-  .overlay-neutral{background:linear-gradient(135deg,rgba(140,140,140,0.40),rgba(90,90,90,0.18)), url('https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=800') center/cover no-repeat;}
-
-  /* card detail */
-  .card-detail {
-    display:none;
-    background:#fff;
-    color:#153;
-    margin-top:12px;border-radius:12px;padding:18px;border-left:4px solid var(--green-700);
-    box-shadow:0 8px 28px rgba(17,128,60,0.04);
-  }
-  .card-detail h4{margin:0 0 8px 0;color:var(--green-600)}
-
-  /* right sidebar area */
-  .sidebar-panel{
-    position:sticky;top:84px;padding:18px;background:linear-gradient(180deg,#fff,#fbfffd);border-radius:12px;box-shadow:0 10px 28px rgba(10,45,20,0.04);
-  }
-  .news-box h3{margin:0 0 8px 0;color:var(--green-600)}
-  .news-item{font-size:14px;color:#264c36;padding:8px;border-radius:8px;margin-bottom:8px;background:linear-gradient(90deg,rgba(40,120,60,.03),transparent);}
-
-  /* login/signup epic modal */
-  .auth-btn{padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700;}
-  .btn-ghost{background:transparent;border:1px solid #d8e6da;color:var(--green-700)}
-  .btn-primary{background:var(--green-700);color:#fff;border:none;box-shadow:0 10px 30px rgba(30,123,63,0.12)}
-  .auth-modal{display:none;position:fixed;inset:0;background:rgba(8,18,12,0.45);z-index:2500;align-items:center;justify-content:center;padding:20px}
-  .auth-card{width:420px;max-width:96vw;border-radius:16px;background:linear-gradient(180deg,#fff,#f7fff7);padding:18px;box-shadow:0 30px 80px rgba(10,40,20,0.18);border-left:6px solid var(--green-700)}
-  .auth-card h2{margin:4px 0 8px 0;color:var(--green-700)}
-  .field{margin:10px 0}
-  .field input{width:100%;padding:10px;border-radius:10px;border:1px solid #e6efe6}
-  .auth-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-
-  /* chatbot floating */
-  .chat-fab{
-    position:fixed;right:18px;bottom:20px;z-index:3000;display:flex;flex-direction:column;align-items:flex-end;gap:8px;
-  }
-  .need-help{
-    background:#fff;border-radius:12px;padding:10px 12px;font-weight:800;color:var(--green-700);box-shadow:0 8px 30px rgba(10,60,30,0.12);cursor:pointer;border:2px solid rgba(30,120,60,0.06)
-  }
-  .fab-btn{
-    width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--green-700),#16723a);color:#fff;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 30px rgba(20,90,40,0.18)
-  }
-  .chat-window {
-    width:320px;height:420px;border-radius:12px;background:#fff;box-shadow:0 20px 60px rgba(10,45,20,0.14);overflow:hidden;display:none;flex-direction:column;
-  }
-  .chat-head{background:linear-gradient(90deg,var(--green-700),#156435);padding:12px;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:space-between}
-  .chat-body{padding:12px;flex:1;overflow:auto;background:linear-gradient(180deg,#fbfff9,#fff);display:flex;flex-direction:column;gap:8px;padding-bottom:14px}
-  .chat-input{display:flex;padding:10px;border-top:1px solid #eef6ee}
-  .chat-input input{flex:1;padding:8px;border-radius:10px;border:1px solid #e6efe6;margin-right:8px}
-  .msg{padding:8px 10px;border-radius:10px;max-width:78%;background:#f1f7f2;color:#143;align-self:flex-start}
-  .msg.me{background:linear-gradient(180deg,#e6ffe9,#d4f9d6);align-self:flex-end;color:#0a3a14}
-
-  /* small helpers */
-  .muted{color:var(--muted);font-size:13px}
+    /* Chatbot */
+    .chatbot-btn {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #007bff; color: #fff;
+      padding: 12px 18px; border-radius: 30px;
+      cursor: pointer; font-size: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .chatbot-window {
+      position: fixed; bottom: 70px; right: 20px;
+      width: 300px; height: 400px;
+      background: #fff; border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      display: none; flex-direction: column;
+    }
+    .chat-header {
+      background: #007bff; color: #fff; padding: 10px;
+      border-top-left-radius: 10px; border-top-right-radius: 10px;
+    }
+    .chat-messages {
+      flex: 1; padding: 10px; overflow-y: auto; font-size: 14px;
+    }
+    .chat-input {
+      display: flex; border-top: 1px solid #ddd;
+    }
+    .chat-input input {
+      flex: 1; border: none; padding: 10px; font-size: 14px;
+    }
+    .chat-input button {
+      border: none; padding: 10px; background: #007bff; color: #fff;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <!-- TOP WHITE BAR -->
-  <div class="topbar" role="banner">
-    <div class="top-left">
-      <div class="dash-icon">S</div>
-      <div>
-        <div class="dash-title" id="nav-title">Solutioneers</div>
-        <div class="muted" style="font-size:12px;margin-top:2px" id="nav-sub">Smart Agriculture Group</div>
-      </div>
-    </div>
 
-    <div class="top-actions">
-      <!-- language select -->
-      <select id="langSel" title="Language" style="padding:8px 10px;border-radius:8px;border:1px solid #e6f0ea;background:#f8fffb;">
-        <option value="English">English</option>
-        <option value="Hindi">हिन्दी</option>
+  <!-- Top Bar -->
+  <div class="topbar">
+    <h1 id="title">Dashboard</h1>
+    <div>
+      <select id="languageSwitcher" class="lang-select">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
       </select>
-
-      <!-- login/signup epic -->
-      <button id="btnLoginTop" class="auth-btn btn-ghost">Login</button>
-      <button id="btnSignupTop" class="auth-btn btn-primary">Create account</button>
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Icon">
     </div>
   </div>
 
-  <div class="wrap">
-    <!-- HERO -->
-    <section class="hero" aria-label="Announcements">
-      <div>
-        <h1 id="hero">Grow smarter. Harvest better.</h1>
-        <p id="herodesc">Real-time advisories, market prices, subsidies, and soil insights built for farmers, powered by data.</p>
-        <div style="margin-top:12px">
-          <button class="auth-btn btn-primary" onclick="document.getElementById('dashboardSection').scrollIntoView({behavior:'smooth'})" id="btn-dashboard">Explore Dashboard</button>
-          <button class="auth-btn btn-ghost" id="btn-how" onclick="showHow()">How it works</button>
-        </div>
-      </div>
-      <div style="width:260px;height:120px;border-radius:12px;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=900');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;text-shadow:0 6px 20px rgba(0,0,0,0.35);">Farmers Community</div>
-    </section>
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card">
+      <img src="https://source.unsplash.com/400x200/?tractor,machine" alt="Latest Machinery">
+      <h3 data-key="machinery">Latest Machinery</h3>
+      <p>Discover new agriculture machinery and technology updates.</p>
+    </div>
 
-    <!-- main grid -->
-    <div class="main-grid">
-      <!-- LEFT: Dashboard area -->
-      <div>
-        <section class="dashboard-bg" id="dashboardSection">
-          <h3 style="margin:0 0 12px 0;color:var(--green-600)" id="about-head">About Solutioneers</h3>
-          <p id="about1" style="margin:0 0 8px 0;color:#274f3a">We bring practical digital tools to farmers: weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.</p>
-          <p id="abouttag" style="margin:6px 0 16px 0;color:#3f7b4f;font-weight:700">Your land. Your data. Better yields.</p>
+    <div class="card">
+      <h3 data-key="govt">Govt Scheme & Policies</h3>
+      <p>Information about government initiatives and policies.</p>
+    </div>
 
-          <!-- CARDS (REORDERED + Latest Machinery first) -->
-          <div class="grid-cards" id="cardsGrid">
-            <!-- Latest Machinery -->
-            <div>
-              <a class="big-card overlay-neutral" id="main-card-machinery" href="javascript:void(0)">
-                <span class="title" id="card-machinery">Latest Machinery</span>
-                <span class="desc" id="card-machinery-desc">New harvesters, stubble-management, and micro-implements.</span>
-              </a>
-              <div class="card-detail" id="detail-machinery">
-                <h4>Latest Machinery & Services</h4>
-                <p>Find nearby rental services, subsidies for machines, and scheduled demo days.</p>
-                <ul>
-                  <li>Stubble Management Machines (rotavator, straw balers)</li>
-                  <li>Small-scale Harvesters & Threshers (rental options)</li>
-                  <li>Solar-powered water pumps & drip-kit packages</li>
-                </ul>
-              </div>
-            </div>
+    <div class="card">
+      <h3 data-key="seeds">Seeds Availability</h3>
+      <p>Check the availability of high quality seeds.</p>
+    </div>
 
-            <!-- Govt schemes -->
-            <div>
-              <a class="big-card overlay-yellow" id="main-card-schemes" href="javascript:void(0)">
-                <span class="title" id="card-schemes">Govt Schemes & Policies</span>
-                <span class="desc" id="card-schemes-desc">Check eligibility, subsidies, and applications for your area.</span>
-              </a>
-              <div class="card-detail" id="detail-schemes">
-                <h4>Major Govt Schemes</h4>
-                <ul>
-                  <li><b>PM-KISAN:</b> ₹6000/yr for small & marginal farmers.</li>
-                  <li><b>PMFBY:</b> Crop insurance across many crops.</li>
-                  <li><b>KCC:</b> Flexible crop loans and credit lines.</li>
-                </ul>
-              </div>
-            </div>
+    <div class="card">
+      <h3 data-key="fertilizers">Fertilizers & Pest</h3>
+      <p>Get details about fertilizers and pest management.</p>
+    </div>
 
-            <!-- Seeds availability -->
-            <div>
-              <a class="big-card overlay-green" id="main-card-seeds" href="javascript:void(0)">
-                <span class="title" id="card-seeds">Seeds Availability</span>
-                <span class="desc" id="card-seeds-desc">Find certified seeds, local vendors near your village.</span>
-              </a>
-              <div class="card-detail" id="detail-seeds">
-                <h4>Seed Categories</h4>
-                <p>Cereal, oilseeds, pulses, vegetables, and specialty seeds with subsidies options.</p>
-              </div>
-            </div>
+    <div class="card">
+      <h3 data-key="calendar">Crop Calendar</h3>
+      <p>Plan your crops effectively with the seasonal calendar.</p>
+    </div>
 
-            <!-- Fertilizer & Pest -->
-            <div>
-              <a class="big-card overlay-green" id="main-card-fertilizer" href="javascript:void(0)">
-                <span class="title" id="card-fertilizer">Fertilizer & Pest Advisory</span>
-                <span class="desc" id="card-fertilizer-desc">Soil-based recommendations, early pest warnings.</span>
-              </a>
-              <div class="card-detail" id="detail-fertilizer">
-                <h4>Fertilizer & Pest Guidance</h4>
-                <p>Follow IPM, adjust doses using Soil Health Card results, and monitor local pest alerts.</p>
-              </div>
-            </div>
+    <div class="card">
+      <h3 data-key="soil">Soil Health</h3>
+      <p>Tips and resources for improving soil health.</p>
+    </div>
 
-            <!-- Crop Calendar -->
-            <div>
-              <a class="big-card overlay-purple" id="main-card-calendar" href="javascript:void(0)">
-                <span class="title" id="card-calendar">Crop Calendar</span>
-                <span class="desc" id="card-calendar-desc">Regional sowing/harvesting schedules tailored for you.</span>
-              </a>
-              <div class="card-detail" id="detail-calendar">
-                <h4>Crop Calendar</h4>
-                <p>Kharif, Rabi & Zaid timings by region and crop-specific notes.</p>
-              </div>
-            </div>
+    <div class="card">
+      <h3 data-key="yield">Yield</h3>
+      <p>Monitor and forecast crop yields accurately.</p>
+    </div>
 
-            <!-- Soil Health -->
-            <div>
-              <a class="big-card overlay-blue" id="main-card-soil" href="javascript:void(0)">
-                <span class="title" id="card-soil">Soil Health</span>
-                <span class="desc" id="card-soil-desc">Upload soil reports, get improvement plans.</span>
-              </a>
-              <div class="card-detail" id="detail-soil">
-                <h4>Soil & Weather-based Choices</h4>
-                <p>Recommended crops and improvement strategies for different soil types.</p>
-              </div>
-            </div>
-
-            <!-- Yield -->
-            <div>
-              <a class="big-card overlay-green" id="main-card-yield" href="javascript:void(0)">
-                <span class="title" id="card-yield">Yield Comparison</span>
-                <span class="desc" id="card-yield-desc">Compare historical yields and forecast improvements.</span>
-              </a>
-              <div class="card-detail" id="detail-yield">
-                <h4>Yield Comparison</h4>
-                <p>State/district comparisons and best-practice case studies.</p>
-              </div>
-            </div>
-
-            <!-- MSP -->
-            <div>
-              <a class="big-card overlay-blue" id="main-card-msp" href="javascript:void(0)">
-                <span class="title" id="card-msp">MSP Market Rates</span>
-                <span class="desc" id="card-msp-desc">Daily mandi rates, eNAM prices, and trend charts.</span>
-              </a>
-              <div class="card-detail" id="detail-msp">
-                <h4>MSP & Market Prices</h4>
-                <p>Live MSP and local mandi rates. Exportable CSV/Excel.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-
-      <!-- RIGHT: sidebar (news + misc) -->
-      <aside class="sidebar-panel">
-        <div class="news-box">
-          <h3 id="news-head">Latest News</h3>
-          <div class="news-item" id="newsitem1">Stubble management machines distributed in Punjab.</div>
-          <div class="news-item" id="newsitem2">New high-yield seed variety released.</div>
-          <div class="news-item" id="newsitem3">Localized irrigation training programs starting next week.</div>
-          <div class="news-item" id="newsitem4">MSP updates pushed for rabi crops – check MSP page.</div>
-          <div style="margin-top:14px">
-            <div class="muted">Current time</div>
-            <div id="navTime" class="muted" style="font-weight:700;margin-top:4px"></div>
-          </div>
-        </div>
-      </aside>
+    <div class="card">
+      <h3 data-key="msp">MSP</h3>
+      <p>Latest updates on Minimum Support Prices.</p>
     </div>
   </div>
 
-  <!-- HOW IT WORKS modal (simple) -->
-  <div id="howModal" style="display:none;position:fixed;inset:0;background:rgba(10,20,10,0.35);z-index:2600;align-items:center;justify-content:center">
-    <div style="background:#fff;padding:18px;border-radius:12px;max-width:360px;width:92%;box-shadow:0 20px 60px rgba(10,40,20,0.15)">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3 style="margin:0;color:var(--green-700);">How it works</h3>
-        <button onclick="document.getElementById('howModal').style.display='none'" style="background:none;border:none;font-weight:800;color:#666">×</button>
-      </div>
-      <ol style="margin-top:10px;color:#345">
-        <li>Explore cards to see details (click).</li>
-        <li>Use language dropdown to switch text (English / हिन्दी).</li>
-        <li>Chatbot is a UI demo — backend can be linked later.</li>
-      </ol>
+  <!-- Auth Forms -->
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+    </div>
+    <div class="auth-box">
+      <h2>Create Account</h2>
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Sign Up</button>
     </div>
   </div>
 
-  <!-- AUTH modal (login/signup epic format) -->
-  <div id="authModal" class="auth-modal" role="dialog" aria-hidden="true">
-    <div class="auth-card">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h2 id="authTitle">Sign in to Solutioneers</h2>
-        <button id="authClose" style="background:none;border:none;color:var(--green-700);font-weight:800">×</button>
-      </div>
-      <p id="authSub" class="muted">Welcome back! Use your account to access dashboards and tools.</p>
-
-      <div style="margin-top:12px">
-        <div class="field"><input id="authEmail" placeholder="Email or phone" /></div>
-        <div class="field"><input id="authPass" placeholder="Password" type="password" /></div>
-
-        <div style="display:flex;gap:12px;align-items:center;margin-top:8px">
-          <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="remember"/> Keep me signed in</label>
-          <a href="#" style="margin-left:auto;font-size:13px;color:var(--green-700)">Forgot?</a>
-        </div>
-
-        <div class="auth-actions">
-          <button id="authAlt" class="auth-btn btn-ghost">Use OTP</button>
-          <button id="authSubmit" class="auth-btn btn-primary">Continue</button>
-        </div>
-
-        <div style="margin-top:12px;border-top:1px solid #eef6ee;padding-top:12px;font-size:14px">
-          <div id="signupRow">Don't have an account? <button id="switchToSign" class="auth-btn" style="background:none;border:none;color:var(--green-700);font-weight:800">Create account</button></div>
-        </div>
-      </div>
+  <!-- Chatbot -->
+  <div class="chatbot-btn" id="chatbotBtn">Need Help ??</div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chat-header">AgriBot</div>
+    <div class="chat-messages">👋 Hello! How can I help you?</div>
+    <div class="chat-input">
+      <input type="text" placeholder="Type a message...">
+      <button>Send</button>
     </div>
   </div>
 
-  <!-- CHATBOT FAB -->
-  <div class="chat-fab" aria-hidden="false">
-    <div id="needHelp" class="need-help">Need Help??</div>
-    <button id="openChat" class="fab-btn">Chat</button>
-
-    <div id="chatWindow" class="chat-window" role="dialog" aria-hidden="true">
-      <div class="chat-head">
-        <div>Assistant</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <button id="minChat" style="background:none;border:none;color:#fff;font-weight:800;cursor:pointer">−</button>
-          <button id="closeChat" style="background:none;border:none;color:#fff;font-weight:800;cursor:pointer">×</button>
-        </div>
-      </div>
-      <div class="chat-body" id="chatBody">
-        <div class="msg">Hi! I'm the demo assistant — ask about MSP, machinery, seeds, or just say hello.</div>
-      </div>
-      <div class="chat-input">
-        <input id="chatInput" placeholder="Type a message..." />
-        <button id="sendBtn" class="auth-btn btn-primary">Send</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-  // IST time updater
-  function updateIST(){
-    const now=new Date(),utc=now.getTime()+now.getTimezoneOffset()*60000,ist=new Date(utc+3600000*5.5);
-    const opts={weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'};
-    document.getElementById('navTime').innerText=ist.toLocaleString('en-IN',opts)+" IST";
-  }
-  setInterval(updateIST,1000);updateIST();
-
-  // CARD DETAIL LOGIC (show/hide details and auto-scroll)
-  const cards = ["machinery","schemes","seeds","fertilizer","calendar","soil","yield","msp"];
-  cards.forEach(key=>{
-    const card = document.getElementById("main-card-"+key);
-    if(!card) return;
-    card.addEventListener('click', (e)=>{
-      e.preventDefault();
-      // hide others
-      document.querySelectorAll('.card-detail').forEach(d=>d.style.display='none');
-      const detail = document.getElementById("detail-"+key);
-      if(detail) detail.style.display = 'block';
-      detail && detail.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
-
-  // Hide card detail when clicking outside (desktop)
-  document.addEventListener('click', function(e){
-    const isCard = e.target.closest('.big-card');
-    const isDetail = e.target.closest('.card-detail');
-    if(!isCard && !isDetail){
-      document.querySelectorAll('.card-detail').forEach(d=>d.style.display='none');
-    }
-  });
-
-  // HOW modal
-  function showHow(){document.getElementById('howModal').style.display='flex'}
-  document.getElementById('btn-how').addEventListener('click', showHow);
-
-  // AUTH modal handlers
-  const authModal = document.getElementById('authModal');
-  document.getElementById('btnLoginTop').addEventListener('click', () => {
-    document.getElementById('authTitle').innerText = "Sign in to Solutioneers";
-    document.getElementById('authSub').innerText = "Welcome back! Use your account to access dashboards and tools.";
-    authModal.style.display = 'flex';
-  });
-  document.getElementById('btnSignupTop').addEventListener('click', () => {
-    document.getElementById('authTitle').innerText = "Create your Solutioneers account";
-    document.getElementById('authSub').innerText = "Quick sign up to save favorites and access personalized advisories.";
-    authModal.style.display = 'flex';
-  });
-  document.getElementById('authClose').addEventListener('click', ()=>authModal.style.display='none');
-  document.getElementById('switchToSign').addEventListener('click', ()=>{
-    document.getElementById('authTitle').innerText = "Create your Solutioneers account";
-    document.getElementById('authSub').innerText = "Quick sign up to save favorites and access personalized advisories.";
-  });
-  document.getElementById('authSubmit').addEventListener('click', ()=>{
-    // demo: close and show a tiny success
-    authModal.style.display='none';
-    alert('Demo: auth submitted. Your friend can hook the backend here.');
-  });
-
-  // CHATBOT UI (dummy)
-  const needHelp = document.getElementById('needHelp');
-  const openChat = document.getElementById('openChat');
-  const chatWindow = document.getElementById('chatWindow');
-  const chatBody = document.getElementById('chatBody');
-  const chatInput = document.getElementById('chatInput');
-  const sendBtn = document.getElementById('sendBtn');
-  const closeChat = document.getElementById('closeChat');
-  const minChat = document.getElementById('minChat');
-
-  // show expanded UI when either pressed
-  function openChatUI(){
-    needHelp.style.display='none';
-    chatWindow.style.display='flex';
-    chatWindow.setAttribute('aria-hidden','false');
-  }
-  needHelp.addEventListener('click', openChatUI);
-  openChat.addEventListener('click', openChatUI);
-  closeChat.addEventListener('click', ()=>{
-    chatWindow.style.display='none';
-    needHelp.style.display='block';
-  });
-  minChat.addEventListener('click', ()=>{ chatWindow.style.display='none'; needHelp.style.display='block'; });
-
-  // dummy send
-  function appendChat(text,isMe){
-    const d = document.createElement('div');
-    d.className = 'msg'+(isMe ? ' me' : '');
-    d.innerText = text;
-    chatBody.appendChild(d);
-    chatBody.scrollTop = chatBody.scrollHeight;
-  }
-  sendBtn.addEventListener('click', ()=>{
-    const t = chatInput.value.trim(); if(!t) return;
-    appendChat(t,true);
-    chatInput.value='';
-    setTimeout(()=>{ appendChat("Demo: Thanks — this is a UI-only chatbot. Your friend can connect backend here.", false); }, 700);
-  });
-  chatInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendBtn.click(); });
-
-  // LANGUAGE SWITCHER (English + Hindi, extendable)
-  const translations = {
-    English: {
-      hero: "Grow smarter. Harvest better.",
-      herodesc: "Real-time advisories, market prices, subsidies, and soil insights built for farmers, powered by data.",
-      about-head: "About Solutioneers",
-      about1: "We bring practical digital tools to farmers: weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.",
-      abouttag: "Your land. Your data. Better yields.",
-      news-head: "Latest News",
-      card-machinery: "Latest Machinery",
-      card-machinery-desc: "New harvesters, stubble-management, and micro-implements.",
-      card-schemes: "Govt Schemes & Policies",
-      card-schemes-desc: "Check eligibility, subsidies, and applications for your area.",
-      card-seeds: "Seeds Availability",
-      card-seeds-desc: "Find certified seeds, local vendors near your village.",
-      card-fertilizer: "Fertilizer & Pest Advisory",
-      card-fertilizer-desc: "Soil-based recommendations, early pest warnings.",
-      card-calendar: "Crop Calendar",
-      card-calendar-desc: "Regional sowing/harvesting schedules tailored for you.",
-      card-soil: "Soil Health",
-      card-soil-desc: "Upload soil reports, get improvement plans.",
-      card-yield: "Yield Comparison",
-      card-yield-desc: "Compare historical yields and forecast improvements.",
-      card-msp: "MSP Market Rates",
-      card-msp-desc: "Daily mandi rates, eNAM prices, and trend charts.",
-      btn-dashboard: "Explore Dashboard",
-      btn-how: "How it works",
-      nav-title: "Solutioneers",
-      nav-sub: "Smart Agriculture Group",
-      authTitle_signin: "Sign in to Solutioneers",
-      authSub_signin: "Welcome back! Use your account to access dashboards and tools.",
-      authTitle_signup: "Create your Solutioneers account",
-      authSub_signup: "Quick sign up to save favorites and access personalized advisories.",
-      needhelp: "Need Help??"
-    },
-    Hindi: {
-      hero: "स्मार्ट खेती करें। बेहतर फसल पाएं।",
-      herodesc: "रियल-टाइम सलाह, बाजार भाव, सब्सिडी और मिट्टी की जानकारी – किसानों के लिए।",
-      about-head: "सोल्यूशनियर्स के बारे में",
-      about1: "हम किसानों को डिजिटल टूल्स देते हैं: मौसम पूर्वानुमान, एमएसपी अपडेट, मिट्टी स्वास्थ्य सिफारिशें और स्थानीय सलाह।",
-      abouttag: "आपकी ज़मीन। आपका डेटा। बेहतर पैदावार।",
-      news-head: "ताज़ा खबरें",
-      card-machinery: "नवीनतम मशीनरी",
-      card-machinery-desc: "नए हार्वेस्टर, स्टबल-मैनेजमेंट और छोटे उपकरण।",
-      card-schemes: "सरकारी योजनाएँ और नीतियाँ",
-      card-schemes-desc: "अपने क्षेत्र की पात्रता, सब्सिडी और आवेदन देखें।",
-      card-seeds: "बीज उपलब्धता",
-      card-seeds-desc: "प्रमाणित बीज और स्थानीय विक्रेता खोजें।",
-      card-fertilizer: "खाद और कीट सलाह",
-      card-fertilizer-desc: "मिट्टी-आधारित सिफारिशें और शुरुआती कीट चेतावनियाँ।",
-      card-calendar: "फसल कैलेंडर",
-      card-calendar-desc: "क्षेत्रीय बोआई/कटाई शेड्यूल आपके लिए।",
-      card-soil: "मिट्टी स्वास्थ्य",
-      card-soil-desc: "मिट्टी रिपोर्ट अपलोड करें, सुधार योजनाएं पायें।",
-      card-yield: "उत्पादन तुलना",
-      card-yield-desc: "ऐतिहासिक उत्पादन और सुधार अनुमान।",
-      card-msp: "MSP और मंडी भाव",
-      card-msp-desc: "दैनिक मंडी भाव, eNAM कीमतें और ट्रेंड चार्ट।",
-      btn-dashboard: "डैशबोर्ड देखें",
-      btn-how: "यह कैसे काम करता है",
-      nav-title: "सोल्यूशनियर्स",
-      nav-sub: "स्मार्ट एग्रीकल्चर ग्रुप",
-      authTitle_signin: "साइन इन करें",
-      authSub_signin: "स्वागत है! अपने खाते से डैशबोर्ड और टूल्स देखें।",
-      authTitle_signup: "अपना अकाउंट बनाएं",
-      authSub_signup: "जल्दी साइन अप करें और व्यक्तिगत सलाह प्राप्त करें।",
-      needhelp: "किसी मदद की ज़रूरत??"
-    }
-  };
-
-  // applyLang updates mapped ids
-  function applyLang(lang){
-    const dict = translations[lang];
-    if(!dict) return;
-    // keys that map directly to element ids
-    const map = {
-      hero: 'hero',
-      herodesc: 'herodesc',
-      'about-head':'about-head',
-      about1:'about1',
-      abouttag:'abouttag',
-      'news-head':'news-head',
-      'card-machinery':'card-machinery',
-      'card-machinery-desc':'card-machinery-desc',
-      'card-schemes':'card-schemes',
-      'card-schemes-desc':'card-schemes-desc',
-      'card-seeds':'card-seeds',
-      'card-seeds-desc':'card-seeds-desc',
-      'card-fertilizer':'card-fertilizer',
-      'card-fertilizer-desc':'card-fertilizer-desc',
-      'card-calendar':'card-calendar',
-      'card-calendar-desc':'card-calendar-desc',
-      'card-soil':'card-soil',
-      'card-soil-desc':'card-soil-desc',
-      'card-yield':'card-yield',
-      'card-yield-desc':'card-yield-desc',
-      'card-msp':'card-msp',
-      'card-msp-desc':'card-msp-desc',
-      btn-dashboard:'btn-dashboard',
-      btn-how:'btn-how',
-      nav-title:'nav-title',
-      nav-sub:'nav-sub',
-      needhelp:'needHelp' // note: element id is needHelp; we set innerText of the small pill
+  <script>
+    // Language translations
+    const translations = {
+      en: {
+        title: "Dashboard",
+        machinery: "Latest Machinery",
+        govt: "Govt Scheme & Policies",
+        seeds: "Seeds Availability",
+        fertilizers: "Fertilizers & Pest",
+        calendar: "Crop Calendar",
+        soil: "Soil Health",
+        yield: "Yield",
+        msp: "MSP"
+      },
+      hi: {
+        title: "डैशबोर्ड",
+        machinery: "नवीनतम मशीनरी",
+        govt: "सरकारी योजनाएँ और नीतियाँ",
+        seeds: "बीज उपलब्धता",
+        fertilizers: "उर्वरक और कीट",
+        calendar: "फसल कैलेंडर",
+        soil: "मृदा स्वास्थ्य",
+        yield: "उपज",
+        msp: "न्यूनतम समर्थन मूल्य"
+      }
     };
-    Object.keys(map).forEach(k=>{
-      const elId = map[k];
-      const el = document.getElementById(elId);
-      if(el && dict[k] !== undefined) el.innerText = dict[k];
+
+    const switcher = document.getElementById("languageSwitcher");
+    const title = document.getElementById("title");
+    switcher.addEventListener("change", () => {
+      const lang = switcher.value;
+      const dict = translations[lang];
+      title.textContent = dict.title;
+      document.querySelectorAll("[data-key]").forEach(el => {
+        el.textContent = dict[el.getAttribute("data-key")];
+      });
     });
-    // auth texts handled separately when opening
-  }
 
-  // change event
-  const langSel = document.getElementById('langSel');
-  langSel.addEventListener('change', ()=>{
-    applyLang(langSel.value);
-  });
-  // apply default
-  applyLang(langSel.value);
-
-  // ensure NeedHelp pill also updates (special)
-  // map needhelp to element 'needHelp' (we already did above)
-
-  // When opening auth modal, set proper strings for signin/signup depending on which button was clicked
-  document.getElementById('btnLoginTop').addEventListener('click', ()=>{
-    const lang = langSel.value;
-    const dict = translations[lang] || translations['English'];
-    document.getElementById('authTitle').innerText = dict.authTitle_signin || "Sign in";
-    document.getElementById('authSub').innerText = dict.authSub_signin || "";
-  });
-  document.getElementById('btnSignupTop').addEventListener('click', ()=>{
-    const lang = langSel.value;
-    const dict = translations[lang] || translations['English'];
-    document.getElementById('authTitle').innerText = dict.authTitle_signup || "Create account";
-    document.getElementById('authSub').innerText = dict.authSub_signup || "";
-  });
-
-  // Allow escape to close auth modal
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ authModal.style.display='none'; document.getElementById('howModal').style.display='none'; } });
-
-  // ensure the Need Help text reflects language on load/change (element id 'needHelp' text)
-  // already handled by applyLang mapping.
-
-  // small accessibility: tab focus for chat open
-  openChat.addEventListener('keyup', (e)=>{ if(e.key==='Enter') openChatUI(); });
-
-</script>
+    // Chatbot toggle
+    const chatbotBtn = document.getElementById("chatbotBtn");
+    const chatbotWindow = document.getElementById("chatbotWindow");
+    chatbotBtn.addEventListener("click", () => {
+      chatbotWindow.style.display = chatbotWindow.style.display === "flex" ? "none" : "flex";
+    });
+  </script>
 </body>
 </html>
