@@ -7,26 +7,52 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
   <style>
   html,body{height:100%;}
-  body {
-    font-family: Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    color: #213;
-    background: linear-gradient(120deg,#f1f4f8 0,#c2ebd6 40%,#e3ecf9 100%);
-    min-height:100vh;
-    line-height:1.35;
-  }
-  /* ---- Dashboard and Cards ---- */
-  .dashboard-bg {
-    margin:36px auto 0 auto;
-    max-width:1250px;
-    padding:30px 24px;
-    border-radius:30px;
-    background:linear-gradient(135deg,#e4ffe9 0,#b3efe3 80%,#dbf2ff 100%);
-    background-blend-mode:soft-light;
-    box-shadow:0 6px 60px rgba(50,85,70,0.14),0 1.5px 12px rgba(90,155,120,0.09);
-    backdrop-filter:blur(8px);
+  body {font-family: Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color: #213; background: linear-gradient(120deg,#f1f4f8 0,#c2ebd6 40%,#e3ecf9 100%);
+    min-height:100vh; line-height:1.35;}
+  .dashboard-bg {margin:36px auto 0 auto; max-width:1250px; padding:30px 24px; border-radius:30px;
+    background:linear-gradient(135deg,#e4ffe9 0,#b3efe3 80%,#dbf2ff 100%); background-blend-mode:soft-light;
+    box-shadow:0 6px 60px rgba(50,85,70,0.14),0 1.5px 12px rgba(90,155,120,0.09); backdrop-filter:blur(8px);}
+  .sidebar {position:fixed;left:0;top:0;bottom:0;width:350px;max-width:98vw;background:#1b5e33;z-index:2000;
+    padding:22px 12px 24px 18px;overflow-y:auto;display:none; box-shadow:0 10px 40px rgba(27,94,51,0.18);}
+  .sidebar.open{display:block;}
+  .sidebar h3 {color: #fff;}
+  .sidebar nav a {color:#fff;}
+  .navbar{position:sticky;top:0;z-index:1200;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;background:rgba(255,255,255,0.92);box-shadow:0 6px 18px rgba(20,30,20,0.06);}
+  .nav-left{display:flex;align-items:center;gap:14px;}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:none;background:linear-gradient(180deg,#fff,#f1f5f1);font-size:20px;cursor:pointer;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;}
+  .brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:20px;}
+  .brand .title{font-size:18px;}
+  .nav-time{font-size:13px;color:#3a3a3a;margin-left:6px;}
+  .nav-right{display:flex;align-items:center;gap:8px;}
+  .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e8f6ee;}
+  .btn{padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:600;}
+  .btn.login{background:transparent;border:1px solid #ddd;color:#175a30;}
+  .btn.cta{background:#1e7b3f;color:#fff;}
+  .hero{margin:28px 0 0 0;border-radius:18px;background:linear-gradient(135deg,#e8f7ee,#f1f9f2);box-shadow:0 20px 40px rgba(25,111,61,0.06);display:flex;align-items:center;justify-content:space-between;gap:30px;padding:42px 42px 28px 42px;min-height:160px;}
+  .hero .left{max-width:72%;}
+  .hero h1{font-size:34px;line-height:1.02;color:#114b27;margin-bottom:8px;font-weight:800;}
+  .hero p{color:#2c5b3a;opacity:0.97;font-size:17px;}
+  .hero .cta-row{margin-top:16px;display:flex;gap:12px;}
+  .hero .cta{padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700;}
+  .hero .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 10px 26px rgba(30,123,63,0.12);}
+  .hero .cta.ghost{background:transparent;border:1px solid #d6eee0;color:#1e7b3f;}
+  .hero .right{width:320px;height:120px;border-radius:12px;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=700');background-size:cover;background-position:center;box-shadow:inset 0 0 0 120px rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;text-shadow:0 4px 20px rgba(0,0,0,0.3);}
+  .section{display:grid;grid-template-columns:1fr 420px;gap:32px;max-width:1300px;margin:32px auto 0 auto;}
+  .card-large{border-radius:18px;background:#fff;padding:32px 32px 20px 32px;box-shadow:0 10px 30px rgba(16,64,28,0.06);font-size:17px;}
+  .about h3{color:#1b6b36;margin-bottom:10px;font-size:22px;}
+  .about p{color:#2c4d3a;opacity:.93;font-size:17px;}
+  .news-box{border-radius:18px;background:linear-gradient(180deg,#fff,#fbfffd);padding:22px;box-shadow:0 10px 28px rgba(16,64,28,0.08);}
+  .news-box h3{color:#1b6b36;margin-bottom:12px;font-size:18px;}
+  .news-scroll{height:175px;overflow:hidden;position:relative;}
+  .news-track{display:flex;flex-direction:column;gap:9px;animation:newsScroll 12s linear infinite;}
+  .news-item{font-size:15px;color:#264c36;padding:8px 2px;margin-left:5px;background:linear-gradient(90deg,rgba(40,120,60,.03),transparent);border-radius:7px;}
+  @keyframes newsScroll {
+   0%   { transform: translateY(0);}
+   100% { transform: translateY(-50%);}
   }
   .grid{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;}
-  .big-card{cursor:pointer;position:relative;overflow:hidden;border-radius:18px;height:180px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background-size:cover;background-position:center;text-decoration:none;box-shadow:0 6px 32px rgba(10,50,20,0.07);transition:transform .28s, box-shadow .28s;}
+  .big-card{position:relative;overflow:hidden;border-radius:18px;height:180px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background-size:cover;background-position:center;text-decoration:none;box-shadow:0 6px 32px rgba(10,50,20,0.07);transition:transform .28s, box-shadow .28s;cursor:pointer;}
   .big-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48));mix-blend-mode:multiply;}
   .big-card .title{position:relative;font-weight:800;font-size:20px;z-index:2;}
   .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:13px;}
@@ -36,240 +62,436 @@
   .overlay-blue{background:linear-gradient(135deg,rgba(95,150,255,0.45),rgba(65,120,255,0.38));}
   .overlay-purple{background:linear-gradient(135deg,rgba(200,140,255,0.45),rgba(145,86,255,0.36));}
 
-  /* ---- MODAL ---- */
+  /* ---- CARD DETAIL MODAL ---- */
   .modal-bg {
     display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3000;background:rgba(20,40,23,0.22);
     justify-content:center;align-items:center;
-    transition:background 0.3s;
   }
   .modal-bg.open { display:flex; }
   .detail-modal {
     min-width: 370px;
     max-width: 98vw;
-    width: 550px;
-    min-height: 270px;
+    width: 540px;
+    min-height: 260px;
     max-height: 88vh;
     background: #fff;
-    border-radius: 19px;
-    padding: 36px 38px 30px 38px;
+    border-radius: 18px;
+    padding: 36px 34px 30px 32px;
     box-shadow: 0 18px 62px rgba(13,68,30,0.14);
     overflow-y: auto;
     position:relative;
-    animation: popIn .2s ease;
+    animation: popIn .2s;
   }
-  @keyframes popIn { from { transform:translateY(30px) scale(0.97);opacity:0.6; } to { transform:none;opacity:1; } }
-  .detail-modal h2 { color: #217a43; margin: 0 0 8px 0;}
-  .detail-modal h4 { color: #1e7b3f;margin-top:24px; }
+  @keyframes popIn { from { transform:scale(0.96) translateY(26px);opacity:0.85; } to { transform:none;opacity:1; } }
+  .detail-modal h4, .detail-modal h2 { color: #217a43; margin: 0 0 8px 0;}
   .detail-modal b {color:#236d50;}
   .detail-close {
-    position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#226b3a;
+    position:absolute;top:14px;right:17px;font-size:29px;background:transparent;border:none;cursor:pointer;color:#226b3a;
   }
+  @media (max-width:1200px){.section{grid-template-columns:1fr;max-width:96vw;}}
+  @media (max-width:960px){.sidebar{width:98vw;max-width:98vw;}.dashboard-bg{padding:10px;}.chat-window{width:99vw;}}
   @media (max-width:680px) {
     .detail-modal { width: 99vw; min-width:70vw; padding:22px 4vw 18px 4vw;}
   }
-  /* ---- For modal bg scrollbar ---- */
   body.noscroll { overflow: hidden !important;}
   </style>
 </head>
 <body>
-  <section class="dashboard-bg" id="dashboard">
-    <section class="grid" aria-label="Features">
-      <div>
-        <div class="big-card overlay-green" style="background-color:#76b852;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=600')" id="main-card-seeds">
-          <span class="title">Seeds Availability</span>
-          <span class="desc">Find certified seeds, local vendors near your village.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-yellow" style="background-color:#f5e84b;background-image:url('https://images.pexels.com/photos/248420/pexels-photo-248420.jpeg?auto=compress&w=600')" id="main-card-schemes">
-          <span class="title">Govt Schemes & Policies</span>
-          <span class="desc">Check eligibility, subsidies, and applications for your area.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-blue" style="background-color:#7ec1f7;background-image:url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&w=600')" id="main-card-weather">
-          <span class="title">Weather Forecast</span>
-          <span class="desc">7-day forecasts & alerts for drought, rainfall, and heatwaves.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-purple" style="background-color:#af8cca;background-image:url('https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&w=600')" id="main-card-calendar">
-          <span class="title">Crop Calendar</span>
-          <span class="desc">Regional sowing/harvesting schedules tailored for you.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-green" style="background-color:#a8d08d;background-image:url('https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600')" id="main-card-fertilizer">
-          <span class="title">Fertilizer & Pest Advisory</span>
-          <span class="desc">Soil-based recommendations, early pest warnings.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-blue" style="background-color:#96bcae;background-image:url('https://images.pexels.com/photos/1510538/pexels-photo-1510538.jpeg?auto=compress&w=600')" id="main-card-soil">
-          <span class="title">Soil Health</span>
-          <span class="desc">Upload soil reports, get improvement plans.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-green" style="background-color:#adcfa5;background-image:url('https://images.pexels.com/photos/2402236/pexels-photo-2402236.jpeg?auto=compress&w=600')" id="main-card-msp">
-          <span class="title">MSP Market Rates</span>
-          <span class="desc">Daily mandi rates, eNAM prices, and trend charts.</span>
-        </div>
-      </div>
-      <div>
-        <div class="big-card overlay-purple" style="background-color:#b099e2;background-image:url('https://images.pexels.com/photos/2445746/pexels-photo-2445746.jpeg?auto=compress&w=600')" id="main-card-yield">
-          <span class="title">Yield Comparison</span>
-          <span class="desc">Compare historical yields and forecast improvements.</span>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <!-- MODAL DIALOG -->
-  <div class="modal-bg" id="detailModalBg" tabindex="-1" aria-modal="true">
-    <div class="detail-modal" id="detailModalContent">
-      <button class="detail-close" id="detailModalClose" aria-label="Close">&times;</button>
-      <div id="detailModalBody"></div>
+ <!-- SIDEBAR -->
+ <aside id="sidebar" class="sidebar" aria-hidden="true">
+   <button id="closeSidebar" style="position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#fff;z-index:10003;">×</button>
+   <h3 style="margin-top:6px;color:#fff;" id="dashboard-title">Dashboard</h3>
+   <nav style="margin:16px 0 20px 0;display:flex;flex-direction:column;gap:10px;">
+    <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-about">About Us</a>
+    <a href="#dashboard" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-msp">MSP</a>
+    <a href="#dashboard" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-yield">Yield Comparison</a>
+    <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-contact">Contact Us</a>
+   </nav>
+ </aside>
+ <!-- NAVBAR -->
+ <header class="navbar">
+  <div class="nav-left">
+    <button id="menuBtn" class="menu-btn" title="Menu">☰</button>
+    <div class="brand">
+      <div class="logo">S</div>
+      <span class="title" id="nav-title">Solutioneers</span>
+      <div style="font-size:12px;color:#547a5a;" id="subtitle">Smart Agriculture Group</div>
     </div>
+    <div class="nav-time" id="navTime"></div>
   </div>
-
-  <script>
-    // Card detail contents
-    const cardDetails = {
-      "main-card-seeds": `
-        <h2>Seeds Availability</h2>
+  <div class="nav-right">
+    <select class="lang-select" id="langSel" title="Language">
+      <option>English</option>
+      <option>हिन्दी</option>
+      <option>ਪੰਜਾਬੀ</option>
+    </select>
+    <button class="btn login" id="btnLogin">Login</button>
+    <button class="btn cta" id="btnSignup">Sign Up</button>
+  </div>
+ </header>
+ <main>
+  <section class="hero" role="banner" aria-label="Announcements">
+   <div class="left">
+     <h1 id="hero">Grow smarter. Harvest better.</h1>
+     <p id="herodesc">Real-time advisories, market prices, subsidies, and soil insights built for farmers, powered by data.</p>
+     <div class="cta-row">
+       <button class="cta primary" id="btn-dashboard">Explore Dashboard</button>
+       <button class="cta ghost" id="btn-how">How it works</button>
+     </div>
+   </div>
+   <div class="right" aria-hidden="true">
+    Farmers Community
+   </div>
+  </section>
+  <section class="section">
+   <div class="card-large about">
+     <h3 id="about-head">About Solutioneers</h3>
+     <p id="about1">We bring practical digital tools to farmers: weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.</p>
+     <p style="margin-top:12px;color:#4b7b4f;font-weight:700;" id="abouttag">Your land. Your data. Better yields.</p>
+   </div>
+   <aside class="news-box">
+     <h3 id="news-head">Latest News</h3>
+     <div class="news-scroll">
+      <div class="news-track" id="newsTrack">
+        <div class="news-item" id="newsitem1">Stubble management machines distributed in Punjab.</div>
+        <div class="news-item" id="newsitem2">New high-yield seed variety released.</div>
+        <div class="news-item" id="newsitem3">Localized irrigation training programs starting next week.</div>
+        <div class="news-item" id="newsitem4">MSP updates pushed for rabi crops – check MSP page.</div>
+        <div class="news-item" id="newsitem5">IMD predicts patchy showers across NW regions.</div>
+        <!-- Repeat for continuous scroll -->
+        <div class="news-item" id="newsitem6">Stubble management machines distributed in Punjab.</div>
+        <div class="news-item" id="newsitem7">New high-yield seed variety released.</div>
+        <div class="news-item" id="newsitem8">Localized irrigation training programs starting next week.</div>
+        <div class="news-item" id="newsitem9">MSP updates pushed for rabi crops – check MSP page.</div>
+        <div class="news-item" id="newsitem10">IMD predicts patchy showers across NW regions.</div>
+      </div>
+     </div>
+   </aside>
+  </section>
+  <section class="dashboard-bg" id="dashboard">
+   <section class="grid" aria-label="Features">
+     <!-- CARD 1 -->
+     <div>
+      <div class="big-card overlay-green" style="background-color:#76b852;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=600')" id="main-card-seeds">
+        <span class="title" id="card-seeds">Seeds Availability</span>
+        <span class="desc" id="card-seeds-desc">Find certified seeds, local vendors near your village.</span>
+      </div>
+      <div class="card-detail" id="detail-seeds" style="display:none;">
         <h4>Major Seed Categories</h4>
         <ul>
-          <li><b>Cereal & Grain Seeds:</b> Corn, rice, wheat, barley, and oats.</li>
-          <li><b>Oilseed Crops:</b> Sunflower, soybean, flaxseed, hemp, canola, pumpkin.</li>
-          <li><b>Vegetable & Fruit Seeds:</b> Tomato, pepper, onion, cucumber, lettuce, melon, carrot, brassicas.</li>
-          <li><b>Legume & Pulse Seeds:</b> Soybean, chickpea, lentil, pea, other protein-rich crops.</li>
-          <li><b>Specialty & Functional Seeds:</b> Linseed, chia, hemp, nigella, thistle, fruit seeds.</li>
+         <li><b>Cereal & Grain Seeds:</b> Corn, rice, wheat, barley, and oats.</li>
+         <li><b>Oilseed Crops:</b> Sunflower, soybean, flaxseed, hemp, canola, pumpkin.</li>
+         <li><b>Vegetable & Fruit Seeds:</b> Tomato, pepper, onion, cucumber, lettuce, melon, carrot, brassicas.</li>
+         <li><b>Legume & Pulse Seeds:</b> Soybean, chickpea, lentil, pea, other protein-rich crops.</li>
+         <li><b>Specialty & Functional Seeds:</b> Linseed, chia, hemp, nigella, thistle, fruit seeds.</li>
         </ul>
-        <h4>Major Government Schemes</h4>
+        <h4>Major Indian Government Schemes for Seed Distribution</h4>
         <ul>
-          <li><b>National Food Security Mission (NFSM):</b> Certified seeds and subsidies.</li>
-          <li><b>RKVY, SMSP, PM Dhan-Dhaanya Krishi Yojana (2025), State-level kits.</b></li>
+         <li><b>National Food Security Mission (NFSM):</b> Subsidized certified seeds for staples like rice, wheat, pulses, reducing import needs.</li>
+         <li><b>Sub-Mission on Seeds and Planting Material (SMSP):</b> Quality foundation & certified seeds, fosters public-private partnerships.</li>
+         <li><b>Rashtriya Krishi Vikas Yojana (RKVY):</b> Funds for distributing improved, climate-adaptive seeds via mini-kits/local programs.</li>
+         <li><b>State-level Schemes:</b> <i>Beej Swalamban Yojana</i> (Rajasthan), <i>Seed Village Scheme</i> (Maharashtra), regional mini-kits.</li>
+         <li><b>PM Dhan-Dhaanya Krishi Yojana (2025):</b> Distributes high-quality seeds to under-yielding districts.</li>
         </ul>
         <h4>Subsidy Structure by Crop Type</h4>
         <ul>
-          <li><b>Cereals:</b> 50–60% subsidy, some free mini-kits</li>
-          <li><b>Pulses, Oilseeds, Vegetables & Fruits:</b> 60–75%, varies widely</li>
+         <li><b>Cereals:</b> 50–60% subsidy, some free mini-kits (rice, wheat, maize, barley, millets)</li>
+         <li><b>Pulses:</b> 60–75%, many mini-kits free (gram, lentil, moong, urad, pea)</li>
+         <li><b>Oilseeds:</b> 60–75%, nominal/free for campaigns (mustard, sunflower, soybean, groundnut)</li>
+         <li><b>Vegetables & Fruits:</b> Up to 60–75%, varies widely; kitchen garden kits sometimes free</li>
+         <li><b>Fodder/Green Manure:</b> 60–75% on maize, sorghum, barseem, napier grass, cotton, jute</li>
         </ul>
         <h4>Special Features</h4>
         <ul>
-          <li><b>DBT Paid Directly</b> to bank account for most farmers.</li>
-          <li><b>Hybrid/Climate Resilient Varieties</b></li>
+         <li><b>Direct Benefit Transfer (DBT):</b> Now most seed/farm subsidies are paid direct to bank accounts.</li>
+         <li><b>Hybrid Seed Promotion:</b> Big push for hybrids in vegetable, oilseed, cereal crops (higher yield).</li>
+         <li><b>Climate Resilient Varieties:</b> Targeting rainfed and challenging climates for long-term stability.</li>
         </ul>
-      `,
-      "main-card-schemes": `
-        <h2>Govt Schemes & Policies</h2>
+      </div>
+     </div>
+     <!-- CARD 2 -->
+     <div>
+      <div class="big-card overlay-yellow" style="background-color:#f5e84b;background-image:url('https://images.pexels.com/photos/248420/pexels-photo-248420.jpeg?auto=compress&w=600')" id="main-card-schemes">
+        <span class="title" id="card-schemes">Govt Schemes & Policies</span>
+        <span class="desc" id="card-schemes-desc">Check eligibility, subsidies, and applications for your area.</span>
+      </div>
+      <div class="card-detail" id="detail-schemes" style="display:none;">
+        <h4>Major Govt Schemes for Farmers (2025)</h4>
         <ul>
-          <li><b>PM-KISAN Samman Nidhi:</b> ₹6000/year direct to farmers.</li>
-          <li><b>PMFBY:</b> Crop insurance; <b>KCC</b> Credit Cards: Crop loans up to ₹3 lakh.</li>
-          <li><b>Soil Health Card, RKVY-RAFTAAR, e-NAM</b> for pan-India crop markets.</li>
-          <li>All schemes available via banks, PACS, or official portals.</li>
+         <li><b>PM-KISAN Samman Nidhi:</b> ₹6000/yr in 3 installments to small & marginal farmers, direct to bank account.</li>
+         <li><b>Pradhan Mantri Fasal Bima Yojana (PMFBY):</b> Crop insurance for 50+ crops; premium 1.5–2% for food crops, 5% for horticulture.</li>
+         <li><b>Kisan Credit Card (KCC):</b> Flexible, low-interest crop loans up to ₹3 lakh.</li>
+         <li><b>PM Krishi Sinchai Yojana (PMKSY):</b> Subsidizes micro/drip irrigation systems & expands irrigation area.</li>
+         <li><b>Soil Health Card:</b> Custom nutrient recommendations for higher yield.</li>
+         <li><b>RKVY-RAFTAAR:</b> Grants for infra, input subsidies, agri innovation.</li>
+         <li><b>e-NAM:</b> National Agri-Market for transparent crop selling, pan-India.</li>
+         <li><b>Paramparagat Krishi Vikas Yojana (PKVY):</b> Supports organic farming clusters, input subsidies.</li>
+         <li><b>Agriculture Infrastructure Fund (AIF):</b> Grants for storage, cold chain, processing/post-harvest units.</li>
+         <li><b>PM Matsya Sampada Yojana:</b> Infrastructure for fisheries & aquaculture.</li>
+         <li><b>SMAM Mechanization:</b> Farm machinery/tractor subsidy focused on marginal farmers.</li>
         </ul>
         <h4>Loan & Insurance Schemes</h4>
         <ul>
-          <li><b>PMFBY:</b> flagship insurance, WBCIS, KCC, AIF grants for infra/storage.</li>
+         <li><b>Crop/Weather Insurance:</b> PMFBY (flagship), WBCIS (weather-based), state schemes.</li>
+         <li><b>Kisan Credit Card (KCC):</b> Crop loans up to ₹3 lakh at 4% (prompt). Collateral-free for smallholders.</li>
+         <li><b>MSME/NABARD Loans:</b> Short/long-term credit for agri-infra, solar pumps, FPOs, MSMEs.</li>
+         <li><b>Agriculture Infra Fund:</b> Grants/loans for post-harvest units, cold storage, and machinery.</li>
         </ul>
-      `,
-      "main-card-weather": `
-        <h2>Weather Forecast</h2>
+        <h4>How to Apply</h4>
+        <p>Most schemes available through banks, PACS, co-op societies, and official portals. KCC-loan holders are usually pre-enrolled for insurance. See website or local office for docs required.</p>
+      </div>
+     </div>
+     <!-- CARD 3 -->
+     <div>
+      <div class="big-card overlay-blue" style="background-color:#7ec1f7;background-image:url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&w=600')" id="main-card-weather">
+        <span class="title" id="card-weather">Weather Forecast</span>
+        <span class="desc" id="card-weather-desc">7-day forecasts & alerts for drought, rainfall, and heatwaves.</span>
+      </div>
+      <div class="card-detail" id="detail-weather" style="display:none;">
+        <h4>Weather Forecast & Alerts</h4>
         <ul>
-          <li><b>7-day forecast</b> from IMD stations.</li>
-          <li><b>Extreme Weather Alerts:</b> Drought, rainfall, heatwaves, frost, hailstorms.</li>
-          <li><b>Live Rainfall</b>, soil moisture analysis, SMS/voice advisories for registered farmers.</li>
+         <li><b>7-day forecast</b> from local IMD stations.</li>
+         <li><b>Extreme Weather Alerts:</b> Push warnings for heavy rain/drought, heatwaves, frost, hailstorms.</li>
+         <li><b>Live Rainfall Tracking:</b> % water available, cloud cover, soil moisture analysis.</li>
+         <li><b>SMS Advisory/Voice Updates</b> (if registered): Get weather alerts via phone for major events.</li>
         </ul>
-        <p><b>Adjust your crop/planning with the Crop Calendar below based on forecast.</b></p>
-      `,
-      "main-card-calendar": `
-        <h2>Crop Calendar</h2>
-        <h4>By Season</h4>
+        <p><b>Note:</b> Use the Crop Calendar below to adjust sowing/irrigation with forecast. See Fert/Pest card for region-specific actions during adverse weather.</p>
+      </div>
+     </div>
+     <!-- CARD 4 -->
+     <div>
+      <div class="big-card overlay-purple" style="background-color:#af8cca;background-image:url('https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&w=600')" id="main-card-calendar">
+        <span class="title" id="card-calendar">Crop Calendar</span>
+        <span class="desc" id="card-calendar-desc">Regional sowing/harvesting schedules tailored for you.</span>
+      </div>
+      <div class="card-detail" id="detail-calendar" style="display:none;">
+        <h4>Crop Calendar by Season, Region & Crop</h4>
         <ul>
-          <li><b>Kharif (Jun–Sep):</b> Paddy, maize, millets, cotton, soybean, pulses.</li>
-          <li><b>Rabi (Oct–Feb):</b> Wheat, mustard, barley, pea, potato.</li>
-          <li><b>Zaid (Mar–May):</b> Watermelon, cucumber, summer pulses.</li>
+         <li><b>Kharif (June–Sep):</b> Paddy rice, maize, millets, cotton, soybean, groundnut, pulses, vegetables.</li>
+         <li><b>Rabi (Oct–Feb):</b> Wheat, barley, oats, chickpea, mustard, pea, lentil, carrot, potato, onion, leafy greens.</li>
+         <li><b>Zaid (Mar–May):</b> Watermelon, muskmelon, cucumber, summer moong, cowpea, quick vegetables.</li>
         </ul>
-        <h4>By Region</h4>
+        <h4>Major Region Guide</h4>
         <ul>
-          <li>North: Rice, maize, sugarcane (K), wheat, barley (R)</li>
-          <li>South: Paddy, ragi, cotton (K), urad, groundnut (R)</li>
+          <li><b>North India:</b> <u>Kharif:</u> Paddy, maize, sugarcane. <u>Rabi:</u> Wheat, barley, gram, pea, mustard.</li>
+          <li><b>South India:</b> <u>Kharif:</u> Paddy, ragi, cotton, sunflower. <u>Rabi:</u> Ragi, groundnut, urad, chillies.</li>
+          <li><b>West:</b> Cotton, soybean, groundnut (K); Wheat, barley, gram, cumin, mustard (R).</li>
+          <li><b>East/NE:</b> Paddy, jute, maize, tea (K); Wheat, lentil, potato, vegetables (R). <u>Zaid:</u> Melons, pulses.</li>
+          <li><b>Himalayan:</b> Maize, paddy, apple, barley, off-season veg (K/R, as per climate).</li>
         </ul>
-        <h4>Sample Crop Guide</h4>
+        <h4>General Guide by Crop</h4>
+        <ol>
+          <li><b>Rice:</b> Kharif—nursery mid-Jun, transplant July. Harvest Oct–Nov. Maintain standing water especially early growth; 90–120 kg N, 40–60 kg P, 40–60 kg K per ha (split dosing).</li>
+          <li><b>Wheat:</b> Rabi—sowing late Oct to mid Nov. 4–5 irrigations. 120–150 kg N, 60 kg P, 40 kg K. Harvest March–April.</li>
+          <li><b>Maize:</b> Kharif (Jun–Jul), Rabi (Oct–Nov). Irrigate at knee-high, tasseling, silking. 120N, 60P, 40K split.</li>
+          <li><b>Soybean:</b> Kharif—last week Jun to mid-Jul. Use lifeline irrigation, 30–40N, 60–80P, 30–40K, rhizobium inoculation.</li>
+          <li><b>Chickpea:</b> Rabi—Oct to mid-Nov. Rainfed, can irrigate if possible at flowering/pod-filling. 20–25N, 40–60P.</li>
+          <li><b>Mustard:</b> Rabi—mid-Oct to early Nov. Water at branching, flowering, pod stage. 80–120N, 40–60P, 40K.</li>
+          <li><b>Cotton:</b> Kharif—May/June (NW), June/July (South/Central). Avoid waterlogging! 60–75N, 30–40P, 30–40K. Harvest Oct–Jan.</li>
+          <li><b>Potato (Rabi/plains):</b> Sow Oct/Nov, 7–9 irrigations, 120N, 80P, 120K. Hills: plant March–May.</li>
+        </ol>
+      </div>
+     </div>
+     <!-- CARD 5 -->
+     <div>
+      <div class="big-card overlay-green" style="background-color:#a8d08d;background-image:url('https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600')" id="main-card-fertilizer">
+        <span class="title" id="card-fertilizer">Fertilizer & Pest Advisory</span>
+        <span class="desc" id="card-fertilizer-desc">Soil-based recommendations, early pest warnings.</span>
+      </div>
+      <div class="card-detail" id="detail-fertilizer" style="display:none;">
+        <h4>Pest & Fertilizer Guidance (2025)</h4>
+        <p><b>Key Principle:</b> Fertilizer dose and timings (N:P:K and micronutrients) depend on your region, crop, variety, and current soil test. Use soil health card results where available!</p>
         <ul>
-          <li><b>Rice:</b> Kharif, transplant in July, harvest Oct–Nov.</li>
-          <li><b>Wheat:</b> Rabi, sow late Oct–mid Nov, harvest Mar–Apr.</li>
-        </ul>
-      `,
-      "main-card-fertilizer": `
-        <h2>Fertilizer & Pest Advisory</h2>
-        <p><b>Principle:</b> Doses and timing (N:P:K) depend on crop, variety, region, and soil test.</p>
-        <ul>
-          <li><b>Rice:</b> 90–120N, 40–60P, 40–60K per ha, monitor leaf folder/blight.</li>
-          <li><b>Wheat:</b> 120–150N, 60P, 40K, watch rusts & aphids.</li>
-          <li><b>Cotton:</b> 60–90N, monitor for bollworm/whitefly.</li>
+         <li><b>Rice:</b> 90–120N, 40–60P, 40–60K per ha. Split 1/2 basal, 1/4 at tillering, 1/4 panicle stage; monitor leaf folder, blast, sheath blight, stem borer.</li>
+         <li><b>Wheat:</b> 120–150N, 60P, 40K per ha; top-dress after irrigation; watch rusts, aphids, armyworm.</li>
+         <li><b>Cotton:</b> 60–90N, 30–45P, 30–45K in 2–3 splits; beware of bollworm, jassid, whitefly.</li>
+         <li><b>Soybean:</b> 30–40N, 60–80P, 30–40K per ha; healthy nodulation by rhizobium; monitor pod borers.</li>
+         <li><b>Vegetables (e.g., Tomato):</b> 100–120N, 60–80P, 60–80K per ha plus Ca, B, organic matter if possible.</li>
+         <li><b>Pulse Crops:</b> 20N starter, 40–60P, watch borers.</li>
         </ul>
         <h4>Common Pest Outbreaks (2025)</h4>
         <ul>
-          <li>Fall Armyworm: Maize. <b>Bollworm:</b> Cotton, tomato. <b>Aphids:</b> Veg & soya.</li>
+         <li><b>Fall Armyworm:</b> Maize, sorghum. Use pheromone traps, rotate crops, biopesticide sprays.</li>
+         <li><b>Bollworm:</b> Cotton, tomato. Use Bt strategy, pheromone lures, rotate chemicals.</li>
+         <li><b>Aphids:</b> Veg & soybeans. Biological (wasps), minimize heavy liquid insecticides.</li>
+         <li><b>Thrips:</b> Chilli, capsicum, onion. Yellow traps, neem + IPM, rotate chemistries.</li>
+         <li><b>Green Leafhopper/Jassid:</b> Cotton. Vigilant monitoring, regional advisories, quick action if needed.</li>
+         <li><b>Mango pests:</b> Andhra coastal, 2025. Timely insecticides, field hygiene, community approach.</li>
         </ul>
+        <h4>General Notes</h4>
         <ul>
-          <li>Always use Integrated Pest Management, rotate sprays, field hygiene.</li>
+         <li>Always follow integrated pest management (IPM), use rotation, keep field clean.</li>
+         <li>Adjust fertilizer for your soil test, last crop, and organic matter.</li>
+         <li>Spray only with confirmed pest presence (Economic Threshold Levels).</li>
         </ul>
-      `,
-      "main-card-soil": `
-        <h2>Soil Health</h2>
+      </div>
+     </div>
+     <!-- CARD 6 -->
+     <div>
+      <div class="big-card overlay-blue" style="background-color:#96bcae;background-image:url('https://images.pexels.com/photos/1510538/pexels-photo-1510538.jpeg?auto=compress&w=600')" id="main-card-soil">
+        <span class="title" id="card-soil">Soil Health</span>
+        <span class="desc" id="card-soil-desc">Upload soil reports, get improvement plans.</span>
+      </div>
+      <div class="card-detail" id="detail-soil" style="display:none;">
+        <h4>Soil & Weather-based Crop Choices</h4>
         <ul>
-          <li><b>Sandy Soils:</b> Bajra, mung, groundnut, cumin (drought tolerant)</li>
-          <li><b>Black Soils:</b> Cotton, soybean, chickpea, wheat (post-monsoon)</li>
-          <li><b>Alluvial Soils:</b> Rice (Kharif), wheat, sugarcane, potato (Rabi)</li>
+          <li><b>Sandy Soils (Rajasthan, Haryana, Gujarat):</b> Bajra, mung, moth, groundnut, cumin, watermelon. Opt for drought-tolerant and quick-growing Kharif varieties.</li>
+          <li><b>Black Cotton Soils (Maharashtra, MP, TS, AP, Gujarat):</b> Cotton, soybean, tur, sorghum, chickpea, sunflower, maize, wheat (with irrigation). Go for crops needing higher moisture-retention, especially after monsoon.</li>
+          <li><b>Red/Loamy Soils:</b> (TN, Karnataka, E. India): Millets, pulses, groundnut, castor, ragi, sugarcane, vegetables. Diversified cropping and moisture conservation work well.</li>
+          <li><b>Alluvial Soils (Punjab, Haryana, UP, Bihar, West Bengal, Assam):</b> Rice (Kharif), wheat (Rabi), sugarcane, maize, jute, potato, pulses, mustard, vegetables. Manage water to avoid waterlogging.</li>
+          <li><b>Laterite Soils (Kerala, Karnataka, Maharashtra, WB hills):</b> Cashew, tea, coffee, rubber, pineapple, millets, pulses, coconut. Use more organics, consider shredded mulch, slopes.</li>
         </ul>
+        <p><b>Example Combo Strategies:</b></p>
         <ul>
-          <li>Use Soil Health Card for custom advisories. Adjust cropping by rainfall and capacity.</li>
+          <li><b>Rajasthan:</b> Sandy, low-rain: Bajra, mung, moth (Kharif), gram, mustard (Rabi).</li>
+          <li><b>Punjab/Haryana:</b> Alluvial, irrigated: Rice/wheat, sugarcane, potato.</li>
+          <li><b>Maharashtra:</b> Cotton, soybean, jowar, tur (Kharif); Rabi IRRIGATED.</li>
+          <li><b>West Bengal:</b> Paddy, jute, vegetables (Kharif); wheat, tea, potato (Rabi).</li>
+          <li><b>Tamil Nadu:</b> Red loam, humid: Groundnut, millets (Kharif), rice w/ irrigation.</li>
         </ul>
-      `,
-      "main-card-msp": `
-        <h2>MSP Market Rates</h2>
+        <p><b>Advice:</b> Use the Soil Health Card service to get custom nutrient/fertilizer guidance. Adapt crop schedule to local rainfall and soil holding capacity for better yield and risk reduction.</p>
+      </div>
+     </div>
+     <!-- CARD 7 -->
+     <div>
+      <div class="big-card overlay-green" style="background-color:#adcfa5;background-image:url('https://images.pexels.com/photos/2402236/pexels-photo-2402236.jpeg?auto=compress&w=600')" id="main-card-msp">
+        <span class="title" id="card-msp">MSP Market Rates</span>
+        <span class="desc" id="card-msp-desc">Daily mandi rates, eNAM prices, and trend charts.</span>
+      </div>
+      <div class="card-detail" id="detail-msp" style="display:none;">
+        <h4>MSP & Market Price Trends</h4>
         <ul>
-          <li><b>Live MSP:</b> Updated monthly for all cereals, pulses, oilseeds.</li>
-          <li><b>Mandi Prices:</b> Current local mandi rates and 3-year trend charts.</li>
-          <li><b>Downloadable e-NAM data for market review</b></li>
+         <li><b>Live MSP Rates:</b> See page for government-announced MSPs for all main cereals, pulses, oilseeds for 2025; updated monthly on e-NAM & official portals.</li>
+         <li><b>Mandi Prices:</b> Get local mandi rates for today; see average for last week/month.</li>
+         <li><b>Price Trends & Forecast:</b> 3-yr price trend graphs by crop. Droughts or supply surplus reflected in market data – negotiate better with traders/social groups.</li>
+         <li><b>Downloadable Data:</b> Export MS Excel/CSV market data.</li>
         </ul>
-      `,
-      "main-card-yield": `
-        <h2>Yield Comparison</h2>
+        <p>Price update powered by AgriMarket/e-NAM feeds.</p>
+      </div>
+     </div>
+     <!-- CARD 8 -->
+     <div>
+      <div class="big-card overlay-purple" style="background-color:#b099e2;background-image:url('https://images.pexels.com/photos/2445746/pexels-photo-2445746.jpeg?auto=compress&w=600')" id="main-card-yield">
+        <span class="title" id="card-yield">Yield Comparison</span>
+        <span class="desc" id="card-yield-desc">Compare historical yields and forecast improvements.</span>
+      </div>
+      <div class="card-detail" id="detail-yield" style="display:none;">
+        <h4>Yield Comparison & Improvement</h4>
         <ul>
-          <li><b>Compare</b> state, district yields in all major crops.</li>
-          <li><b>Forecast improvements</b> using YES-TECH: Remote sensing, weather, and satellite data</li>
-          <li><b>Best practice case studies</b> and export/share features.</li>
+         <li><b>Compare States/Crops:</b> See historical yields all-India, state/zone, district level (main cereals, pulses, oilseeds, cash crops).</li>
+         <li><b>Forecast Growth:</b> Estimated improvements using the YES-TECH (Yield Estimation System—remote sensing, weather & satellite data).</li>
+         <li><b>Best Practice Case Studies:</b> Stepwise yield improvements in major crops (e.g., rice-wheat systems, high-protein pulses, mustard, soybean) using improved seeds, fertilizer, irrigation and IPM.</li>
+         <li><b>Export Tools:</b> Download charts/data for review or share with co-ops, buyers, or student groups.</li>
         </ul>
-      `,
-    };
+      </div>
+     </div>
+   </section>
+  </section>
+   <!-- CARD MODAL -->
+   <div class="modal-bg" id="detailModalBg" tabindex="-1" aria-modal="true">
+     <div class="detail-modal" id="detailModalContent">
+       <button class="detail-close" id="detailModalClose" aria-label="Close">&times;</button>
+       <div id="detailModalBody"></div>
+     </div>
+   </div>
+   <!-- How it Works Dialog -->
+   <div id="how-modal" style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:2050;background:rgba(20,40,23,0.2);">
+    <div id="how-dialog" style="max-width:380px;margin:80px auto;background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
+      <button id="how-close" aria-label="Close" onclick="document.getElementById('how-modal').style.display='none'"
+        style="font-size:20px;float:right;background:none;border:none;cursor:pointer;color:#256149;">×</button>
+      <h2 style="margin:0 0 10px 0;" id="how-title">How it works</h2>
+      <p id="how1">1. Explore data and tools in the dashboard below.</p>
+      <p id="how2">2. Change language from the menu at top right.</p>
+      <p id="how3">3. Chat with the assistant about prices, crops, or tips.</p>
+      <p id="how4">4. Click cards for details and more services.</p>
+    </div>
+   </div>
+ </main>
+ <!-- CHATBOT UI -->
+ <div class="chat-bubble" id="chatBubble" title="Chat with assistant"></div>
+ <div class="chat-window" id="chatWindow" aria-hidden="true">
+  <div class="chat-head">
+    <span id="chat-title">Assistant</span>
+    <button id="closeChat" style="background:transparent;border:none;color:#fff;font-weight:700;cursor:pointer;">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-input">
+    <input id="chatInput" autocomplete="off" placeholder="Type a message..."/>
+    <button id="sendBtn" class="btn cta" style="padding:8px 10px;">Send</button>
+  </div>
+ </div>
+ <script>
+ // IST time updater
+ function updateIST(){
+   const now=new Date(),utc=now.getTime()+now.getTimezoneOffset()*60000,ist=new Date(utc+3600000*5.5);
+   const opts={weekday:'short', day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit'};
+   document.getElementById('navTime').innerText=ist.toLocaleString('en-IN',opts)+" IST";
+ }
+ setInterval(updateIST,1000);updateIST();
+ // Sidebar logic
+ const sidebar=document.getElementById('sidebar'),
+   menuBtn=document.getElementById('menuBtn'),
+   closeSidebar=document.getElementById('closeSidebar');
+ menuBtn.addEventListener('click',()=>sidebar.classList.add('open'));
+ closeSidebar.addEventListener('click',()=>sidebar.classList.remove('open'));
+ // Explore Dashboard and How it works
+ document.getElementById('btn-dashboard').onclick=function(){document.getElementById('dashboard').scrollIntoView({behavior:"smooth"})}
+ document.getElementById('btn-how').onclick=function(){document.getElementById('how-modal').style.display='block'};
+ document.getElementById('how-close').onclick=function(){document.getElementById('how-modal').style.display='none'};
+ // Chatbot UI logic (dummy)
+ const chatBubble=document.getElementById("chatBubble"),
+   chatWindow=document.getElementById("chatWindow"),
+   closeChat=document.getElementById("closeChat"),
+   chatBody=document.getElementById("chatBody"),
+   chatInput=document.getElementById("chatInput"),
+   sendBtn=document.getElementById("sendBtn");
+ chatBubble.addEventListener('click',()=>chatWindow.classList.toggle("open"));
+ closeChat.addEventListener('click',()=>chatWindow.classList.remove("open"));
+ function appendMsg(text,me){const div=document.createElement("div");div.className="chat-msg"+(me?' me':'');div.innerText=text;chatBody.appendChild(div);chatBody.scrollTop=chatBody.scrollHeight;}
+ sendBtn.addEventListener('click',async()=>{
+  const q=chatInput.value.trim();
+  if(!q)return;
+  appendMsg(q,true);chatInput.value="";
+  setTimeout(()=>{appendMsg("AI response: This feature is under demo. Ask about prices, MSP, crops, fertilizers, market links, etc.",false);},650);
+ });
+ chatInput.addEventListener('keydown',e=>{if(e.key==="Enter")sendBtn.click()});
 
-    // Modal events
-    const modalBg = document.getElementById("detailModalBg");
-    const modalContent = document.getElementById("detailModalBody");
-    const modalClose = document.getElementById("detailModalClose");
-    Object.keys(cardDetails).forEach(cardId => {
-      document.getElementById(cardId).onclick = () => {
-        modalContent.innerHTML = cardDetails[cardId];
-        modalBg.classList.add('open');
-        document.body.classList.add('noscroll');
-      }
-    });
-    modalClose.onclick = closeModal;
-    modalBg.onclick = function(e) { if(e.target===modalBg) closeModal(); };
-    function closeModal() {
-      modalBg.classList.remove('open');
-      document.body.classList.remove('noscroll');
-      modalContent.innerHTML = "";
-    }
-    // Press Esc to close
-    document.onkeydown = function(e) {
-      if (e.key === "Escape" && modalBg.classList.contains('open')) closeModal();
-    };
-  </script>
+ // ---- CARD DETAIL MODAL LOGIC ----
+ const cardDetails = {
+  "main-card-seeds": document.getElementById("detail-seeds").innerHTML,
+  "main-card-schemes": document.getElementById("detail-schemes").innerHTML,
+  "main-card-weather": document.getElementById("detail-weather").innerHTML,
+  "main-card-calendar": document.getElementById("detail-calendar").innerHTML,
+  "main-card-fertilizer": document.getElementById("detail-fertilizer").innerHTML,
+  "main-card-soil": document.getElementById("detail-soil").innerHTML,
+  "main-card-msp": document.getElementById("detail-msp").innerHTML,
+  "main-card-yield": document.getElementById("detail-yield").innerHTML
+};
+// Remove card-detail DIVs from the DOM after storing content (so they don't show inline)
+document.querySelectorAll('.card-detail').forEach(d => d.parentNode.removeChild(d));
+// Modal events
+const modalBg = document.getElementById("detailModalBg");
+const modalContent = document.getElementById("detailModalBody");
+const modalClose = document.getElementById("detailModalClose");
+Object.keys(cardDetails).forEach(cardId => {
+  document.getElementById(cardId).onclick = function(e) {
+    e.preventDefault();
+    modalContent.innerHTML = cardDetails[cardId];
+    modalBg.classList.add('open');
+    document.body.classList.add('noscroll');
+  }
+});
+modalClose.onclick = closeModal;
+modalBg.onclick = function(e) { if(e.target===modalBg) closeModal(); };
+function closeModal() {
+  modalBg.classList.remove('open');
+  document.body.classList.remove('noscroll');
+  modalContent.innerHTML = "";
+}
+// Esc key closes modal
+document.onkeydown = function(e) {
+  if (e.key === "Escape" && modalBg.classList.contains('open')) closeModal();
+};
+</script>
 </body>
 </html>
