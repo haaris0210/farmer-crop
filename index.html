@@ -1,126 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Solutioneers • Smart Agriculture Dashboard</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <title>Solutioneers Smart Agriculture Dashboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
   <style>
-    /* ---------- Reset ---------- */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Montserrat, sans-serif; }
-    body { background: #f4f6f9; color: #333; }
-
-    /* ---------- Sidebar ---------- */
-    .sidebar {
-      position: fixed; top: 0; left: 0; width: 240px; height: 100%;
-      background: #2c3e50; padding-top: 60px; transition: transform 0.3s ease;
+    html,body{height:100%;}
+    body {
+      font-family: Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color: #213;
+      background: linear-gradient(120deg,#f1f4f8 0,#c2ebd6 40%,#e3ecf9 100%);
+      min-height:100vh;
+      line-height:1.35;
     }
-    .sidebar a {
-      padding: 12px 20px; display: block; color: #ecf0f1; text-decoration: none;
+    .navbar{position:sticky;top:0;z-index:1200;display:flex;justify-content:space-between;align-items:center;padding:14px 30px;background:#fff;box-shadow:0 4px 18px rgba(40,80,50,0.05);}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:19px;}
+    .brand .title{font-size:20px;font-weight:700;color:#175f35;}
+    .nav-time{font-size:12px;color:#4e6451;margin-left:15px;}
+    .navbar .lang-select{padding:8px 14px;border-radius:8px;border:1px solid #e6f0ea;background:#e8f6ee;}
+    .auth-btn{
+      background:linear-gradient(90deg,#1e7b3f 0,#8dd97b 100%);
+      border:none;
+      color:#fff;
+      font-weight:700;
+      padding:10px 24px;
+      border-radius:14px;
+      font-size:17px;
+      letter-spacing:1px;
+      box-shadow:0 6px 24px rgba(30,123,63,0.10);
+      margin-left:16px;
+      cursor:pointer;
+      transition:background .15s;
     }
-    .sidebar a:hover { background: #34495e; }
-    .sidebar.hidden { transform: translateX(-240px); }
-
-    /* ---------- Top Nav ---------- */
-    .topnav {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: 60px; background: #fff; display: flex;
-      align-items: center; justify-content: space-between;
-      padding: 0 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      z-index: 1000;
+    .dashboard-bg {
+      margin:40px auto 0 auto;
+      max-width:560px;
+      padding:35px 24px 48px 24px;
+      border-radius:30px;
+      background:#fff;
+      box-shadow:0 10px 60px rgba(40,60,50,0.11), 0 1.5px 8px rgba(90,155,120,0.07);
+      backdrop-filter:blur(6px);
+      min-height:600px;
     }
-    .menu-btn { cursor: pointer; font-size: 22px; }
-
-    /* ---------- Main Content ---------- */
-    .main { margin-left: 240px; padding: 80px 20px 20px; transition: margin-left 0.3s ease; }
-    .main.expanded { margin-left: 0; }
-
-    /* ---------- Cards ---------- */
-    .cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .card-list{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      margin-top:8px;
     }
-    .card {
-      background: #fff; border-radius: 10px; padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+    .dashboard-card{
+      display:flex;
+      align-items:flex-start;
+      border-radius:24px;
+      box-shadow:0 3px 18px rgba(30,100,56,0.10);
+      background:linear-gradient(117deg,#f4fcf6 66%,#e8f8ff 100%);
+      padding:20px 22px 20px 22px;
+      cursor:pointer;
+      border:1.8px solid #e2f2e5;
+      transition:box-shadow 0.2s,border 0.2s;
+      min-height:76px;
+      position:relative;
+      gap:18px;
     }
-    .card:hover { transform: translateY(-5px); }
-    .card h3 { margin-bottom: 10px; font-size: 18px; }
-    .card p { margin-bottom: 10px; font-size: 14px; color: #555; }
-    .card button {
-      background: #007bff; color: #fff; border: none; padding: 8px 12px;
-      border-radius: 6px; cursor: pointer; font-size: 13px;
+    .dashboard-card .card-icon{
+      width:54px;
+      height:54px;
+      border-radius:17px;
+      background:#e3f7ee;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:27px;
+      color:#1b5e33;
+      margin-right:12px;
+      flex-shrink:0;
     }
-
-    .card .more { display: none; }
-    .card.expanded .more { display: block; }
+    .dashboard-card .card-body{
+      flex:1;
+      min-width:0;
+    }
+    .dashboard-card .card-title{
+      font-size:20px;
+      font-weight:800;
+      color:#186433;
+      margin-bottom:5px;
+      line-height:1.12;
+    }
+    .dashboard-card .card-desc{color:#2b3d2c;opacity:.94;font-size:14.5px;}
+    .dashboard-card:active, .dashboard-card:focus, .dashboard-card:hover{
+      border:2.7px solid #aadfc3;
+      box-shadow:0 10px 32px rgba(25,140,80,0.14);
+      background:linear-gradient(104deg,#e8fff1 60%,#fffde3 110%);
+    }
+    .card-detail {
+      display:none;
+      background:#e8ffe9;
+      color:#153;
+      margin-top:4px;
+      border-radius:16px;
+      padding:22px 18px 18px 28px;
+      font-size:15.5px;
+      line-height:1.5;
+      box-shadow: 0 4px 24px rgba(24,140,60,0.10);
+      border-left:5px solid #1e7b3f;
+      margin-bottom:2px;
+      margin-left:45px;
+      max-width:95vw;
+    }
+    .card-list .card-detail h4{margin-top:0;}
+    .chatbot-btn{
+      position:fixed;right:36px;bottom:40px;z-index:5000;
+      border-radius:26px;background:#fff;box-shadow:0 4px 24px #b0e4c0b0;
+      color:#096b34; font-size:18px;font-weight:700;border:none;
+      padding:9px 28px;cursor:pointer;transition:box-shadow 0.23s;
+      display:flex;align-items:center;gap:12px; font-family:inherit;}
+    .chatbot-btn .chat-ico{background:#35dd79;color:#fff;font-size:24px;width:35px;height:35px;display:flex;align-items:center;justify-content:center;border-radius:100%;}
+    .chat-modal-bg{
+      display:none;position:fixed;inset:0;z-index:7000;background:rgba(10,30,9,0.13);}
+    .chat-modal{
+      position:fixed;right:38px;bottom:98px;z-index:7700;background:#fff;
+      border-radius:21px;box-shadow:0 10px 44px #8edbb880;
+      min-width:320px;max-width:390px;padding:0 0 8px 0;
+      display:flex;flex-direction:column;
+    }
+    .chat-modal .modal-head{background:#2cc97f;color:#fff;padding:14px 18px 13px 18px;font-size:17px;font-weight:700;border-radius:21px 21px 0 0;display:flex;align-items:center;justify-content:space-between}
+    .chat-modal .modal-close{font-size:22px;cursor:pointer;background:transparent;border:none;color:#fff;}
+    .chat-modal .chat-body{padding:15px 14px 6px 14px;max-height:330px;overflow:auto;margin-bottom:6px;}
+    .chat-modal .chat-row{margin-bottom:9px;}
+    .chat-modal .chat-row.me{color:#18763d;text-align:right;font-weight:700;}
+    .chat-modal .chat-input-wrap{display:flex;align-items:center;padding:0 11px;}
+    .chat-modal input{flex:1;font-size:15px;padding:7px 11px;margin:10px 0;border-radius:8px;border:1.5px solid #dbeee2;font-family:inherit;}
+    .chat-modal button.send{background:#25c686;color:#fff;border:none;border-radius:9px;padding:8px 16px;font-size:15px;margin-left:7px;box-shadow:0 2px 7px #92f9c447}
+    @media (max-width:700px){
+      .dashboard-bg{max-width:99vw;}
+      .dashboard-card{padding:16px 10px;}
+      .card-detail{margin-left:0;}
+      .chatbot-btn{right:5vw;}
+      .chat-modal{right:3vw;}
+    }
   </style>
 </head>
 <body>
+  <!-- TOP NAVBAR (no sidebar/menu dash) -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo">S</div>
+      <span class="title" id="nav-title">Solutioneers</span>
+    </div>
+    <div class="nav-time" id="navTime"></div>
+    <select class="lang-select" id="langSel" title="Language">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
+    </select>
+    <button class="auth-btn" id="epic-auth-btn"><span id="logintext">Login</span> | <span id="signuptext">Create New Account</span></button>
+  </header>
 
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <a href="#">Dashboard</a>
-    <a href="#">Govt Scheme & Policies</a>
-    <a href="#">Seeds Availability</a>
-    <a href="#">Fertilizers & Pest</a>
-    <a href="#">Crop Calendar</a>
-    <a href="#">Soil Health</a>
-    <a href="#">Yield</a>
-    <a href="#">MSP</a>
-  </div>
-
-  <!-- Top Nav -->
-  <div class="topnav">
-    <span class="menu-btn" id="menuBtn">&#9776;</span>
-    <h1>Solutioneers</h1>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main" id="main">
-    <div class="cards">
-      <div class="card">
-        <h3>Govt Scheme & Policies</h3>
-        <p>Information about government initiatives.</p>
-        <div class="more">
-          <p>Expanded details about schemes and policies...</p>
+  <div class="dashboard-bg">
+    <div class="card-list">
+      <!-- LATEST MACHINERY (NEW CARD) -->
+      <div class="dashboard-card" id="main-card-machinery">
+        <div class="card-icon" style="background:#ffeec6;color:#c69511;">🛠️</div>
+        <div class="card-body">
+          <div class="card-title" id="card-machinery">Latest Machinery</div>
+          <div class="card-desc" id="card-machinery-desc">Explore latest agri-tech, subsidies & demonstrations in your zone.</div>
         </div>
-        <button class="toggle-btn">Read More</button>
+      </div>
+      <div class="card-detail" id="detail-machinery" style="display:none;">
+        <h4>Latest Agriculture Machinery (2025)</h4>
+        <ul>
+          <li><b>Smart Tractors:</b> GPS, IoT, and auto-seeding/fertigation equipped tractors—now with 35% government subsidy and 15% extra for women farmers.</li>
+          <li><b>Drone Sprayers:</b> Area-based drone service now rolled out in most districts; costs subsidized for demo pilots (up to 50%).</li>
+          <li><b>Combined Harvesters:</b> State-run custom hiring centers started for hiring modern harvesters at cheap daily rates.</li>
+          <li><b>Solar Pumps:</b> Instant DBT up to 40% for off-grid irrigation pumps (apply via SolarSewa portal).</li>
+          <li><b>Precision Planters & Weeders:</b> Latest implements available under SMAM—see local Krishi Vigyan Kendra (KVK) for demo days.</li>
+        </ul>
+        <p><b>Tip:</b> Contact your FPO/co-op office or local dealer for upcoming demo/trial events in your tehsil or block.</p>
       </div>
 
-      <div class="card">
-        <h3>Seeds Availability</h3>
-        <p>Check availability of quality seeds.</p>
-        <div class="more">
-          <p>Expanded details about seeds...</p>
+      <div class="dashboard-card" id="main-card-schemes">
+        <div class="card-icon" style="background:#fff3bf;color:#c2a533;">📜</div>
+        <div class="card-body">
+          <div class="card-title" id="card-schemes">Govt Schemes & Policies</div>
+          <div class="card-desc" id="card-schemes-desc">Check eligibility, subsidies, and applications for your area.</div>
         </div>
-        <button class="toggle-btn">Read More</button>
       </div>
+      <div class="card-detail" id="detail-schemes" style="display:none;">
+        <!-- ...(full content as in earlier) -->
+        <b>Full Govt Scheme details here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-seeds">
+        <div class="card-icon" style="background:#e3f7ee;color:#1b5e33;">🌾</div>
+        <div class="card-body">
+          <div class="card-title" id="card-seeds">Seeds Availability</div>
+          <div class="card-desc" id="card-seeds-desc">Find certified seeds & local vendors near your village.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-seeds" style="display:none;">
+        <!-- ...(full content as in earlier for seeds) -->
+        <b>Seed details here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-fertilizer">
+        <div class="card-icon" style="background:#ebf7e3;color:#1d7c43;">🦟</div>
+        <div class="card-body">
+          <div class="card-title" id="card-fertilizer">Fertilizers & Pest</div>
+          <div class="card-desc" id="card-fertilizer-desc">Soil-based recommendations & early pest warnings.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-fertilizer" style="display:none;">
+        <b>Fertilizer & pest guidance here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-calendar">
+        <div class="card-icon" style="background:#d0e9fb;color:#2597be;">📅</div>
+        <div class="card-body">
+          <div class="card-title" id="card-calendar">Crop Calendar</div>
+          <div class="card-desc" id="card-calendar-desc">Regional sowing & harvesting schedules tailored for you.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-calendar" style="display:none;">
+        <b>Crop calendar guidance here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-soil">
+        <div class="card-icon" style="background:#f6e8cd;color:#bc9929;">🧪</div>
+        <div class="card-body">
+          <div class="card-title" id="card-soil">Soil Health</div>
+          <div class="card-desc" id="card-soil-desc">Upload soil reports & get improvement plans.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-soil" style="display:none;">
+        <b>Soil health resources here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-yield">
+        <div class="card-icon" style="background:#e7dfff;color:#6246c7;">📈</div>
+        <div class="card-body">
+          <div class="card-title" id="card-yield">Yield</div>
+          <div class="card-desc" id="card-yield-desc">Compare historical yields & forecast improvements.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-yield" style="display:none;">
+        <b>Yield comparison guidance here.</b>
+      </div>
+      <div class="dashboard-card" id="main-card-msp">
+        <div class="card-icon" style="background:#e6f8f0;color:#31ab71;">💰</div>
+        <div class="card-body">
+          <div class="card-title" id="card-msp">MSP</div>
+          <div class="card-desc" id="card-msp-desc">Daily mandi rates, eNAM prices & trend charts.</div>
+        </div>
+      </div>
+      <div class="card-detail" id="detail-msp" style="display:none;">
+        <b>MSP & market price guidance here.</b>
+      </div>
+    </div>
+  </div>
 
-      <!-- Add other cards here -->
+  <!-- Chatbot floating button and modal -->
+  <button class="chatbot-btn" id="showChatbot"><span class="chat-ico">💬</span><span id="helpText">Need help?</span></button>
+  <div class="chat-modal-bg" id="chatbotModalBg"></div>
+  <div class="chat-modal" id="chatbotModal" style="display:none;">
+    <div class="modal-head">
+      Smart Assistant
+      <button class="modal-close" id="closeChatbot">&times;</button>
+    </div>
+    <div class="chat-body" id="cbBody"></div>
+    <div class="chat-input-wrap">
+      <input id="cbInput" placeholder="Ask anything...">
+      <button class="send" id="sendChatBtn">Send</button>
     </div>
   </div>
 
   <script>
-    // Sidebar toggle
-    const menuBtn = document.getElementById("menuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const main = document.getElementById("main");
-    menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("hidden");
-      main.classList.toggle("expanded");
+    // --- IST time update ---
+    function updateIST(){
+      const now=new Date(),utc=now.getTime()+now.getTimezoneOffset()*60000,ist=new Date(utc+3600000*5.5);
+      const opts={weekday:'short',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'};
+      document.getElementById('navTime').innerText=ist.toLocaleString('en-IN',opts)+" IST";
+    } setInterval(updateIST,1000); updateIST();
+
+    // --- Card queue logic (vertical stack) + Card show/hide details ---
+    const queue = [
+      "machinery","schemes","seeds","fertilizer","calendar","soil","yield","msp"
+    ];
+    queue.forEach(card=>{
+      document.getElementById("main-card-"+card).onclick=function(e){
+        e.preventDefault();
+        document.querySelectorAll('.card-detail').forEach(d=>d.style.display="none");
+        document.getElementById("detail-"+card).style.display="block";
+        document.getElementById("detail-"+card).scrollIntoView({behavior:"smooth",block:"center"});
+      }
+    });
+    document.addEventListener("click",function(e){
+      if(!e.target.classList.contains("dashboard-card") && !e.target.classList.contains("card-detail")){
+        document.querySelectorAll('.card-detail').forEach(d=>d.style.display="none");
+      }
     });
 
-    // Card expand/collapse
-    const toggleBtns = document.querySelectorAll(".toggle-btn");
-    toggleBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const card = btn.parentElement;
-        card.classList.toggle("expanded");
-        btn.textContent = card.classList.contains("expanded") ? "Show Less" : "Read More";
+    // --- Epic Auth button (no real login, just style) ---
+    document.getElementById("epic-auth-btn").onclick = function(){
+      alert("Login/Create Account feature coming soon!");
+    };
+
+    // --- Chatbot floating UI ---
+    const showChatbotBtn = document.getElementById("showChatbot");
+    const chatModalBg = document.getElementById("chatbotModalBg");
+    const chatModal = document.getElementById("chatbotModal");
+    const helpText = document.getElementById("helpText");
+    showChatbotBtn.onclick=function(){
+      chatModal.style.display="flex";
+      chatModalBg.style.display="block";
+      helpText.style.display="none";
+    }
+    document.getElementById("closeChatbot").onclick=function(){
+      chatModal.style.display="none";
+      chatModalBg.style.display="none";
+      helpText.style.display="inline";
+    }
+    chatModalBg.onclick=function(){
+      chatModal.style.display="none";
+      chatModalBg.style.display="none";
+      helpText.style.display="inline";
+    }
+    document.getElementById("sendChatBtn").onclick=function(){
+      const msg=document.getElementById("cbInput").value.trim();
+      if(!msg) return;
+      const body=document.getElementById("cbBody");
+      const row=document.createElement("div");row.className="chat-row me";row.innerText=msg;body.appendChild(row);
+      setTimeout(()=>{
+        const r=document.createElement("div");r.className="chat-row";r.innerText="AI: Demo only. Ask about machinery, prices, crops, etc.";body.appendChild(r);
+        body.scrollTop=body.scrollHeight;
+      },500);
+      document.getElementById("cbInput").value="";
+      body.scrollTop=body.scrollHeight;
+    }
+
+    // --- Language logic (EN/HI/PA) ---
+    const LANGS = {
+      en: {
+        navtitle:"Solutioneers",logintext:"Login",signuptext:"Create New Account",
+        card-machinery:"Latest Machinery",card-machinery-desc:"Explore latest agri-tech, subsidies & demonstrations in your zone.",
+        card-schemes:"Govt Schemes & Policies",card-schemes-desc:"Check eligibility, subsidies, and applications for your area.",
+        card-seeds:"Seeds Availability",card-seeds-desc:"Find certified seeds & local vendors near your village.",
+        card-fertilizer:"Fertilizers & Pest",card-fertilizer-desc:"Soil-based recommendations & early pest warnings.",
+        card-calendar:"Crop Calendar",card-calendar-desc:"Regional sowing & harvesting schedules tailored for you.",
+        card-soil:"Soil Health",card-soil-desc:"Upload soil reports & get improvement plans.",
+        card-yield:"Yield",card-yield-desc:"Compare historical yields & forecast improvements.",
+        card-msp:"MSP",card-msp-desc:"Daily mandi rates, eNAM prices & trend charts.",
+        helpText:"Need help?"
+      },
+      hi: {
+        navtitle:"सोल्यूशनियर्स",logintext:"लॉगिन",signuptext:"नया खाता बनाएं",
+        card-machinery:"नवीनतम मशीनरी",card-machinery-desc:"अपने क्षेत्र में नवीनतम कृषि तकनीक, सब्सिडी व डेमो देखें।",
+        card-schemes:"सरकारी योजनाएँ",card-schemes-desc:"पात्रता, सब्सिडी व आवेदन की जानकारी लें।",
+        card-seeds:"बीज उपलब्धता",card-seeds-desc:"प्रमाणित बीज व क्षेत्रीय विक्रेता खोजें।",
+        card-fertilizer:"उर्वरक/कीट",card-fertilizer-desc:"मिट्टी आधारित सलाह व कीट चेतावनी।",
+        card-calendar:"फसल कैलेंडर",card-calendar-desc:"क्षेत्र अनुसार बोआई/कटाई अनुसूची।",
+        card-soil:"मिट्टी स्वास्थ्य",card-soil-desc:"मिट्टी रिपोर्ट अपलोड करें व सुझाव पाएं।",
+        card-yield:"उपज तुलना",card-yield-desc:"ऐतिहासिक व संभावित उपज तुलना देखें।",
+        card-msp:"एमएसपी",card-msp-desc:"रोज़ाना मंडी भाव व ट्रेंड चार्ट्स।",
+        helpText:"मदद चाहिए?"
+      },
+      pa: {
+        navtitle:"ਸੋਲਿਊਸ਼ਨੀਅਰਜ਼",logintext:"ਲਾਗਇਨ",signuptext:"ਨਵਾਂ ਖਾਤਾ ਬਣਾਓ",
+        card-machinery:"ਨਵੀਨਤਮ ਮਸ਼ੀਨਰੀ",card-machinery-desc:"ਤੁਹਾਡੇ ਖੇਤਰ ਦੀ ਨਵੀਨ ਮਸ਼ੀਨਰੀ, ਸਬਸਿਡੀ ਤੇ ਡੈਮੋ ਜਾਣੋ।",
+        card-schemes:"ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ",card-schemes-desc:"ਯੋਗਤਾ, ਸਬਸਿਡੀ ਤੇ ਅਰਜੀਆਂ ਵੇਖੋ।",
+        card-seeds:"ਬੀਜ ਉਪਲਬਧਤਾ",card-seeds-desc:"ਪ੍ਰਮਾਣਿਤ ਬੀਜ ਤੇ ਵਪਾਰੀ ਲੱਭੋ।",
+        card-fertilizer:"ਖਾਦ ਤੇ ਕੀੜੇ",card-fertilizer-desc:"ਮਿਟੀ ਅਧਾਰਿਤ ਸੁਝਾਵ ਤੇ ਚੇਤਾਵਣੀ।",
+        card-calendar:"ਫ਼ਸਲ ਕੈਲੇਂਡਰ",card-calendar-desc:"ਖੇਤਰੀ ਬੀਜਾਈ, ਕਟਾਈ ਸਮਾਂ।",
+        card-soil:"ਮਿਟੀ ਹੈਲਥ",card-soil-desc:"ਮਿਟੀ ਰਿਪੋਰਟ ਅੱਪਲੋਡ ਤੇ ਸੁਝਾਅ ਲਵੋ।",
+        card-yield:"ਪੈਦਾਵਾਰ",card-yield-desc:"ਇਤਿਹਾਸਕ ਤੇ ਅਨੁਮਾਨਿਤ ਪੈਦਾਵਾਰ ਤੁਲਨਾ।",
+        card-msp:"MSP",card-msp-desc:"ਰੋਜ਼ਾਨਾ ਮੰਡੀ ਭਾਅ, ਗ੍ਰਾਫ ਆਦਿ।",
+        helpText:"ਮਦਦ ਚਾਹੀਦੀ?"
+      }
+    };
+    function setLanguage(lang){
+      let L = LANGS[lang]||LANGS.en;
+      ["nav-title","logintext","signuptext","card-machinery","card-machinery-desc","card-schemes","card-schemes-desc","card-seeds","card-seeds-desc","card-fertilizer","card-fertilizer-desc","card-calendar","card-calendar-desc","card-soil","card-soil-desc","card-yield","card-yield-desc","card-msp","card-msp-desc"].forEach(id=>{
+        if(document.getElementById(id)) document.getElementById(id).innerText=L[id]||"";
       });
-    });
+      document.getElementById("helpText").innerText = L.helpText;
+    }
+    document.getElementById("langSel").onchange=function(){setLanguage(this.value);}
+    setLanguage("en");
   </script>
 </body>
 </html>
