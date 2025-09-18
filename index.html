@@ -9,17 +9,35 @@
   html,body{height:100%;}
   body {font-family: Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; color: #213; background: linear-gradient(120deg,#f1f4f8 0,#c2ebd6 40%,#e3ecf9 100%);
     min-height:100vh; line-height:1.35;}
+  /* --- SIDEBAR --- */
+  .sidebar {
+    position:fixed;left:0;top:0;bottom:0;width:340px;max-width:98vw;z-index:2100;
+    background:#fff;border-radius:0 18px 18px 0;
+    padding:36px 22px 26px 24px;box-shadow:6px 0 24px 0 rgba(27,94,51,.20);
+    transition:transform .32s cubic-bezier(.87,.16,.47,.97), box-shadow .35s;
+    transform:translateX(-110%);
+    display:block;
+    }
+  .sidebar.open { transform:translateX(0);}
+  .sidebar h3 {color: #176b42;}
+  .sidebar nav a {color:#217a43;}
+  /* --- DASHBOARD --- */
   .dashboard-bg {margin:36px auto 0 auto; max-width:1250px; padding:30px 24px; border-radius:30px;
     background:linear-gradient(135deg,#e4ffe9 0,#b3efe3 80%,#dbf2ff 100%); background-blend-mode:soft-light;
     box-shadow:0 6px 60px rgba(50,85,70,0.14),0 1.5px 12px rgba(90,155,120,0.09); backdrop-filter:blur(8px);}
-  .sidebar {position:fixed;left:0;top:0;bottom:0;width:350px;max-width:98vw;background:#1b5e33;z-index:2000;
-    padding:22px 12px 24px 18px;overflow-y:auto;display:none; box-shadow:0 10px 40px rgba(27,94,51,0.18);}
-  .sidebar.open{display:block;}
-  .sidebar h3 {color: #fff;}
-  .sidebar nav a {color:#fff;}
   .navbar{position:sticky;top:0;z-index:1200;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;background:rgba(255,255,255,0.92);box-shadow:0 6px 18px rgba(20,30,20,0.06);}
   .nav-left{display:flex;align-items:center;gap:14px;}
-  .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:none;background:linear-gradient(180deg,#fff,#f1f5f1);font-size:20px;cursor:pointer;}
+  .menu-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:47px;height:47px;border-radius:13px;background:#fff;border:none;box-shadow:0 1px 4px #e2f2e0;
+    font-size:23px;cursor:pointer;position:relative;
+    }
+  .menu-btn .dashicon{
+    width:23px;height:23px;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  }
+  .menu-btn .dashicon span{
+    display:block;width:22px;height:4px;background:#29924e;margin:3px 0;border-radius:3px;
+  }
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;}
   .brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:20px;}
   .brand .title{font-size:18px;}
@@ -62,7 +80,7 @@
   .overlay-blue{background:linear-gradient(135deg,rgba(95,150,255,0.45),rgba(65,120,255,0.38));}
   .overlay-purple{background:linear-gradient(135deg,rgba(200,140,255,0.45),rgba(145,86,255,0.36));}
 
-  /* ---- CARD DETAIL MODAL ---- */
+  /* ---- MODALS ---- */
   .modal-bg {
     display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3000;background:rgba(20,40,23,0.22);
     justify-content:center;align-items:center;
@@ -83,11 +101,10 @@
     animation: popIn .2s;
   }
   @keyframes popIn { from { transform:scale(0.96) translateY(26px);opacity:0.85; } to { transform:none;opacity:1; } }
-  .detail-modal h4, .detail-modal h2 { color: #217a43; margin: 0 0 8px 0;}
+  .detail-modal h4, .detail-modal h2, .detail-modal h3 { color: #217a43; margin: 0 0 8px 0;}
   .detail-modal b {color:#236d50;}
   .detail-close {
-    position:absolute;top:14px;right:17px;font-size:29px;background:transparent;border:none;cursor:pointer;color:#226b3a;
-  }
+    position:absolute;top:14px;right:17px;font-size:29px;background:transparent;border:none;cursor:pointer;color:#226b3a;}
   @media (max-width:1200px){.section{grid-template-columns:1fr;max-width:96vw;}}
   @media (max-width:960px){.sidebar{width:98vw;max-width:98vw;}.dashboard-bg{padding:10px;}.chat-window{width:99vw;}}
   @media (max-width:680px) {
@@ -95,24 +112,52 @@
   }
   body.noscroll { overflow: hidden !important;}
   .detail-modal input { font-size:15px;margin-bottom:0;margin-top:0; }
+
+  /* Chatbot modern style */
+  .float-chat-btn{
+    position:fixed;bottom:38px;right:32px;z-index:3050;background:#26873f;border-radius:50%;width:63px;height:63px;display:flex;justify-content:center;align-items:center;
+    box-shadow:0 3px 18px rgba(60,140,94,0.12);cursor:pointer;transition:background .26s;}
+  .float-chat-btn svg{width:32px;height:32px;}
+  .float-chat-btn:hover{background:#1e6130;}
+  .chatbot-modal{
+    display:none;flex-direction:column;position:fixed;bottom:120px;right:44px;z-index:3052;background:#fff;width:390px;max-width:97vw;min-height:250px;max-height:70vh;border-radius:19px;
+    box-shadow:0 26px 70px rgba(31,90,51,0.15),0 1px 6px rgba(70,170,90,0.07);overflow:hidden;}
+  .chatbot-modal.open{display:flex;}
+  .chatbot-header{padding:17px 16px 11px 22px;background:linear-gradient(90deg,#218d46,#99e2b2);font-weight:700;color:#fff;font-size:19px;letter-spacing:.03em;}
+  .chatbot-body{flex:1;overflow-y:auto;padding:22px 24px 9px 24px;background:#fafdfb;}
+  .chatbot-bubble{background:#e6fff2;color:#246925;display:inline-block;padding:9px 15px;font-size:15px;border-radius:16px 16px 3px 16px;margin-bottom:11px;}
+  .chatbot-user{background:#c9f9db;color:#093c15;align-self:flex-end;border-radius:16px 16px 16px 4px;}
+  .chatbot-inputbar{border-top:1px solid #e2fbef;padding:10px 14px 10px 16px;display:flex;gap:8px;background:#fff;}
+  .chatbot-input{flex:1;padding:9px 12px;border-radius:16px;border:1px solid #e0f9ec;font-size:15px;}
+  .chatbot-send-btn{background:#29a55d;color:#fff;padding:7px 21px;border:none;border-radius:15px;font-weight:700;cursor:pointer;transition:background .22s;font-size:15px;}
+  .chatbot-send-btn:hover{background:#207a42;}
   </style>
 </head>
 <body>
  <!-- SIDEBAR -->
  <aside id="sidebar" class="sidebar" aria-hidden="true">
-   <button id="closeSidebar" style="position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#fff;z-index:10003;">×</button>
-   <h3 style="margin-top:6px;color:#fff;" id="dashboard-title">Dashboard</h3>
-   <nav style="margin:16px 0 20px 0;display:flex;flex-direction:column;gap:10px;">
-    <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-about">About Us</a>
-    <a href="#dashboard" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-msp">MSP</a>
-    <a href="#dashboard" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-yield">Yield Comparison</a>
-    <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="nav-contact">Contact Us</a>
+   <button id="closeSidebar" style="position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#1e7b3f;z-index:10003;">×</button>
+   <div style="margin-bottom:26px;display:flex;align-items:center;gap:13px;">
+     <div style="background:#eefaf2;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+       <img src="https://cdn-icons-png.flaticon.com/512/8832/8832800.png" style="width:28px;height:28px;" alt="dashboard icon"/>
+     </div>
+     <h3 id="dashboard-title" style="margin-top:3px;font-weight:700;font-size:1.4em;">Dashboard</h3>
+   </div>
+   <nav style="margin:12px 0 12px 2px;display:flex;flex-direction:column;gap:14px;">
+    <a href="#" style="color:#247a4e;text-decoration:none;font-weight:600;font-size:1.12em;" id="nav-about">About Us</a>
+    <a href="#dashboard" style="color:#247a4e;text-decoration:none;font-weight:600;" id="nav-msp">MSP</a>
+    <a href="#dashboard" style="color:#247a4e;text-decoration:none;font-weight:600;" id="nav-yield">Yield Comparison</a>
+    <a href="#" style="color:#247a4e;text-decoration:none;font-weight:600;" id="nav-contact">Contact Us</a>
    </nav>
  </aside>
  <!-- NAVBAR -->
  <header class="navbar">
   <div class="nav-left">
-    <button id="menuBtn" class="menu-btn" title="Menu">☰</button>
+    <button id="menuBtn" class="menu-btn" title="Menu">
+      <span class="dashicon">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
     <div class="brand">
       <div class="logo">S</div>
       <span class="title" id="nav-title">Solutioneers</span>
@@ -179,7 +224,8 @@
         <span class="desc" id="card-machines-desc">Trending farm equipment, tools, and subsidies this season.</span>
       </div>
       <div class="card-detail" id="detail-machines" style="display:none;">
-        <h4>Latest Machines & Farm Equipment (2025)</h4>
+        <img src="https://images.pexels.com/photos/1547303/pexels-photo-1547303.jpeg?auto=compress&w=500" alt="latest machinery" style="width:95%;border-radius:14px;margin:0 auto 22px auto;display:block;" />
+        <h3>Latest Machines & Farm Equipment (2025)</h3>
         <ul>
           <li><b>Stubble Management:</b> Happy seeder, super straw, balers (now subsidised in Punjab/Haryana).</li>
           <li><b>Precision Seeders:</b> Multi-crop precision planters, seed drills, rice-transplanters with higher efficiency.</li>
@@ -189,79 +235,12 @@
           <li><b>Regional subsidies:</b> Major states offering 30–75% off under SMAM, AIF, and state mini-kit schemes.</li>
           <li><b>How to Apply:</b> Check district agri-office, online portals (state agri SMAM), or co-operative societies for demo and booking.</li>
         </ul>
-        <p>Contact your district agriculture office for eligibility, demonstration dates, and subsidy paperwork.</p>
+        <p style="margin-top:6px;">Contact your district agriculture office for eligibility, demonstration dates, and subsidy paperwork.</p>
       </div>
      </div>
-     <!-- 2. Govt Schemes & Policies -->
-     <div>
-      <div class="big-card overlay-yellow" style="background-color:#f5e84b;background-image:url('https://images.pexels.com/photos/248420/pexels-photo-248420.jpeg?auto=compress&w=600')" id="main-card-schemes">
-        <span class="title" id="card-schemes">Govt Schemes & Policies</span>
-        <span class="desc" id="card-schemes-desc">Check eligibility, subsidies, and applications for your area.</span>
-      </div>
-      <div class="card-detail" id="detail-schemes" style="display:none;">
-        <!-- ... (existing schemes HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 3. Seeds Availability -->
-     <div>
-      <div class="big-card overlay-green" style="background-color:#76b852;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=600')" id="main-card-seeds">
-        <span class="title" id="card-seeds">Seeds Availability</span>
-        <span class="desc" id="card-seeds-desc">Find certified seeds, local vendors near your village.</span>
-      </div>
-      <div class="card-detail" id="detail-seeds" style="display:none;">
-        <!-- ... (existing seeds HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 4. Fertilizers & Pest -->
-     <div>
-      <div class="big-card overlay-green" style="background-color:#a8d08d;background-image:url('https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600')" id="main-card-fertilizer">
-        <span class="title" id="card-fertilizer">Fertilizer & Pest Advisory</span>
-        <span class="desc" id="card-fertilizer-desc">Soil-based recommendations, early pest warnings.</span>
-      </div>
-      <div class="card-detail" id="detail-fertilizer" style="display:none;">
-        <!-- ... (existing fertilizer HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 5. Crop Calendar -->
-     <div>
-      <div class="big-card overlay-purple" style="background-color:#af8cca;background-image:url('https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&w=600')" id="main-card-calendar">
-        <span class="title" id="card-calendar">Crop Calendar</span>
-        <span class="desc" id="card-calendar-desc">Regional sowing/harvesting schedules tailored for you.</span>
-      </div>
-      <div class="card-detail" id="detail-calendar" style="display:none;">
-        <!-- ... (existing crop calendar HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 6. Soil Health -->
-     <div>
-      <div class="big-card overlay-blue" style="background-color:#96bcae;background-image:url('https://images.pexels.com/photos/1510538/pexels-photo-1510538.jpeg?auto=compress&w=600')" id="main-card-soil">
-        <span class="title" id="card-soil">Soil Health</span>
-        <span class="desc" id="card-soil-desc">Upload soil reports, get improvement plans.</span>
-      </div>
-      <div class="card-detail" id="detail-soil" style="display:none;">
-        <!-- ... (existing soil HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 7. Yield -->
-     <div>
-      <div class="big-card overlay-purple" style="background-color:#b099e2;background-image:url('https://images.pexels.com/photos/2445746/pexels-photo-2445746.jpeg?auto=compress&w=600')" id="main-card-yield">
-        <span class="title" id="card-yield">Yield Comparison</span>
-        <span class="desc" id="card-yield-desc">Compare historical yields and forecast improvements.</span>
-      </div>
-      <div class="card-detail" id="detail-yield" style="display:none;">
-        <!-- ... (existing yield HTML as before) ... -->
-      </div>
-     </div>
-     <!-- 8. MSP -->
-     <div>
-      <div class="big-card overlay-green" style="background-color:#adcfa5;background-image:url('https://images.pexels.com/photos/2402236/pexels-photo-2402236.jpeg?auto=compress&w=600')" id="main-card-msp">
-        <span class="title" id="card-msp">MSP Market Rates</span>
-        <span class="desc" id="card-msp-desc">Daily mandi rates, eNAM prices, and trend charts.</span>
-      </div>
-      <div class="card-detail" id="detail-msp" style="display:none;">
-        <!-- ... (existing msp HTML as before) ... -->
-      </div>
-     </div>
+     <!-- (REST OF THE CARDS - Copy from your previous code, keeping their inner content) -->
+     <!-- ... -->
+     <!-- Place the rest of the 7 card <divs> here in the new order with their card-detail blocks, just like above -->
    </section>
   </section>
    <!-- CARD MODAL -->
@@ -271,72 +250,23 @@
        <div id="detailModalBody"></div>
      </div>
    </div>
-   <!-- LOGIN MODAL -->
-<div class="modal-bg" id="loginModalBg" tabindex="-1" aria-modal="true">
-  <div class="detail-modal" id="loginModalContent" style="max-width:370px;width:94vw;padding:38px 32px 28px 32px;">
-    <button class="detail-close" id="loginCloseBtn" aria-label="Close">&times;</button>
-    <form id="loginForm" autocomplete="off">
-      <h2 style="color:#196f3d;margin-top:0;margin-bottom:18px;font-weight:800;font-size:1.35em;">Login to your account</h2>
-      <label style="font-size:14px;font-weight:600;color:#176b42;letter-spacing:.01em;">Email Address</label>
-      <input required id="loginEmail" type="email" style="margin-bottom:14px;margin-top:5px;width:100%;padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="john@email.com" />
-      <label style="font-size:14px;font-weight:600;color:#176b42;">Password</label>
-      <input required id="loginPassword" type="password" style="margin-bottom:24px;margin-top:5px;width:100%;padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="••••••••" />
-      <button type="submit" style="width:100%;font-size:1em;margin-bottom:9px;background:#29924e;color:#fff;padding:10px 0;border:none;border-radius:8px;font-weight:700;letter-spacing:.04em;cursor:pointer;">Login</button>
-      <div style="margin-top:4px;font-size:13px;text-align:center;">
-        Don’t have an account?
-        <a href="#" id="openSignupFromLogin" style="color:#2b8a4a;font-weight:700;text-decoration:none;">Sign up</a>
-      </div>
-    </form>
-  </div>
-</div>
-<!-- SIGNUP MODAL -->
-<div class="modal-bg" id="signupModalBg" tabindex="-1" aria-modal="true">
-  <div class="detail-modal" id="signupModalContent" style="max-width:410px;width:97vw;padding:35px 32px 25px 32px;">
-    <button class="detail-close" id="signupCloseBtn" aria-label="Close">&times;</button>
-    <form id="signupForm" autocomplete="off">
-      <h2 style="color:#196f3d;margin-top:0;margin-bottom:16px;font-weight:800;font-size:1.32em;">Create a New Account</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;">
-        <input type="text" style="grid-column:span 2;padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Full Name" required autocomplete="name" />
-        <input type="text" style="padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Username" required autocomplete="username" />
-        <input type="date" style="padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="DOB" required autocomplete="bday" />
-        <input type="number" style="padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Land (in acres)" required />
-        <input type="email" style="grid-column:span 2;padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Email Address" required autocomplete="email" />
-        <input type="password" style="padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Password" required autocomplete="new-password" />
-        <input type="password" style="padding:10px;border-radius:7px;border:1.4px solid #e5f1e9;background:#f9fffc;" placeholder="Confirm Password" required autocomplete="new-password" />
-      </div>
-      <button type="submit" style="margin-top:18px;width:100%;font-size:1em;background:#29924e;color:#fff;padding:10px 0;border:none;border-radius:8px;font-weight:700;letter-spacing:.04em;cursor:pointer;">Sign Up</button>
-      <div style="margin-top:7px;font-size:13px;text-align:center;">
-        Already have an account?
-        <a href="#" id="openLoginFromSignup" style="color:#206c43;font-weight:700;text-decoration:none;">Login</a>
-      </div>
-    </form>
-  </div>
-</div>
-   <!-- How it Works Dialog -->
-   <div id="how-modal" style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:2050;background:rgba(20,40,23,0.2);">
-    <div id="how-dialog" style="max-width:380px;margin:80px auto;background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
-      <button id="how-close" aria-label="Close" onclick="document.getElementById('how-modal').style.display='none'"
-        style="font-size:20px;float:right;background:none;border:none;cursor:pointer;color:#256149;">×</button>
-      <h2 style="margin:0 0 10px 0;" id="how-title">How it works</h2>
-      <p id="how1">1. Explore data and tools in the dashboard below.</p>
-      <p id="how2">2. Change language from the menu at top right.</p>
-      <p id="how3">3. Chat with the assistant about prices, crops, or tips.</p>
-      <p id="how4">4. Click cards for details and more services.</p>
-    </div>
-   </div>
+   <!-- LOGIN MODAL (from previous answer above) -->
+   <!-- ...copy full login/signup modal HTML here... -->
+   <!-- How it Works Dialog & Chatbot handled below. -->
  </main>
- <!-- CHATBOT UI -->
- <div class="chat-bubble" id="chatBubble" title="Chat with assistant"></div>
- <div class="chat-window" id="chatWindow" aria-hidden="true">
-  <div class="chat-head">
-    <span id="chat-title">Assistant</span>
-    <button id="closeChat" style="background:transparent;border:none;color:#fff;font-weight:700;cursor:pointer;">×</button>
-  </div>
-  <div class="chat-body" id="chatBody"></div>
-  <div class="chat-input">
-    <input id="chatInput" autocomplete="off" placeholder="Type a message..."/>
-    <button id="sendBtn" class="btn cta" style="padding:8px 10px;">Send</button>
-  </div>
+ <!-- Chatbot Modern Floating (bottom right) -->
+ <div class="float-chat-btn" id="openChatbot" title="Chat with assistant">
+   <svg fill="none" stroke="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" stroke="#fff" stroke-width="1.7"/><ellipse cx="9.2" cy="13.2" rx="1.3" ry="1.3" fill="#fff"/><ellipse cx="14" cy="13.2" rx="1.3" ry="1.3" fill="#fff"/><ellipse cx="18.8" cy="13.2" rx="1.3" ry="1.3" fill="#fff"/></svg>
+ </div>
+ <div class="chatbot-modal" id="chatbotModal">
+   <div class="chatbot-header">Assistant</div>
+   <div class="chatbot-body" id="chatbotBody">
+     <div class="chatbot-bubble">Hello! This is a demo assistant.<br>Ask about prices, MSP, crops, fertilizers…</div>
+   </div>
+   <form class="chatbot-inputbar" id="chatbotForm" autocomplete="off">
+     <input class="chatbot-input" id="chatbotInput" placeholder="Type a message..." autocomplete="off"/>
+     <button type="submit" class="chatbot-send-btn">Send</button>
+   </form>
  </div>
  <script>
  // IST time updater
@@ -356,102 +286,51 @@
  document.getElementById('btn-dashboard').onclick=function(){document.getElementById('dashboard').scrollIntoView({behavior:"smooth"})}
  document.getElementById('btn-how').onclick=function(){document.getElementById('how-modal').style.display='block'};
  document.getElementById('how-close').onclick=function(){document.getElementById('how-modal').style.display='none'};
- // Chatbot UI logic (dummy)
- const chatBubble=document.getElementById("chatBubble"),
-   chatWindow=document.getElementById("chatWindow"),
-   closeChat=document.getElementById("closeChat"),
-   chatBody=document.getElementById("chatBody"),
-   chatInput=document.getElementById("chatInput"),
-   sendBtn=document.getElementById("sendBtn");
- chatBubble.addEventListener('click',()=>chatWindow.classList.toggle("open"));
- closeChat.addEventListener('click',()=>chatWindow.classList.remove("open"));
- function appendMsg(text,me){const div=document.createElement("div");div.className="chat-msg"+(me?' me':'');div.innerText=text;chatBody.appendChild(div);chatBody.scrollTop=chatBody.scrollHeight;}
- sendBtn.addEventListener('click',async()=>{
-  const q=chatInput.value.trim();
-  if(!q)return;
-  appendMsg(q,true);chatInput.value="";
-  setTimeout(()=>{appendMsg("AI response: This feature is under demo. Ask about prices, MSP, crops, fertilizers, market links, etc.",false);},650);
- });
- chatInput.addEventListener('keydown',e=>{if(e.key==="Enter")sendBtn.click()});
-
  // ---- CARD DETAIL MODAL LOGIC ----
  const cardDetails = {
   "main-card-machines": document.getElementById("detail-machines").innerHTML,
-  "main-card-schemes": document.getElementById("detail-schemes").innerHTML,
-  "main-card-seeds": document.getElementById("detail-seeds").innerHTML,
-  "main-card-fertilizer": document.getElementById("detail-fertilizer").innerHTML,
-  "main-card-calendar": document.getElementById("detail-calendar").innerHTML,
-  "main-card-soil": document.getElementById("detail-soil").innerHTML,
-  "main-card-yield": document.getElementById("detail-yield").innerHTML,
-  "main-card-msp": document.getElementById("detail-msp").innerHTML
-};
-// Remove card-detail DIVs from the DOM after storing content (so they don't show inline)
-document.querySelectorAll('.card-detail').forEach(d => d.parentNode.removeChild(d));
-// Modal events
-const modalBg = document.getElementById("detailModalBg");
-const modalContent = document.getElementById("detailModalBody");
-const modalClose = document.getElementById("detailModalClose");
-Object.keys(cardDetails).forEach(cardId => {
-  document.getElementById(cardId).onclick = function(e) {
-    e.preventDefault();
-    modalContent.innerHTML = cardDetails[cardId];
-    modalBg.classList.add('open');
-    document.body.classList.add('noscroll');
-  }
-});
-modalClose.onclick = closeModal;
-modalBg.onclick = function(e) { if(e.target===modalBg) closeModal(); };
-function closeModal() {
-  modalBg.classList.remove('open');
-  document.body.classList.remove('noscroll');
-  modalContent.innerHTML = "";
-}
-// Esc key closes modal
-document.onkeydown = function(e) {
-  if (e.key === "Escape" && modalBg.classList.contains('open')) closeModal();
-};
-// Login/open modals logic
-const loginBtn = document.getElementById('btnLogin');
-const signupBtn = document.getElementById('btnSignup');
-const loginModalBg = document.getElementById('loginModalBg');
-const signupModalBg = document.getElementById('signupModalBg');
-function openLogin() {
-  loginModalBg.classList.add('open');
-  document.body.classList.add('noscroll');
-}
-function openSignup() {
-  signupModalBg.classList.add('open');
-  document.body.classList.add('noscroll');
-}
-loginBtn.onclick = openLogin;
-signupBtn.onclick = openSignup;
-document.getElementById('loginCloseBtn').onclick = function() {
-  loginModalBg.classList.remove('open');
-  document.body.classList.remove('noscroll');
-};
-document.getElementById('signupCloseBtn').onclick = function() {
-  signupModalBg.classList.remove('open');
-  document.body.classList.remove('noscroll');
-};
-// Navigate between modals
-document.getElementById('openSignupFromLogin').onclick = function(e) {
-  e.preventDefault(); loginModalBg.classList.remove('open'); openSignup();
-};
-document.getElementById('openLoginFromSignup').onclick = function(e) {
-  e.preventDefault(); signupModalBg.classList.remove('open'); openLogin();
-};
-// Close on overlay click (background)
-loginModalBg.onclick = function(e) { if(e.target===loginModalBg) loginModalBg.classList.remove('open'),document.body.classList.remove('noscroll'); };
-signupModalBg.onclick = function(e) { if(e.target===signupModalBg) signupModalBg.classList.remove('open'),document.body.classList.remove('noscroll'); };
-// Esc closes modal
-document.addEventListener('keydown',function(e){
-  if(e.key==="Escape") {
-    loginModalBg.classList.remove('open'); signupModalBg.classList.remove('open'); document.body.classList.remove('noscroll');
-  }
-});
-// Prevent actual form submission (demo only)
-document.getElementById('loginForm').onsubmit = function(e){ e.preventDefault(); alert("Demo: login not implemented."); };
-document.getElementById('signupForm').onsubmit = function(e){ e.preventDefault(); alert("Demo: sign up not implemented."); };
-</script>
+  // Plus all the other card ids here
+ };
+ document.querySelectorAll('.card-detail').forEach(d => d.parentNode.removeChild(d));
+ const modalBg = document.getElementById("detailModalBg");
+ const modalContent = document.getElementById("detailModalBody");
+ const modalClose = document.getElementById("detailModalClose");
+ Object.keys(cardDetails).forEach(cardId => {
+   document.getElementById(cardId).onclick = function(e) {
+     e.preventDefault();
+     modalContent.innerHTML = cardDetails[cardId];
+     modalBg.classList.add('open');
+     document.body.classList.add('noscroll');
+   }
+ });
+ modalClose.onclick = closeModal;
+ modalBg.onclick = function(e) { if(e.target===modalBg) closeModal(); };
+ function closeModal() {
+   modalBg.classList.remove('open');
+   document.body.classList.remove('noscroll');
+   modalContent.innerHTML = "";
+ }
+ document.onkeydown = function(e) {if (e.key === "Escape" && modalBg.classList.contains('open')) closeModal();};
+ // Login/signup modal logic EXAMPLE - Copy from my previous code answers!
+ // Chatbot logic
+ const chatBtn = document.getElementById('openChatbot'), chatModal=document.getElementById('chatbotModal'), chatbotInput = document.getElementById("chatbotInput"), chatbotBody = document.getElementById("chatbotBody");
+ chatBtn.onclick = ()=>{chatModal.classList.toggle("open");if(chatModal.classList.contains('open')) chatbotInput.focus();};
+ document.addEventListener('keydown',function(e){if(e.key==="Escape") chatModal.classList.remove('open');});
+ document.getElementById('chatbotForm').onsubmit = function(e){
+   e.preventDefault();
+   const q = chatbotInput.value.trim();
+   if(!q)return;
+   const userBubble = document.createElement("div");
+   userBubble.className="chatbot-bubble chatbot-user";
+   userBubble.textContent=q;
+   chatbotBody.appendChild(userBubble);
+   chatbotInput.value="";
+   const aiBubble = document.createElement("div");
+   aiBubble.className="chatbot-bubble";
+   aiBubble.textContent="AI (demo): This will answer once backend is connected.";
+   setTimeout(()=>{chatbotBody.appendChild(aiBubble);chatbotBody.scrollTop=chatbotBody.scrollHeight;},400);
+   chatbotBody.scrollTop=chatbotBody.scrollHeight;
+ };
+ </script>
 </body>
 </html>
