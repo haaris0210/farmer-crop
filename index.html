@@ -259,10 +259,10 @@
     <div class="nav-time" id="navTime"></div>
   </div>
   <div class="nav-right">
-    <select class="lang-select" id="langSel" title="Language">
-      <option>English</option>
-      <option>हिन्दी</option>
-      <option>ਪੰਜਾਬੀ</option>
+    <select class="lang-select" id="langSel" title="Language" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="pa">ਪੰਜਾਬੀ</option>
     </select>
     <button class="btn login" id="btnLogin">Login</button>
     <button class="btn cta" id="btnSignup">Sign Up</button>
@@ -809,7 +809,7 @@
        </ul>
        <h4>How to Get a Soil Health Card</h4>
        <ul>
-         <li><strong>Contact:</strong> Local Krishi Vigyan Kendra (KVK), State Agriculture Department, or Atal Seva Kendra/Common Service Centre.</li>
+         <li><strong>Contact:</strong> Local Krishi Vigyan Grenra (KVK), State Agriculture Department, or Atal Seva Grenra/Common Service Centre.</li>
          <li><strong>Online:</strong> Many state portals and soilhealth.dac.gov.in offer search, download, and status-check facilities.</li>
          <li><strong>Cost:</strong> Usually free as part of government service.</li>
        </ul>
@@ -1097,7 +1097,6 @@
  document.querySelectorAll('.big-card').forEach(card => {
    card.onclick = function(e) {
      e.preventDefault();
-     // Get the corresponding detail element
      const cardId = this.id.replace('main-card-', '');
      const detailId = 'detail-' + cardId;
      const detailElement = document.getElementById(detailId);
@@ -1151,6 +1150,13 @@
  chatInput.addEventListener('keydown', e => {
    if (e.key === "Enter") sendBtn.click();
  });
+ 
+ // Language change functionality
+ function changeLanguage() {
+   const selectedLang = document.getElementById('langSel').value;
+   // Add language change logic here
+   alert(`Language changed to ${selectedLang}`);
+ }
  </script>
 </body>
 </html>
