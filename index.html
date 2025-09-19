@@ -270,7 +270,7 @@
  </header>
  <!-- LOGIN MODAL -->
  <div id="loginModal" class="modal-overlay" style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:2050;background:rgba(20,40,23,0.2);">
-   <div style="max-width:380px;margin:80px auto;background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
+   <div style="max-width:380px;margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
      <button onclick="document.getElementById('loginModal').style.display='none'" style="font-size:20px;float:right;background:none;border:none;cursor:pointer;color:#256149;">×</button>
      <h2 style="margin:0 0 10px 0;">Login to your Account</h2>
      <form id="loginForm">
@@ -291,7 +291,7 @@
  </div>
  <!-- SIGNUP MODAL -->
  <div id="signupModal" class="modal-overlay" style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:2050;background:rgba(20,40,23,0.2);">
-   <div style="max-width:380px;margin:80px auto;background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
+   <div style="max-width:380px;margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background:#fff;padding:28px 20px 18px 20px;border-radius:18px;box-shadow:0 16px 64px rgba(15,80,40,0.15);">
      <button onclick="document.getElementById('signupModal').style.display='none'" style="font-size:20px;float:right;background:none;border:none;cursor:pointer;color:#256149;">×</button>
      <h2 style="margin:0 0 10px 0;">Create a New Account</h2>
      <form id="signupForm">
@@ -338,491 +338,520 @@
        <span class="close-tab" onclick="document.getElementById('tabPanel').style.display='none'">×</span>
      </div>
      <div class="tab-body">
-       <h3>SEED AVAILABILITY</h3>
-       <h4>Major Seed Categories</h4>
-       <ul>
-         <li><strong>Cereal & Grain Seeds:</strong> Corn, rice, wheat, barley, and oats are the dominant choices in global agriculture, especially as staple foods and animal feed.</li>
-         <li><strong>Oilseed Crops:</strong> Sunflower, soybean, flaxseed (linseed), hemp, canola, and pumpkin—these are used for edible oils, protein, functional foods, and cosmetic ingredients.</li>
-         <li><strong>Vegetable & Fruit Seeds:</strong> Tomato, pepper, onion, cucumber, lettuce, melon, carrot, watermelon, and brassicas (cabbage family) are in high demand for commercial and home growing.</li>
-         <li><strong>Legume & Pulse Seeds:</strong> Soybean, chickpea, lentil, pea, and other protein-rich crops are increasingly cultivated for human food and animal nutrition.</li>
-         <li><strong>Specialty & “Functional” Seeds:</strong> Linseed (flax), chia, hemp, nigella, thistle, and fruit seeds are seeing fast growth as ingredients in supplements, health foods, oils, and cosmetics due to interest in omega-3s, antioxidants, and plant-based diets.</li>
-       </ul>
-       <h4>Major Indian Government Schemes for Seed Distribution</h4>
-       <ul>
-         <li><strong>National Food Security Mission (NFSM):</strong> Provides subsidized certified seeds for staples like rice, wheat, pulses, and coarse cereals to boost yield and reduce import dependence.</li>
-         <li><strong>Sub-Mission on Seeds and Planting Material (SMSP):</strong> Supports the availability of foundation and certified seeds for various crops, ensures quality, and fosters private/public partnerships in seed supply.</li>
-         <li><strong>Rashtriya Krishi Vikas Yojana (RKVY):</strong> States use these funds for distributing improved and climate-adaptive seeds via mini-kits or local outreach programs.</li>
-         <li><strong>State-level Schemes:</strong> Programs like Beej Swalamban Yojana (Rajasthan), Seed Village Scheme (Maharashtra), and regional seed subsidy initiatives supply local crop varieties, often tailored to area-specific requirements and disasters</li>
-         <li><strong>PM Dhan-Dhaanya Krishi Yojana (2025):</strong> Latest program focused on saturating under-yielding districts with access to high-quality seeds across crop categories.</li>
-       </ul>
-       <h4>Subsidy Structure by Crop Type</h4>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Crop Category</th><th>Typical Subsidy Level</th><th>Scheme Examples / Notes</th></tr>
-         <tr><td>Cereals</td><td>50–60% (some free mini-kits)</td><td>Rice, wheat, maize, barley, millets (NFSM, SMSP, RKVY)</td></tr>
-         <tr><td>Pulses</td><td>60–75% (many mini-kits free)</td><td>Gram, lentil, moong, urad, pea; strong government push to raise productivity</td></tr>
-         <tr><td>Oilseeds</td><td>60–75% (nominal/free in specific campaigns)</td><td>Mustard, sunflower, soybean, groundnut (targeted for import reduction)</td></tr>
-         <tr><td>Vegetables & Fruits</td><td>Up to 60–75% (varies widely; kitchen garden kits sometimes free)</td><td>Tomato, chilli, okra, brinjal, melon (state horticulture missions)</td></tr>
-         <tr><td>Fodder</td><td>60–75%</td><td>Maize, sorghum, barseem, cowpea, napier grass; often included in livestock programs</td></tr>
-         <tr><td>Green manure, fiber, and specialty crops</td><td>60–75%</td><td>Cotton, jute, sunhemp, dhaincha, biofortified & climate-resilient varieties</td></tr>
-       </table>
-       <h4>Notable Schemes & Distribution</h4>
-       <ul>
-         <li><strong>National Food Security Mission (NFSM):</strong> Major cereals, pulses, and oilseeds at highly subsidized rates.</li>
-         <li><strong>Sub-Mission on Seeds and Planting Material (SMSP):</strong> Foundation/certified seeds for all major crops.</li>
-         <li><strong>State-Level Mini-Kits:</strong> State programs may give out free or near-free mini-kits—especially for pulses, oilseeds, and horticulture—tailored to local needs.</li>
-       </ul>
-       <h4>Special Features</h4>
-       <ul>
-         <li><strong>Direct Benefit Transfer (DBT):</strong> Most subsidies are now credited directly to farmers’ bank accounts to ensure transparency and quick access.</li>
-         <li><strong>Hybrid Seed Promotion:</strong> Extra emphasis on hybrid/high-yield seeds, especially for vegetable, oilseed, and cereal production for improved productivity and profitability.</li>
-         <li><strong>Climate Resilience:</strong> Recent policies incentivize climate-resilient and biofortified seeds on priority, particularly for rainfed regions.</li>
-       </ul>
-       <h3>MAJOR GOVERNMENT SCHEMES FOR FARMERS (2025)</h3>
-       <ul>
-         <li><strong>PM-KISAN Samman Nidhi:</strong> Offers ₹6,000 per year, in three installments, directly to eligible small and marginal farmers to supplement their income.</li>
-         <li><strong>Pradhan Mantri Fasal Bima Yojana (PMFBY):</strong> Affordable crop insurance scheme covering over 50 crops; premium is 1.5–2% for food crops, 5% for horticulture. Protects against natural disasters, pests, and disease.</li>
-         <li><strong>Kisan Credit Card (KCC):</strong> Provides flexible, low-interest loans up to ₹3 lakh for crop and farm needs, supporting timely input purchase (seeds, fertilizer, equipment).</li>
-         <li><strong>PM Krishi Sinchai Yojana (PMKSY):</strong> Subsidizes micro-irrigation, drip, and sprinkler systems—“Per Drop, More Crop”—to ensure water efficiency and expand irrigated area.</li>
-         <li><strong>Soil Health Card Scheme:</strong> Delivers customized soil nutrient recommendations to improve fertilizer use and yields.</li>
-         <li><strong>Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR):</strong> State-focused grants for agri-infrastructure, agri-entrepreneurship, and local innovation; includes seed and input subsidies.</li>
-         <li><strong>e-NAM (National Agriculture Market):</strong> Online marketplace allowing farmers to sell produce at fair prices pan-India, reducing dependence on local mandis.</li>
-         <li><strong>Paramparagat Krishi Vikas Yojana (PKVY):</strong> Promotes organic cluster farming, provides subsidies for input costs and organic certification.</li>
-         <li><strong>Agriculture Infrastructure Fund (AIF):</strong> Grants and subsidized loans for storage, cold chain, processing, and post-harvest infrastructure.</li>
-         <li><strong>Pradhan Mantri Matsya Sampada Yojana (PMMSY):</strong> For fisheries and aquaculture development by supporting infrastructure, capacity building, and market access.</li>
-         <li><strong>Mechanization Schemes (SMAM):</strong> Subsidies for purchasing tractors and farm machinery, focused on making technology accessible to small and marginal farmers.</li>
-       </ul>
-       <h3>CROP INSURANCE SCHEMES</h3>
-       <ul>
-         <li><strong>Pradhan Mantri Fasal Bima Yojana (PMFBY):</strong>
-           <ul>
-             <li>Flagship crop insurance scheme for all farmers (including sharecroppers and tenant farmers).</li>
-             <li>Low premiums: 2% of sum insured for Kharif, 1.5% for Rabi, 5% for horticulture/commercial crops.</li>
-             <li>Covers losses due to natural disasters, pests, diseases, prevented sowing, mid-season adversity, post-harvest losses, and localized calamities.</li>
-             <li>YES-TECH (Yield Estimation System Based on Technology) now used for remote-sensing-based assessment, ensuring fair settlement of claims.</li>
-           </ul>
-         </li>
-         <li><strong>Other Crop/Weather Insurance Schemes:</strong>
-           <ul>
-             <li>Weather-Based Crop Insurance Scheme (WBCIS): Compensates for weather-triggered risks.</li>
-             <li>State-specific schemes and add-ons for loss due to wild animal attacks or specific local risks.</li>
-           </ul>
-         </li>
-       </ul>
-       <h3>LOAN SCHEMES</h3>
-       <ul>
-         <li><strong>Kisan Credit Card (KCC) Scheme:</strong>
-           <ul>
-             <li>Provides collateral-free revolving crop loans up to ₹3 lakh, with interest subvention and prompt repayment benefits (effective rates as low as 4% for prompt payers).</li>
-             <li>Flexible for crop production, animal husbandry, fisheries, equipment purchase, etc.</li>
-           </ul>
-         </li>
-         <li><strong>NABARD and MSME Agriculture Loans:</strong>
-           <ul>
-             <li>NABARD-run schemes such as short/long-term credit (STCRC/LTRCF), agri-infrastructure, and solar pump loans offer subsidized and low-interest financing to farmers, FPOs, agri-startups, and rural MSMEs.</li>
-             <li>Special collateral-free loans up to ₹2 lakh for small/marginal farmers.</li>
-           </ul>
-         </li>
-         <li><strong>Agriculture Infrastructure Fund and Other Government Loans:</strong>
-           <ul>
-             <li>Grants and subsidized loans for building cold storage, processing units, post-harvest infrastructure, and mechanization.</li>
-           </ul>
-         </li>
-       </ul>
-       <h3>ACCESS REQUIREMENTS</h3>
-       <ul>
-         <li>Most insurance schemes link directly with crop loans/KCC, making insurance mandatory for loan-receiving farmers.</li>
-         <li>Schemes can be applied for at banks, cooperative societies, primary agriculture credit societies (PACS), and online via official portals.</li>
-         <li>These insurance and loan initiatives enable Indian farmers to access timely financial support and mitigate risks, ensuring greater security and sustainability in their agricultural practices.</li>
-       </ul>
-       <h3>CROPS TO BE GROWN ACCORDING TO SEASONS</h3>
-       <h4>Kharif (Monsoon Season: June–September)</h4>
-       <ul>
-         <li><strong>June:</strong> Paddy (rice), maize, millets (bajra, jowar), cotton, soybean, groundnut, arhar (pigeon pea), urad (black gram), moong (green gram)</li>
-         <li><strong>July:</strong> Continue above crops, start vegetables like okra, brinjal (eggplant), bottle gourd, pumpkin, cucumber, ridge gourd</li>
-         <li><strong>August:</strong> Plant late Kharif crops like sesamum, sunflower, cowpea, fodder crops (sorghum, napier grass)</li>
-         <li><strong>September:</strong> Short-duration vegetables (radish, spinach, coriander), late-sown pulses</li>
-       </ul>
-       <h4>Rabi (Winter Season: October–February)</h4>
-       <ul>
-         <li><strong>October:</strong> Wheat, barley, oats, chickpea (gram), mustard, pea, lentil, garlic, onion</li>
-         <li><strong>November:</strong> Continue above, start potato, carrot, cabbage, cauliflower</li>
-         <li><strong>December:</strong> Leafy greens (spinach, fenugreek, lettuce), short-duration pulses, root vegetables</li>
-       </ul>
-       <h4>Zaid (Summer Season: March–May)</h4>
-       <ul>
-         <li><strong>March:</strong> Watermelon, muskmelon, cucumber, summer moong, cowpea, sunflower</li>
-         <li><strong>April:</strong> Same as March, sow okra and gourds</li>
-         <li><strong>May:</strong> Continue short-duration pulses, start preparations for Kharif season</li>
-       </ul>
-       <h4>Vegetables & Fruits Year-Round (Depending on Region/Climate)</h4>
-       <p>Some crops can be staggered across seasons for higher returns: Tomatoes, chillies, brinjal, onions, greens, and specific regional crops can often be grown with proper irrigation and care year-round or in multiple cycles.</p>
-       <h4>Regional Crop Guide</h4>
-       <h5>North India</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Paddy (rice), maize, sugarcane, bajra (pearl millet), urad, moong, cotton</td><td>Punjab, Haryana, UP, Bihar, Uttarakhand</td></tr>
-         <tr><td>Rabi</td><td>Wheat, barley, mustard, gram (chickpea), pea, potato, onion</td><td>Punjab, Haryana, UP, Rajasthan, MP</td></tr>
-         <tr><td>Zaid</td><td>Watermelon, muskmelon, cucumber, summer moong</td><td>UP, Haryana, Punjab, Bihar</td></tr>
-       </table>
-       <h5>South India</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Paddy, ragi, groundnut, cotton, tur, maize, sunflower</td><td>Tamil Nadu, Karnataka, Andhra Pradesh, Telangana, Kerala</td></tr>
-         <tr><td>Rabi</td><td>Ragi, groundnut, urad, horse gram, chillies, sesame</td><td>TN, Karnataka, AP, Telangana, Kerala</td></tr>
-         <tr><td>Zaid</td><td>Watermelon, muskmelon, cucumber, short-cycle vegetables</td><td>Wide, with irrigation</td></tr>
-       </table>
-       <h5>West India</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Cotton, soybean, groundnut, bajra, paddy, tur</td><td>Maharashtra, Gujarat, Rajasthan</td></tr>
-         <tr><td>Rabi</td><td>Wheat, barley, gram, cumin, mustard</td><td>Gujarat, Rajasthan, MP</td></tr>
-         <tr><td>Zaid</td><td>Melons, fodder crops, vegetables</td><td>Maharashtra, Gujarat, Rajasthan</td></tr>
-       </table>
-       <h5>East & North-East India</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Paddy, jute, maize, tea</td><td>Bengal, Assam, Odisha, Tripura, Jharkhand, Chhattisgarh</td></tr>
-         <tr><td>Rabi</td><td>Wheat (north parts), lentil, mustard, potato, vegetables</td><td>Bengal, Assam, Odisha, Chhattisgarh</td></tr>
-         <tr><td>Zaid</td><td>Summer pulses, vegetables, melons</td><td>Bengal, Assam, Odisha</td></tr>
-       </table>
-       <h5>Central India</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Soybean, paddy, pigeon pea (tur), maize</td><td>MP, Chhattisgarh</td></tr>
-         <tr><td>Rabi</td><td>Wheat, chickpea, mustard, linseed</td><td>MP, Chhattisgarh</td></tr>
-         <tr><td>Zaid</td><td>Fodder crops, watermelon, vegetables</td><td>MP, Chhattisgarh</td></tr>
-       </table>
-       <h5>Hill & Himalayan States</h5>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
-         <tr><td>Kharif</td><td>Maize, paddy, rajma, buckwheat, apple, pear</td><td>HP, Uttarakhand, J&K, NE hills</td></tr>
-         <tr><td>Rabi</td><td>Barley, wheat, peas, off-season vegetables</td><td>HP, Uttarakhand, Sikkim, J&K</td></tr>
-       </table>
-       <h3>GENERAL GUIDE FOR MAJOR CROPS</h3>
-       <h4>1. Rice (Paddy) [Kharif]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Mid-June to early July (nursery to transplanting)</li>
-         <li><strong>Irrigation:</strong> Maintain standing water (2–5 cm) at early growth, reduce before maturity; 4–6 irrigations if direct seeded in rainfed areas.</li>
-         <li><strong>Fertilizer:</strong> 90–120 kg N, 40–60 kg P₂O₅, 40–60 kg K₂O per hectare; split as 1/2 basal, 1/4 at tillering, 1/4 at panicle initiation.</li>
-         <li><strong>Harvesting:</strong> Late September to November</li>
-       </ul>
-       <h4>2. Wheat [Rabi]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Late October to mid-November</li>
-         <li><strong>Irrigation:</strong> 4–5 critical irrigations (crown root initiation at 20–25 days after sowing, tillering, booting, heading, milking)</li>
-         <li><strong>Fertilizer:</strong> 120–150 kg N, 60 kg P₂O₅, 40 kg K₂O per hectare; 1/2 N + full P & K at sowing, rest N at CRI and other stages.</li>
-         <li><strong>Harvesting:</strong> March to April</li>
-       </ul>
-       <h4>3. Maize (Kharif/Rabi)</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Kharif – June to July; Rabi – October to November</li>
-         <li><strong>Irrigation:</strong> 5–6, esp. at knee-high, tasseling, silking, and grain filling</li>
-         <li><strong>Fertilizer:</strong> 120 kg N, 60 kg P₂O₅, 40 kg K₂O per hectare; split N application</li>
-         <li><strong>Harvesting:</strong> Sept–Oct (Kharif); Feb–March (Rabi)</li>
-       </ul>
-       <h4>4. Soybean [Kharif]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Last week of June to mid-July</li>
-         <li><strong>Irrigation:</strong> Mostly rainfed; provide lifesaving irrigation in case of dry spells</li>
-         <li><strong>Fertilizer:</strong> 30–40 kg N, 60–80 kg P₂O₅, 30–40 kg K₂O/ha (at sowing); use Rhizobium inoculant</li>
-         <li><strong>Harvesting:</strong> Late September to October</li>
-       </ul>
-       <h4>5. Chickpea (Gram) [Rabi]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> October to mid-November</li>
-         <li><strong>Irrigation:</strong> Rainfed but 1–2 irrigations at flowering and pod filling if possible</li>
-         <li><strong>Fertilizer:</strong> 20–25 kg N, 40–60 kg P₂O₅/ha (at sowing)</li>
-         <li><strong>Harvesting:</strong> March to April</li>
-       </ul>
-       <h4>6. Mustard [Rabi]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Mid-October to early November</li>
-         <li><strong>Irrigation:</strong> 2–3 irrigations (branching, flowering, pod development stages)</li>
-         <li><strong>Fertilizer:</strong> 80–120 kg N, 40–60 kg P₂O₅, 40 kg K₂O/ha</li>
-         <li><strong>Harvesting:</strong> February to April</li>
-       </ul>
-       <h4>7. Cotton [Kharif]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> May–June in N/W India, June–July in Central/South India</li>
-         <li><strong>Irrigation:</strong> 3–4 critical stages if rainfed; avoid waterlogging!</li>
-         <li><strong>Fertilizer:</strong> 60–75 kg N, 30–40 kg P₂O₅, 30–40 kg K₂O/ha, balanced micronutrients</li>
-         <li><strong>Harvesting:</strong> October to January</li>
-       </ul>
-       <h4>8. Potato [Rabi/Hills and Plains]</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Plains – Oct–Nov; Hills – March–May</li>
-         <li><strong>Irrigation:</strong> 7–9, esp. immediately after planting and at tuber formation</li>
-         <li><strong>Fertilizer:</strong> 120 kg N, 80 kg P₂O₅, 120 kg K₂O/ha</li>
-         <li><strong>Harvesting:</strong> Late Jan–March (plains); June–Aug (hills)</li>
-       </ul>
-       <h4>9. Sugarcane</h4>
-       <ul>
-         <li><strong>Planting:</strong> February–March (spring crop), September–October (autumn crop)</li>
-         <li><strong>Irrigation:</strong> Heavy (every 10–12 days in summer, 15–20 days in winter)</li>
-         <li><strong>Fertilizer:</strong> 200 kg N, 60 kg P₂O₅, 60 kg K₂O/ha (split; more N for ratoon crops)</li>
-         <li><strong>Harvesting:</strong> 10–18 months after planting, depending on variety & sowing time</li>
-       </ul>
-       <h4>10. Common Vegetables (e.g., Tomato, Brinjal, Okra)</h4>
-       <ul>
-         <li><strong>Sowing:</strong> Staggered through year (e.g., Tomato: June–July, Oct–Nov, Jan–Feb)</li>
-         <li><strong>Irrigation:</strong> Regular (5–10 days interval), never let soil dry out or waterlog</li>
-         <li><strong>Fertilizer:</strong> 100–120 kg N, 60–80 kg P₂O₅, 60–80 kg K₂O/ha</li>
-         <li><strong>Harvesting:</strong> 60–120 days after sowing, depending on crop and season</li>
-       </ul>
-       <h3>PEST AND FERTILIZERS</h3>
-       <h4>1. Rice (Paddy)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> Basal (at transplanting): 50% N + 100% P & K (example: 50–60 kg N, 40–60 kg P₂O₅, 40–60 kg K₂O/ha)<br>Tillering (25–30 days after transplanting): 25% N<br>Panicle initiation (55–60 days): 25% N + micronutrients (Zn, S if deficient)</li>
-         <li><strong>Pest Advisory:</strong> Seedling/Early growth: Watch for stem borer, leaf folder – use pheromone traps; if severe, spray chlorantraniliprole or flubendiamide.<br>Mid-tillering–flowering: Monitor blast, BLB, sheath blight; use tricyclazole for blast and copper oxychloride for BLB with IPM methods.<br>Pre-harvest: Control rodents and fungal grain molds with field hygiene.</li>
-       </ul>
-       <h4>2. Wheat (North & Central Rabi Zone)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> At sowing: 60–75 kg N, 60 kg P₂O₅, 40 kg K₂O/ha<br>After first irrigation (CRI): 30–40 kg N<br>At booting: Remaining N, as top-dressing</li>
-         <li><strong>Pest Advisory:</strong> Early: Seed treatment with triazoles or thiram for seed-borne diseases.<br>Tillering: Rusts (yellow, brown), aphids—monitor; if rust appears, use propiconazole.<br>Flowering–filling: Armyworm/aphids—use neem oil as first line, then imidacloprid if needed.</li>
-       </ul>
-       <h4>3. Cotton (Western/Southern India)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> 60–90 kg N, 30–45 kg P₂O₅, 30–45 kg K₂O/ha in 2–3 splits (at planting, 45 days, 75 days).</li>
-         <li><strong>Pest Advisory:</strong> Early: Sucking pests (aphids, jassids, whiteflies)—release ladybirds, use neem oil or thiamethoxam if severe.<br>Mid-late: Pink bollworm, Spodoptera—pheromone traps, Bt sprays, chlorantraniliprole if needed.<br>Continuous: Avoid pesticide overuse; rotate chemistries to prevent resistance.</li>
-       </ul>
-       <h4>4. Soybean (Central India)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> 30–40 kg N, 60–80 kg P₂O₅, 30–40 kg K₂O/ha; seed treatment with Rhizobium.</li>
-         <li><strong>Pest Advisory:</strong> Early: Seedling girdler, fungal root rot—use biopesticide seed dressing.<br>Pod filling: Girdle beetle, pod borer (Helicoverpa)—monitor, use Novaluron or neem extract.</li>
-       </ul>
-       <h4>5. Groundnut (South/West India)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> 15–20 kg N, 40–60 kg P₂O₅, gypsum at flowering.</li>
-         <li><strong>Pest Advisory:</strong> Early-mid: Leaf spot, rust—use carbendazim/mancozeb as foliar sprays at 15-day intervals.<br>Pod stage: Leaf miner—install light traps, spray spinosad if severe.</li>
-       </ul>
-       <h4>6. Pulses (All-India, seasonal)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> Low input; 20 kg N/ha (starter), 40–60 kg P₂O₅.</li>
-         <li><strong>Pest Advisory:</strong> Flowering to podding: Pod borer—install pheromone traps; neem extract, if needed, emamectin benzoate.</li>
-       </ul>
-       <h4>7. Vegetables (Tomato, Brinjal, Okra, Region-wise)</h4>
-       <ul>
-         <li><strong>Fertilizer:</strong> 100–120 kg N, 60–80 kg P₂O₅, 60–80 kg K₂O/ha, micronutrients (Ca, B) as needed.</li>
-         <li><strong>Pest Advisory:</strong> Nursery/Transplant: Damping off—treat seeds with Trichoderma.<br>Growth-early fruiting: Whitefly, fruit borer—yellow traps, neem spray, weekly surveillance.<br>Fruit ripening: Late blight (tomato)—mancozeb or copper fungicide sprays after rain.</li>
-       </ul>
-       <h4>General Notes:</h4>
-       <ul>
-         <li>Always follow integrated pest management (IPM): crop rotation, field sanitation, biological control, minimal use of chemicals.</li>
-         <li>Adjust fertilizer doses for local soil tests, organic matter, and recent crop rotation.</li>
-         <li>Pest management should be based on surveillance/Economic Threshold Levels (ETL), to avoid unnecessary pesticide application.</li>
-       </ul>
-       <h3>COMMON PEST OUTBREAK</h3>
-       <ul>
-         <li><strong>Fall Armyworm</strong><br>Affected Crops: Maize, sorghum<br>Impact: 10–20% yield loss<br>Outbreak Locations: Reported across India, especially in maize-growing states<br>Management: Early identification, pheromone traps, biopesticides, rotation, and use of resistant varieties.</li>
-         <li><strong>Bollworm Complex</strong><br>Affected Crops: Cotton, tomato<br>Impact: 15–25% yield loss<br>Regions: North, West, and Central India (especially in cotton zones)<br>Management: Bt cotton, pheromone lures, timely chemical rotations to prevent resistance.</li>
-         <li><strong>Aphids</strong><br>Affected Crops: Bell pepper, soybean, many vegetables<br>Impact: 7–15% yield loss and transmission of viral diseases<br>Regions: Nationwide, but especially in protected and high-humidity areas<br>Management: Biologicals (parasitic wasps), biopesticides, minimal insecticides to preserve natural enemies.</li>
-         <li><strong>Thrips, including Black Thrips (Thrips parvispinus)</strong><br>Affected Crops: Chilli, capsicum, brinjal (eggplant), onions<br>Impact: 6–15% yield loss; has caused severe economic hardship for chilli growers, especially in South India (AP, Karnataka, TN).<br>Management: Sticky traps, biological controls, judicious/rotational chemical treatments due to rapid resistance development, use of IPM.</li>
-         <li><strong>Green Leafhopper (Jassid)</strong><br>Affected Crops: Cotton<br>Regions: North India—Haryana, Punjab, Rajasthan (worst outbreak in a decade, 2025)<br>Damage: Classic leaf curling, yellow margins, rapid reduction in plant vigor<br>Causes: Prolonged humidity, excessive rainfall creating ideal pest conditions<br>Management: Immediate insecticidal management, vigilant monitoring, regional advisories.</li>
-         <li><strong>Navel Orangeworm & Almond Moth</strong><br>Affected: Almonds and other nuts (to a lesser extent in India)<br>Damage: Kernel loss, significant economic setback<br>Management: Sanitation, biopesticides, mating disruption.</li>
-         <li><strong>Mango pests</strong><br>Outbreak Location: North coastal Andhra Pradesh, 2025; 50% crop loss due to combined pest and adverse weather.<br>Common pests: Hoppers, fruit flies, mealy bugs<br>Management: Field sanitation, timely insecticide/baiting, community participation.</li>
-       </ul>
-       <h3>SOIL AND WEATHER BASED CROPS</h3>
-       <h4>1. Sandy Soils (Low water holding, good drainage)</h4>
-       <ul>
-         <li><strong>Ideal Regions:</strong> Rajasthan, Haryana, parts of Gujarat</li>
-         <li><strong>Best Crops:</strong> Pearl millet (bajra), moong, moth, guar, watermelon, groundnut, cumin, sesame</li>
-         <li><strong>Weather Suitability:</strong> Suited for areas with low to moderate rainfall and hot climates (arid/semi-arid)</li>
-         <li><strong>Advice:</strong> Use drought-tolerant varieties, adopt mulching, and prefer Kharif crops that mature before heavy post-monsoon moisture loss</li>
-       </ul>
-       <h4>2. Clay & Black Cotton Soils (Vertisols)</h4>
-       <ul>
-         <li><strong>Ideal Regions:</strong> Maharashtra, MP, Andhra Pradesh, Telangana, Karnataka, Gujarat</li>
-         <li><strong>Best Crops:</strong> Cotton, soybean, pigeon pea (tur), sorghum, chickpea, sunflower, maize, wheat (Rabi where irrigation available)</li>
-         <li><strong>Weather Suitability:</strong> Suited for regions with moderate to heavy monsoon rainfall and extended moisture retention in soil</li>
-         <li><strong>Advice:</strong> Kharif crops benefit from heavy monsoon; Rabi crops with supplemental irrigation flourish after rainfall</li>
-       </ul>
-       <h4>3. Red Loamy Soils</h4>
-       <ul>
-         <li><strong>Ideal Regions:</strong> Tamil Nadu, Karnataka, eastern India, parts of Odisha, Chhattisgarh, NE</li>
-         <li><strong>Best Crops:</strong> Groundnut, millets, pulses (arhar, black gram), castor, cotton, ragi, sugarcane, vegetables</li>
-         <li><strong>Weather Suitability:</strong> Moderately rainfed, can handle tropical humidity and variable rainfall</li>
-         <li><strong>Advice:</strong> Suitable for mixed and diversified cropping; practice moisture conservation</li>
-       </ul>
-       <h4>4. Alluvial Soils (Gangetic Plains, Brahmaputra Valley)</h4>
-       <ul>
-         <li><strong>Ideal Regions:</strong> Punjab, Haryana, UP, Bihar, West Bengal, Assam</li>
-         <li><strong>Best Crops:</strong> Rice (Kharif), wheat (Rabi), sugarcane, maize, jute (Bengal/Assam), potato, pulses, mustard, vegetables</li>
-         <li><strong>Weather Suitability:</strong> Moderate to heavy rainfall zones, well-drained, high nutrient content</li>
-         <li><strong>Advice:</strong> Both Kharif and Rabi crops can do well; careful water management required to prevent waterlogging in monsoons</li>
-       </ul>
-       <h4>5. Laterite Soils</h4>
-       <ul>
-         <li><strong>Ideal Regions:</strong> Western/Eastern Ghats (Kerala, Karnataka, Maharashtra, Odisha, Bengal hills)</li>
-         <li><strong>Best Crops:</strong> Cashew, tea, coffee, rubber, coconut, pineapple, some millets and pulses</li>
-         <li><strong>Weather Suitability:</strong> High rainfall/humid tropics</li>
-         <li><strong>Advice:</strong> Use organic amendments to maintain fertility, terrace cultivation in slopes</li>
-       </ul>
-       <h4>Examples of Crop Choices Based on Combined Soil and Weather Factors</h4>
-       <ul>
-         <li><strong>Rajasthan (Arid, sandy):</strong> Bajra, moth, moong (Kharif); gram, mustard (Rabi)</li>
-         <li><strong>Punjab/Haryana (Alluvial, irrigated):</strong> Rice (Kharif), wheat (Rabi), sugarcane, potato</li>
-         <li><strong>Maharashtra (Black soils, variable rainfall):</strong> Cotton, soybean, pigeon pea (Kharif), jowar (Rabi, irrigated)</li>
-         <li><strong>West Bengal/Assam (Alluvial, monsoon):</strong> Paddy (Kharif), jute, vegetables, wheat (Rabi), tea (hill areas)</li>
-         <li><strong>Tamil Nadu (Red loam, humid):</strong> Groundnut, millets (Kharif), rice (with irrigation, all seasons), sugarcane</li>
-       </ul>
-       <h3>STUBBLE ALTERNATIVES</h3>
-       <ul>
-         <li><strong>1. In-situ Decomposition/Bio-decomposers (e.g., PUSA Bio-enzyme)</strong><br>How it works: Special microbial solutions (like PUSA Decomposer) are sprayed on the crop residue; the enzyme breaks down stubble into valuable organic matter within 15–25 days.<br>Benefits for Pests: Fast residue decomposition reduces the habitat for stubble-borne pest larvae, cutworm, stem borer pupae, and fungal disease cycles (like rice blast, sheath blight).<br>Added Value: Adds organic carbon and nutrients to soil, improves microbial health, and reduces next-season fertilizer requirement.<br>Field Example: Tested and scaled in Delhi, Punjab, and Uttar Pradesh; showed increased wheat yield and effective residue management without burning.</li>
-         <li><strong>2. Happy Seeder, Super Seeder, Rotavator (Machinery Integration)</strong><br>How it works: These tractor-mounted machines cut and lift stubble, seed the new crop into the standing residue, and mulch leftover straw onto the soil.<br>Pest Benefit: Rapid recycling suppresses stubble pest carryover and allows decay before the next season’s pest peak.<br>Soil Health: Retains soil moisture, increases organic matter, suppresses weeds and some surface pests, reduces evaporation loss.</li>
-         <li><strong>3. Composting & Biochar Production</strong><br>Composting: Stubble is mixed and decomposed off-site (ex-situ or in compost pits) into rich organic fertilizer.<br>Pest Control: Composting temperatures kill pest eggs, larvae, and pathogens.<br>Adoption: Used in vegetable regions and promoted by urban-rural composting initiatives.<br>Biochar: Crop residue is converted at high temperature into biochar, which is then incorporated as a soil amendment.<br>Pest Effect: Biochar improves soil health, potentially suppressing soil-borne pests/diseases.<br>Economics: Valuable for both fertility and carbon markets.</li>
-         <li><strong>4. Mushroom Cultivation</strong><br>How it works: Residue (especially rice straw) is used as a substrate for edible mushroom production.<br>Pest Benefit: Competitive fungi (mushrooms) outcompete stubble-borne pests during decomposition.<br>Income: Adds secondary income from mushroom harvests after crop cycles.</li>
-         <li><strong>5. Fodder, Paper, and Bioenergy Use (Ex-situ Management)</strong><br>Fodder: Chopped stubble is processed for animal feed, removing pest habitats from the field.<br>Paper & Board: Collected residue is used in papermaking industries.<br>Bioenergy/Bioethanol: Paddy straw is used in power plants and for 2G ethanol, providing an economic use for pests’ habitat remnants.</li>
-         <li><strong>6. Changing Cropping Pattern</strong><br>Practice: Shifting away from monoculture paddy to diversified or low-residue crops reduces overall pest cycles and residue load.<br>Ecosystem Benefit: Helps break pest and disease cycles dependent on host-specific stubble.</li>
-       </ul>
-       <h4>Key Takeaways</h4>
-       <ul>
-         <li>Integrated Approach: Combining bio-decomposers, mechanized mulching, ex-situ uses, and crop rotation, farmers can manage both residue and field pest risks without burning.</li>
-         <li>Government Support: Indian states offer capital subsidies and supply PUSA Decomposer and machinery at reduced rates to promote adoption.</li>
-         <li>Recommendation: Farmers should consult with local Krishi Vigyan Kendras for training on stubble alternatives, machine rental, and to get region-specific bio-decomposer or composting kits for the most effective and sustainable pest and residue management.</li>
-       </ul>
-       <h3>Key Government Schemes for Agricultural Machines (2025)</h3>
-       <ul>
-         <li><strong>1. Sub-Mission on Agricultural Mechanization (SMAM)</strong><br>Availability: Wide range of machines—tractors, power tillers, harvesters, Happy Seeder, Super Seeder, rotavator, zero-till drills, laser levelers, transplanters, sprayers, threshers, balers, and more.<br>Scheme Features:<br>Subsidy: 40–60% of machine cost for most farmers, higher (up to 80%) for SC/ST, women, small/marginal farmers.<br>Custom Hiring Centers (CHC): Farmers unable to buy can rent machines at low cost.<br>How to Avail: Apply online via agrimachinery.nic.in or state portals. Subsidy is credited after purchase and field verification.</li>
-         <li><strong>2. State Mechanization Schemes</strong><br>Each state (e.g., UP, Haryana, MP, Rajasthan, West Bengal, etc.) runs its own mechanization programs under the central SMAM umbrella, with specific machine lists and subsidies, often through their agriculture department portals.<br>Booking & Availing: Users can view available machines, check rates, and book through state government machinery hubs or online booking systems.</li>
-         <li><strong>3. PM Kisan Samman Nidhi (Additional Benefits)</strong><br>While the main focus is income support, some states leverage PM-Kisan databases to target priority groups for machine subsidies.</li>
-         <li><strong>4. Agricultural Infrastructure Fund</strong><br>Supports the purchase and installation of large, shared machines (e.g., batch dryers, warehouses, processing units) via low-interest loans and grants—often for FPOs and SHGs.</li>
-         <li><strong>5. Custom Hiring Centers (CHC) and Hi-tech Hubs</strong><br>Availability: All key machines for small farmers, provided on a rental basis through registered centers. This allows farmers to use advanced equipment without direct purchase.<br>Subsidy: 40–50% capital subsidy for setting up CHCs.</li>
-       </ul>
-       <h4>How to Check and Apply for Machines:</h4>
-       <ul>
-         <li>Central Portal: agrimachinery.nic.in for pan-India machinery schemes, approved lists, dealer locators, and subsidy calculations.</li>
-         <li>State Agriculture Portals: Online booking/registration and scheme details (e.g., UP, Haryana, MP, WB, etc.).</li>
-         <li>Physical Availability: Through government-registered CHCs, Krishi Vigyan Grenras, and cooperative societies.</li>
-       </ul>
-       <h4>Common Machines Supported by Government Schemes</h4>
-       <ul>
-         <li>Tractors (all HP ranges)</li>
-         <li>Power tillers</li>
-         <li>Harvesters (with straw management)</li>
-         <li>Happy Seeder, Super Seeder, Rotavator</li>
-         <li>Laser land levelers, zero-till seed drills</li>
-         <li>Potato/sugarcane planters, vegetable transplanters, sprayers</li>
-         <li>Threshers, balers, fodder harvesters</li>
-         <li>Agricultural drones (expanding support in 2025 for precision spraying)</li>
-         <li>Mini processing units, dryers, mobile grading/cleaning units</li>
-       </ul>
-       <h4>Who Can Apply?</h4>
-       <ul>
-         <li>Individual farmers, women, SC/ST farmers, SHGs, FPOs, Custom Hiring Centers</li>
-       </ul>
-       <h4>Subsidy Details:</h4>
-       <ul>
-         <li>40–60% general subsidy</li>
-         <li>50–80% for target categories (women, SC/ST, NE states)</li>
-         <li>Direct Benefit Transfer post-validation</li>
-       </ul>
-       <h3>Disposal Alternatives for crop Residue</h3>
-       <p>Alternatives to burning crop stubble that are eco-friendly, often subsidized, and improve soil health include:</p>
-       <ul>
-         <li><strong>In-Situ Incorporation with Subsidized Machines:</strong> Happy Seeder, Super Seeder, Rotavator: Cut and incorporate residue into soil as mulch—suppresses pest cycles, adds organic carbon, reduces need to burn.</li>
-         <li><strong>Residue Retention & Mulching:</strong> Leaving residues in the field to conserve soil moisture, prevent erosion, improve soil health, and suppress weeds (especially useful in semi-arid/rainfed areas).</li>
-         <li><strong>Composting/Biofertilizer Production:</strong> Converting residues to compost using effective microbes or bio-decomposer sprays (like PUSA Decomposer); creates high-quality soil amendment and reduces pest/disease carryover.</li>
-         <li><strong>Livestock Feed/Fodder:</strong> Properly processed straw, husks, stalks serve as animal feed, supporting both residue disposal and livestock productivity.</li>
-         <li><strong>Bioenergy Production:</strong> Residue converted to biochar, biogas, or electricity via pyrolysis, gasification, or use in bioenergy plants. Briquetting crop residues is also promoted for industrial heating and rural energy.</li>
-         <li><strong>Mushroom Cultivation:</strong> Paddy and wheat straw used as substrate for edible mushrooms, creating additional farm income and utilizing residue sustainably.</li>
-         <li><strong>Paper, Board, Pulpmaking:</strong> Some areas collect stubble for commercial use in paper and board industries or emerging bioeconomy applications.</li>
-       </ul>
-       <h4>Government Initiatives for Disposal Alternatives</h4>
-       <ul>
-         <li><strong>National Policy for Management of Crop Residues (NPMCR):</strong> Encourages eco-friendly, scientific residue management and use.</li>
-         <li><strong>Schemes like SMAM:</strong> Subsidize machines required for sustainable stubble management, making them affordable and accessible to farmers across India.</li>
-       </ul>
-       <h3>SOIL HEALTH AND CROPS SUITABLE FOR THAT</h3>
-       <h4>1. Acidic Soils (pH < 6.0), often low P & Ca</h4>
-       <ul>
-         <li><strong>Typical Location:</strong> North East, parts of Jharkhand, Kerala, Odisha</li>
-         <li><strong>Best Crops:</strong> Rice, tea, potato, maize, ginger, turmeric, pineapples, Green gram (moong), black gram (urad), soybean, Pineapple, passion fruit (where high acidity, organic matter)</li>
-         <li><strong>Tip:</strong> Use lime for pH improvement if aiming to grow wheat or pulses.</li>
-       </ul>
-       <h4>2. Neutral Soils (pH 6–7.5), good organic carbon</h4>
-       <ul>
-         <li><strong>Locations:</strong> Indo-Gangetic plains, much of Punjab, Haryana, UP, Bihar</li>
-         <li><strong>Best Crops:</strong> Wheat, rice, maize, sugarcane, potato, Pulses (gram, lentil, pea), oilseeds (mustard, sunflower), All types of vegetables, fruits like mango, guava, citrus</li>
-         <li><strong>Tip:</strong> These soils are the most versatile—nearly all major crops thrive if NPK is adequate.</li>
-       </ul>
-       <h4>3. Alkaline Soils (pH > 7.5), often low in Fe, Zn</h4>
-       <ul>
-         <li><strong>Location:</strong> Arid/semi-arid regions, Haryana, Rajasthan, Gujarat</li>
-         <li><strong>Best Crops:</strong> Barley, pearl millet (bajra), sorghum (jowar), mustard, Wheat (with iron/zinc management), cotton, cumin, castor, Guar, cluster bean</li>
-         <li><strong>Tip:</strong> Apply organic matter and gypsum, and choose crops tolerant of alkalinity.</li>
-       </ul>
-       <h4>4. Low Organic Carbon (<0.5%)</h4>
-       <ul>
-         <li><strong>Best Crops:</strong> Millets (jowar, bajra, ragi), pulses (pigeon pea, cowpea, horsegram), guar, Castor, oilseeds, drought-tolerant crops</li>
-         <li><strong>Tip:</strong> Regular addition of compost, FYM, or green manure is advised.</li>
-       </ul>
-       <h4>5. High Salinity (EC >2 dS/m)</h4>
-       <ul>
-         <li><strong>Best Crops:</strong> Barley, pearl millet (bajra), cotton, spinach, sugar beet, Date palm, coconut (with management), asparagus</li>
-         <li><strong>Tip:</strong> Use salt-tolerant crop varieties and flush with fresh water when possible.</li>
-       </ul>
-       <h4>6. High Fertility (High N, P, K, Org. Carbon >0.75%)</h4>
-       <ul>
-         <li><strong>Best Crops:</strong> Intensive vegetable production (tomato, brinjal, cucumber, gourd), potato, sugar beet, High-yielding rice, wheat, maize, hybrid seed production</li>
-         <li><strong>Tip:</strong> Crop rotation and proper irrigation maximize returns and maintain the soil.</li>
-       </ul>
-       <h4>7. Low Phosphorus (<11 kg/ha) or Low Potassium (<141 kg/ha)</h4>
-       <ul>
-         <li><strong>Best Crops:</strong> Improved pulses, legumes (can fix own N, less P/K demanding), Kasturi methi, cluster beans, some oilseeds</li>
-         <li><strong>Tip:</strong> Apply single superphosphate (for P), muriate of potash (for K) as needed.</li>
-       </ul>
-       <h4>8. Waterlogged Areas</h4>
-       <ul>
-         <li><strong>Best Crops:</strong> Paddy (rice), taro (arbi), water chestnut, jute, Certain fodders (para grass)</li>
-       </ul>
-       <h3>SOIL HEALTH CARD (SHC)</h3>
-       <p>A Soil Health Card (SHC) is a government-issued document given to Indian farmers, detailing the vital parameters of their soil and providing personalized recommendations to improve soil fertility and crop yields.</p>
-       <h4>Key Features of the Soil Health Card</h4>
-       <ul>
-         <li><strong>Issued Under:</strong> Government of India’s Soil Health Card Scheme (ongoing since 2015).</li>
-         <li><strong>Purpose:</strong> To promote balanced use of fertilizers, correct nutrient deficiencies, and guide sustainable crop management.</li>
-         <li><strong>Frequency:</strong> Every farmer is intended to get their SHC every 2 years, covering all major agricultural land.</li>
-       </ul>
-       <h4>Information Provided</h4>
-       <ul>
-         <li>Soil pH (acidity/alkalinity)</li>
-         <li>Organic carbon content</li>
-         <li>Available primary nutrients (Nitrogen (N), Phosphorus (P), Potassium (K))</li>
-         <li>Secondary nutrients: (Sulphur)</li>
-         <li>Micronutrients: Zinc (Zn), Iron (Fe), Copper (Cu), Manganese (Mn), Boron (B)</li>
-         <li>Electrical Conductivity (EC)</li>
-         <li>Soil texture/class</li>
-       </ul>
-       <h4>How It Works</h4>
-       <ul>
-         <li><strong>Sample Collection:</strong> Soil samples collected (1/2 to 1 meter depth) from the farmer’s field in a scientific, grid-based manner.</li>
-         <li><strong>Laboratory Analysis:</strong> Soil samples are tested in government labs for key nutrients and properties.</li>
-         <li><strong>Card Generation:</strong> Lab results and crop-wise fertilizer/lime/gypsum recommendations are entered in data portals, generating a personalized SHC.</li>
-         <li><strong>Distribution:</strong> The card, often bilingual, is distributed to the farmer (physically or digitally).</li>
-       </ul>
-       <h4>Benefits</h4>
-       <ul>
-         <li>Farmers know exactly which nutrients their soil lacks or has in excess.</li>
-         <li>Helps avoid overuse of fertilizers, save money, and protect the environment.</li>
-         <li>Improves yield, optimizes input costs, and boosts profit.</li>
-         <li>Encourages soil-building, organic matter addition, right crop choice, and soil conservation.</li>
-       </ul>
-       <h4>How to Get a Soil Health Card</h4>
-       <ul>
-         <li><strong>Contact:</strong> Local Krishi Vigyan Grenra (KVK), State Agriculture Department, or Atal Seva Grenra/Common Service Centre.</li>
-         <li><strong>Online:</strong> Many state portals and soilhealth.dac.gov.in offer search, download, and status-check facilities.</li>
-         <li><strong>Cost:</strong> Usually free as part of government service.</li>
-       </ul>
-       <h4>Typical Contents of a Soil Health Card</h4>
-       <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
-         <tr><th>Parameter</th><th>Value</th><th>Rating</th><th>Recommendation</th></tr>
-         <tr><td>pH</td><td>6.8</td><td>Neutral</td><td>Suitable for most crops</td></tr>
-         <tr><td>Organic C (%)</td><td>0.72</td><td>Medium</td><td>Add FYM/compost annually</td></tr>
-         <tr><td>N (kg/ha)</td><td>230</td><td>Medium</td><td>90 kg urea/acre for wheat; rotate with legumes</td></tr>
-         <tr><td>P (kg/ha)</td><td>12</td><td>Low</td><td>Add SSP/DAP for next crop</td></tr>
-         <tr><td>K (kg/ha)</td><td>180</td><td>Medium</td><td>Potash application optional</td></tr>
-         <tr><td>Zn (ppm)</td><td>0.7</td><td>Low</td><td>Use zinc sulphate</td></tr>
-       </table>
+       <div id="seed-availability-section">
+         <h3>SEED AVAILABILITY</h3>
+         <h4>Major Seed Categories</h4>
+         <ul>
+           <li><strong>Cereal & Grain Seeds:</strong> Corn, rice, wheat, barley, and oats are the dominant choices in global agriculture, especially as staple foods and animal feed.</li>
+           <li><strong>Oilseed Crops:</strong> Sunflower, soybean, flaxseed (linseed), hemp, canola, and pumpkin—these are used for edible oils, protein, functional foods, and cosmetic ingredients.</li>
+           <li><strong>Vegetable & Fruit Seeds:</strong> Tomato, pepper, onion, cucumber, lettuce, melon, carrot, watermelon, and brassicas (cabbage family) are in high demand for commercial and home growing.</li>
+           <li><strong>Legume & Pulse Seeds:</strong> Soybean, chickpea, lentil, pea, and other protein-rich crops are increasingly cultivated for human food and animal nutrition.</li>
+           <li><strong>Specialty & “Functional” Seeds:</strong> Linseed (flax), chia, hemp, nigella, thistle, and fruit seeds are seeing fast growth as ingredients in supplements, health foods, oils, and cosmetics due to interest in omega-3s, antioxidants, and plant-based diets.</li>
+         </ul>
+         <h4>Major Indian Government Schemes for Seed Distribution</h4>
+         <ul>
+           <li><strong>National Food Security Mission (NFSM):</strong> Provides subsidized certified seeds for staples like rice, wheat, pulses, and coarse cereals to boost yield and reduce import dependence.</li>
+           <li><strong>Sub-Mission on Seeds and Planting Material (SMSP):</strong> Supports the availability of foundation and certified seeds for various crops, ensures quality, and fosters private/public partnerships in seed supply.</li>
+           <li><strong>Rashtriya Krishi Vikas Yojana (RKVY):</strong> States use these funds for distributing improved and climate-adaptive seeds via mini-kits or local outreach programs.</li>
+           <li><strong>State-level Schemes:</strong> Programs like Beej Swalamban Yojana (Rajasthan), Seed Village Scheme (Maharashtra), and regional seed subsidy initiatives supply local crop varieties, often tailored to area-specific requirements and disasters</li>
+           <li><strong>PM Dhan-Dhaanya Krishi Yojana (2025):</strong> Latest program focused on saturating under-yielding districts with access to high-quality seeds across crop categories.</li>
+         </ul>
+         <h4>Subsidy Structure by Crop Type</h4>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Crop Category</th><th>Typical Subsidy Level</th><th>Scheme Examples / Notes</th></tr>
+           <tr><td>Cereals</td><td>50–60% (some free mini-kits)</td><td>Rice, wheat, maize, barley, millets (NFSM, SMSP, RKVY)</td></tr>
+           <tr><td>Pulses</td><td>60–75% (many mini-kits free)</td><td>Gram, lentil, moong, urad, pea; strong government push to raise productivity</td></tr>
+           <tr><td>Oilseeds</td><td>60–75% (nominal/free in specific campaigns)</td><td>Mustard, sunflower, soybean, groundnut (targeted for import reduction)</td></tr>
+           <tr><td>Vegetables & Fruits</td><td>Up to 60–75% (varies widely; kitchen garden kits sometimes free)</td><td>Tomato, chilli, okra, brinjal, melon (state horticulture missions)</td></tr>
+           <tr><td>Fodder</td><td>60–75%</td><td>Maize, sorghum, barseem, cowpea, napier grass; often included in livestock programs</td></tr>
+           <tr><td>Green manure, fiber, and specialty crops</td><td>60–75%</td><td>Cotton, jute, sunhemp, dhaincha, biofortified & climate-resilient varieties</td></tr>
+         </table>
+         <h4>Notable Schemes & Distribution</h4>
+         <ul>
+           <li><strong>National Food Security Mission (NFSM):</strong> Major cereals, pulses, and oilseeds at highly subsidized rates.</li>
+           <li><strong>Sub-Mission on Seeds and Planting Material (SMSP):</strong> Foundation/certified seeds for all major crops.</li>
+           <li><strong>State-Level Mini-Kits:</strong> State programs may give out free or near-free mini-kits—especially for pulses, oilseeds, and horticulture—tailored to local needs.</li>
+         </ul>
+         <h4>Special Features</h4>
+         <ul>
+           <li><strong>Direct Benefit Transfer (DBT):</strong> Most subsidies are now credited directly to farmers’ bank accounts to ensure transparency and quick access.</li>
+           <li><strong>Hybrid Seed Promotion:</strong> Extra emphasis on hybrid/high-yield seeds, especially for vegetable, oilseed, and cereal production for improved productivity and profitability.</li>
+           <li><strong>Climate Resilience:</strong> Recent policies incentivize climate-resilient and biofortified seeds on priority, particularly for rainfed regions.</li>
+         </ul>
+       </div>
+       <div id="govt-schemes-section">
+         <h3>MAJOR GOVERNMENT SCHEMES FOR FARMERS (2025)</h3>
+         <ul>
+           <li><strong>PM-KISAN Samman Nidhi:</strong> Offers ₹6,000 per year, in three installments, directly to eligible small and marginal farmers to supplement their income.</li>
+           <li><strong>Pradhan Mantri Fasal Bima Yojana (PMFBY):</strong> Affordable crop insurance scheme covering over 50 crops; premium is 1.5–2% for food crops, 5% for horticulture. Protects against natural disasters, pests, and disease.</li>
+           <li><strong>Kisan Credit Card (KCC):</strong> Provides flexible, low-interest loans up to ₹3 lakh for crop and farm needs, supporting timely input purchase (seeds, fertilizer, equipment).</li>
+           <li><strong>PM Krishi Sinchai Yojana (PMKSY):</strong> Subsidizes micro-irrigation, drip, and sprinkler systems—“Per Drop, More Crop”—to ensure water efficiency and expand irrigated area.</li>
+           <li><strong>Soil Health Card Scheme:</strong> Delivers customized soil nutrient recommendations to improve fertilizer use and yields.</li>
+           <li><strong>Rashtriya Krishi Vikas Yojana (RKVY-RAFTAAR):</strong> State-focused grants for agri-infrastructure, agri-entrepreneurship, and local innovation; includes seed and input subsidies.</li>
+           <li><strong>e-NAM (National Agriculture Market):</strong> Online marketplace allowing farmers to sell produce at fair prices pan-India, reducing dependence on local mandis.</li>
+           <li><strong>Paramparagat Krishi Vikas Yojana (PKVY):</strong> Promotes organic cluster farming, provides subsidies for input costs and organic certification.</li>
+           <li><strong>Agriculture Infrastructure Fund (AIF):</strong> Grants and subsidized loans for storage, cold chain, processing, and post-harvest infrastructure.</li>
+           <li><strong>Pradhan Mantri Matsya Sampada Yojana (PMMSY):</strong> For fisheries and aquaculture development by supporting infrastructure, capacity building, and market access.</li>
+           <li><strong>Mechanization Schemes (SMAM):</strong> Subsidies for purchasing tractors and farm machinery, focused on making technology accessible to small and marginal farmers.</li>
+         </ul>
+       </div>
+       <div id="weather-section">
+         <h3>Weather Forecast & Alerts</h3>
+         <p>For the most accurate and localized 7-day weather forecast, please consult your regional India Meteorological Department (IMD) station or use a dedicated weather app.</p>
+         <h4>Key Alerts to Monitor</h4>
+         <ul>
+           <li><strong>Heatwaves:</strong> Can cause wilting and reduce yields. Irrigate early morning or late evening.</li>
+           <li><strong>Heavy Rainfall/Floods:</strong> Can lead to waterlogging and crop damage. Ensure field drainage.</li>
+           <li><strong>Drought:</strong> Triggers water stress. Prioritize drip irrigation for high-value crops.</li>
+           <li><strong>Hailstorms:</strong> Can physically damage crops. No direct prevention, but fast harvesting after a warning can mitigate loss.</li>
+         </ul>
+       </div>
+       <div id="crop-calendar-section">
+         <h3>CROPS TO BE GROWN ACCORDING TO SEASONS</h3>
+         <h4>Kharif (Monsoon Season: June–September)</h4>
+         <ul>
+           <li><strong>June:</strong> Paddy (rice), maize, millets (bajra, jowar), cotton, soybean, groundnut, arhar (pigeon pea), urad (black gram), moong (green gram)</li>
+           <li><strong>July:</strong> Continue above crops, start vegetables like okra, brinjal (eggplant), bottle gourd, pumpkin, cucumber, ridge gourd</li>
+           <li><strong>August:</strong> Plant late Kharif crops like sesamum, sunflower, cowpea, fodder crops (sorghum, napier grass)</li>
+           <li><strong>September:</strong> Short-duration vegetables (radish, spinach, coriander), late-sown pulses</li>
+         </ul>
+         <h4>Rabi (Winter Season: October–February)</h4>
+         <ul>
+           <li><strong>October:</strong> Wheat, barley, oats, chickpea (gram), mustard, pea, lentil, garlic, onion</li>
+           <li><strong>November:</strong> Continue above, start potato, carrot, cabbage, cauliflower</li>
+           <li><strong>December:</strong> Leafy greens (spinach, fenugreek, lettuce), short-duration pulses, root vegetables</li>
+         </ul>
+         <h4>Zaid (Summer Season: March–May)</h4>
+         <ul>
+           <li><strong>March:</strong> Watermelon, muskmelon, cucumber, summer moong, cowpea, sunflower</li>
+           <li><strong>April:</strong> Same as March, sow okra and gourds</li>
+           <li><strong>May:</strong> Continue short-duration pulses, start preparations for Kharif season</li>
+         </ul>
+         <h4>Vegetables & Fruits Year-Round (Depending on Region/Climate)</h4>
+         <p>Some crops can be staggered across seasons for higher returns: Tomatoes, chillies, brinjal, onions, greens, and specific regional crops can often be grown with proper irrigation and care year-round or in multiple cycles.</p>
+         <h4>Regional Crop Guide</h4>
+         <h5>North India</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Paddy (rice), maize, sugarcane, bajra (pearl millet), urad, moong, cotton</td><td>Punjab, Haryana, UP, Bihar, Uttarakhand</td></tr>
+           <tr><td>Rabi</td><td>Wheat, barley, mustard, gram (chickpea), pea, potato, onion</td><td>Punjab, Haryana, UP, Rajasthan, MP</td></tr>
+           <tr><td>Zaid</td><td>Watermelon, muskmelon, cucumber, summer moong</td><td>UP, Haryana, Punjab, Bihar</td></tr>
+         </table>
+         <h5>South India</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Paddy, ragi, groundnut, cotton, tur, maize, sunflower</td><td>Tamil Nadu, Karnataka, Andhra Pradesh, Telangana, Kerala</td></tr>
+           <tr><td>Rabi</td><td>Ragi, groundnut, urad, horse gram, chillies, sesame</td><td>TN, Karnataka, AP, Telangana, Kerala</td></tr>
+           <tr><td>Zaid</td><td>Watermelon, muskmelon, cucumber, short-cycle vegetables</td><td>Wide, with irrigation</td></tr>
+         </table>
+         <h5>West India</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Cotton, soybean, groundnut, bajra, paddy, tur</td><td>Maharashtra, Gujarat, Rajasthan</td></tr>
+           <tr><td>Rabi</td><td>Wheat, barley, gram, cumin, mustard</td><td>Gujarat, Rajasthan, MP</td></tr>
+           <tr><td>Zaid</td><td>Melons, fodder crops, vegetables</td><td>Maharashtra, Gujarat, Rajasthan</td></tr>
+         </table>
+         <h5>East & North-East India</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Paddy, jute, maize, tea</td><td>Bengal, Assam, Odisha, Tripura, Jharkhand, Chhattisgarh</td></tr>
+           <tr><td>Rabi</td><td>Wheat (north parts), lentil, mustard, potato, vegetables</td><td>Bengal, Assam, Odisha, Chhattisgarh</td></tr>
+           <tr><td>Zaid</td><td>Summer pulses, vegetables, melons</td><td>Bengal, Assam, Odisha</td></tr>
+         </table>
+         <h5>Central India</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Soybean, paddy, pigeon pea (tur), maize</td><td>MP, Chhattisgarh</td></tr>
+           <tr><td>Rabi</td><td>Wheat, chickpea, mustard, linseed</td><td>MP, Chhattisgarh</td></tr>
+           <tr><td>Zaid</td><td>Fodder crops, watermelon, vegetables</td><td>MP, Chhattisgarh</td></tr>
+         </table>
+         <h5>Hill & Himalayan States</h5>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Season</th><th>Crops with Best Yield</th><th>States</th></tr>
+           <tr><td>Kharif</td><td>Maize, paddy, rajma, buckwheat, apple, pear</td><td>HP, Uttarakhand, J&K, NE hills</td></tr>
+           <tr><td>Rabi</td><td>Barley, wheat, peas, off-season vegetables</td><td>HP, Uttarakhand, Sikkim, J&K</td></tr>
+         </table>
+         <h3>GENERAL GUIDE FOR MAJOR CROPS</h3>
+         <h4>1. Rice (Paddy) [Kharif]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Mid-June to early July (nursery to transplanting)</li>
+           <li><strong>Irrigation:</strong> Maintain standing water (2–5 cm) at early growth, reduce before maturity; 4–6 irrigations if direct seeded in rainfed areas.</li>
+           <li><strong>Fertilizer:</strong> 90–120 kg N, 40–60 kg P₂O₅, 40–60 kg K₂O per hectare; split as 1/2 basal, 1/4 at tillering, 1/4 at panicle initiation.</li>
+           <li><strong>Harvesting:</strong> Late September to November</li>
+         </ul>
+         <h4>2. Wheat [Rabi]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Late October to mid-November</li>
+           <li><strong>Irrigation:</strong> 4–5 critical irrigations (crown root initiation at 20–25 days after sowing, tillering, booting, heading, milking)</li>
+           <li><strong>Fertilizer:</strong> 120–150 kg N, 60 kg P₂O₅, 40 kg K₂O per hectare; 1/2 N + full P & K at sowing, rest N at CRI and other stages.</li>
+           <li><strong>Harvesting:</strong> March to April</li>
+         </ul>
+         <h4>3. Maize (Kharif/Rabi)</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Kharif – June to July; Rabi – October to November</li>
+           <li><strong>Irrigation:</strong> 5–6, esp. at knee-high, tasseling, silking, and grain filling</li>
+           <li><strong>Fertilizer:</strong> 120 kg N, 60 kg P₂O₅, 40 kg K₂O per hectare; split N application</li>
+           <li><strong>Harvesting:</strong> Sept–Oct (Kharif); Feb–March (Rabi)</li>
+         </ul>
+         <h4>4. Soybean [Kharif]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Last week of June to mid-July</li>
+           <li><strong>Irrigation:</strong> Mostly rainfed; provide lifesaving irrigation in case of dry spells</li>
+           <li><strong>Fertilizer:</strong> 30–40 kg N, 60–80 kg P₂O₅, 30–40 kg K₂O/ha (at sowing); use Rhizobium inoculant</li>
+           <li><strong>Harvesting:</strong> Late September to October</li>
+         </ul>
+         <h4>5. Chickpea (Gram) [Rabi]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> October to mid-November</li>
+           <li><strong>Irrigation:</strong> Rainfed but 1–2 irrigations at flowering and pod filling if possible</li>
+           <li><strong>Fertilizer:</strong> 20–25 kg N, 40–60 kg P₂O₅/ha (at sowing)</li>
+           <li><strong>Harvesting:</strong> March to April</li>
+         </ul>
+         <h4>6. Mustard [Rabi]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Mid-October to early November</li>
+           <li><strong>Irrigation:</strong> 2–3 irrigations (branching, flowering, pod development stages)</li>
+           <li><strong>Fertilizer:</strong> 80–120 kg N, 40–60 kg P₂O₅, 40 kg K₂O/ha</li>
+           <li><strong>Harvesting:</strong> February to April</li>
+         </ul>
+         <h4>7. Cotton [Kharif]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> May–June in N/W India, June–July in Central/South India</li>
+           <li><strong>Irrigation:</strong> 3–4 critical stages if rainfed; avoid waterlogging!</li>
+           <li><strong>Fertilizer:</strong> 60–75 kg N, 30–40 kg P₂O₅, 30–40 kg K₂O/ha, balanced micronutrients</li>
+           <li><strong>Harvesting:</strong> October to January</li>
+         </ul>
+         <h4>8. Potato [Rabi/Hills and Plains]</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Plains – Oct–Nov; Hills – March–May</li>
+           <li><strong>Irrigation:</strong> 7–9, esp. immediately after planting and at tuber formation</li>
+           <li><strong>Fertilizer:</strong> 120 kg N, 80 kg P₂O₅, 120 kg K₂O/ha</li>
+           <li><strong>Harvesting:</strong> Late Jan–March (plains); June–Aug (hills)</li>
+         </ul>
+         <h4>9. Sugarcane</h4>
+         <ul>
+           <li><strong>Planting:</strong> February–March (spring crop), September–October (autumn crop)</li>
+           <li><strong>Irrigation:</strong> Heavy (every 10–12 days in summer, 15–20 days in winter)</li>
+           <li><strong>Fertilizer:</strong> 200 kg N, 60 kg P₂O₅, 60 kg K₂O/ha (split; more N for ratoon crops)</li>
+           <li><strong>Harvesting:</strong> 10–18 months after planting, depending on variety & sowing time</li>
+         </ul>
+         <h4>10. Common Vegetables (e.g., Tomato, Brinjal, Okra)</h4>
+         <ul>
+           <li><strong>Sowing:</strong> Staggered through year (e.g., Tomato: June–July, Oct–Nov, Jan–Feb)</li>
+           <li><strong>Irrigation:</strong> Regular (5–10 days interval), never let soil dry out or waterlog</li>
+           <li><strong>Fertilizer:</strong> 100–120 kg N, 60–80 kg P₂O₅, 60–80 kg K₂O/ha</li>
+           <li><strong>Harvesting:</strong> 60–120 days after sowing, depending on crop and season</li>
+         </ul>
+       </div>
+       <div id="pest-fertilizer-section">
+         <h3>PEST AND FERTILIZERS</h3>
+         <h4>1. Rice (Paddy)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> Basal (at transplanting): 50% N + 100% P & K (example: 50–60 kg N, 40–60 kg P₂O₅, 40–60 kg K₂O/ha)<br>Tillering (25–30 days after transplanting): 25% N<br>Panicle initiation (55–60 days): 25% N + micronutrients (Zn, S if deficient)</li>
+           <li><strong>Pest Advisory:</strong> Seedling/Early growth: Watch for stem borer, leaf folder – use pheromone traps; if severe, spray chlorantraniliprole or flubendiamide.<br>Mid-tillering–flowering: Monitor blast, BLB, sheath blight; use tricyclazole for blast and copper oxychloride for BLB with IPM methods.<br>Pre-harvest: Control rodents and fungal grain molds with field hygiene.</li>
+         </ul>
+         <h4>2. Wheat (North & Central Rabi Zone)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> At sowing: 60–75 kg N, 60 kg P₂O₅, 40 kg K₂O/ha<br>After first irrigation (CRI): 30–40 kg N<br>At booting: Remaining N, as top-dressing</li>
+           <li><strong>Pest Advisory:</strong> Early: Seed treatment with triazoles or thiram for seed-borne diseases.<br>Tillering: Rusts (yellow, brown), aphids—monitor; if rust appears, use propiconazole.<br>Flowering–filling: Armyworm/aphids—use neem oil as first line, then imidacloprid if needed.</li>
+         </ul>
+         <h4>3. Cotton (Western/Southern India)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> 60–90 kg N, 30–45 kg P₂O₅, 30–45 kg K₂O/ha in 2–3 splits (at planting, 45 days, 75 days).</li>
+           <li><strong>Pest Advisory:</strong> Early: Sucking pests (aphids, jassids, whiteflies)—release ladybirds, use neem oil or thiamethoxam if severe.<br>Mid-late: Pink bollworm, Spodoptera—pheromone traps, Bt sprays, chlorantraniliprole if needed.<br>Continuous: Avoid pesticide overuse; rotate chemistries to prevent resistance.</li>
+         </ul>
+         <h4>4. Soybean (Central India)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> 30–40 kg N, 60–80 kg P₂O₅, 30–40 kg K₂O/ha; seed treatment with Rhizobium.</li>
+           <li><strong>Pest Advisory:</strong> Early: Seedling girdler, fungal root rot—use biopesticide seed dressing.<br>Pod filling: Girdle beetle, pod borer (Helicoverpa)—monitor, use Novaluron or neem extract.</li>
+         </ul>
+         <h4>5. Groundnut (South/West India)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> 15–20 kg N, 40–60 kg P₂O₅, gypsum at flowering.</li>
+           <li><strong>Pest Advisory:</strong> Early-mid: Leaf spot, rust—use carbendazim/mancozeb as foliar sprays at 15-day intervals.<br>Pod stage: Leaf miner—install light traps, spray spinosad if severe.</li>
+         </ul>
+         <h4>6. Pulses (All-India, seasonal)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> Low input; 20 kg N/ha (starter), 40–60 kg P₂O₅.</li>
+           <li><strong>Pest Advisory:</strong> Flowering to podding: Pod borer—install pheromone traps; neem extract, if needed, emamectin benzoate.</li>
+         </ul>
+         <h4>7. Vegetables (Tomato, Brinjal, Okra, Region-wise)</h4>
+         <ul>
+           <li><strong>Fertilizer:</strong> 100–120 kg N, 60–80 kg P₂O₅, 60–80 kg K₂O/ha, micronutrients (Ca, B) as needed.</li>
+           <li><strong>Pest Advisory:</strong> Nursery/Transplant: Damping off—treat seeds with Trichoderma.<br>Growth-early fruiting: Whitefly, fruit borer—yellow traps, neem spray, weekly surveillance.<br>Fruit ripening: Late blight (tomato)—mancozeb or copper fungicide sprays after rain.</li>
+         </ul>
+         <h4>General Notes:</h4>
+         <ul>
+           <li>Always follow integrated pest management (IPM): crop rotation, field sanitation, biological control, minimal use of chemicals.</li>
+           <li>Adjust fertilizer doses for local soil tests, organic matter, and recent crop rotation.</li>
+           <li>Pest management should be based on surveillance/Economic Threshold Levels (ETL), to avoid unnecessary pesticide application.</li>
+         </ul>
+       </div>
+       <div id="soil-weather-section">
+         <h3>COMMON PEST OUTBREAK</h3>
+         <ul>
+           <li><strong>Fall Armyworm</strong><br>Affected Crops: Maize, sorghum<br>Impact: 10–20% yield loss<br>Outbreak Locations: Reported across India, especially in maize-growing states<br>Management: Early identification, pheromone traps, biopesticides, rotation, and use of resistant varieties.</li>
+           <li><strong>Bollworm Complex</strong><br>Affected Crops: Cotton, tomato<br>Impact: 15–25% yield loss<br>Regions: North, West, and Central India (especially in cotton zones)<br>Management: Bt cotton, pheromone lures, timely chemical rotations to prevent resistance.</li>
+           <li><strong>Aphids</strong><br>Affected Crops: Bell pepper, soybean, many vegetables<br>Impact: 7–15% yield loss and transmission of viral diseases<br>Regions: Nationwide, but especially in protected and high-humidity areas<br>Management: Biologicals (parasitic wasps), biopesticides, minimal insecticides to preserve natural enemies.</li>
+           <li><strong>Thrips, including Black Thrips (Thrips parvispinus)</strong><br>Affected Crops: Chilli, capsicum, brinjal (eggplant), onions<br>Impact: 6–15% yield loss; has caused severe economic hardship for chilli growers, especially in South India (AP, Karnataka, TN).<br>Management: Sticky traps, biological controls, judicious/rotational chemical treatments due to rapid resistance development, use of IPM.</li>
+           <li><strong>Green Leafhopper (Jassid)</strong><br>Affected Crops: Cotton<br>Regions: North India—Haryana, Punjab, Rajasthan (worst outbreak in a decade, 2025)<br>Damage: Classic leaf curling, yellow margins, rapid reduction in plant vigor<br>Causes: Prolonged humidity, excessive rainfall creating ideal pest conditions<br>Management: Immediate insecticidal management, vigilant monitoring, regional advisories.</li>
+           <li><strong>Navel Orangeworm & Almond Moth</strong><br>Affected: Almonds and other nuts (to a lesser extent in India)<br>Damage: Kernel loss, significant economic setback<br>Management: Sanitation, biopesticides, mating disruption.</li>
+           <li><strong>Mango pests</strong><br>Outbreak Location: North coastal Andhra Pradesh, 2025; 50% crop loss due to combined pest and adverse weather.<br>Common pests: Hoppers, fruit flies, mealy bugs<br>Management: Field sanitation, timely insecticide/baiting, community participation.</li>
+         </ul>
+         <h3>SOIL AND WEATHER BASED CROPS</h3>
+         <h4>1. Sandy Soils (Low water holding, good drainage)</h4>
+         <ul>
+           <li><strong>Ideal Regions:</strong> Rajasthan, Haryana, parts of Gujarat</li>
+           <li><strong>Best Crops:</strong> Pearl millet (bajra), moong, moth, guar, watermelon, groundnut, cumin, sesame</li>
+           <li><strong>Weather Suitability:</strong> Suited for areas with low to moderate rainfall and hot climates (arid/semi-arid)</li>
+           <li><strong>Advice:</strong> Use drought-tolerant varieties, adopt mulching, and prefer Kharif crops that mature before heavy post-monsoon moisture loss</li>
+         </ul>
+         <h4>2. Clay & Black Cotton Soils (Vertisols)</h4>
+         <ul>
+           <li><strong>Ideal Regions:</strong> Maharashtra, MP, Andhra Pradesh, Telangana, Karnataka, Gujarat</li>
+           <li><strong>Best Crops:</strong> Cotton, soybean, pigeon pea (tur), sorghum, chickpea, sunflower, maize, wheat (Rabi where irrigation available)</li>
+           <li><strong>Weather Suitability:</strong> Suited for regions with moderate to heavy monsoon rainfall and extended moisture retention in soil</li>
+           <li><strong>Advice:</strong> Kharif crops benefit from heavy monsoon; Rabi crops with supplemental irrigation flourish after rainfall</li>
+         </ul>
+         <h4>3. Red Loamy Soils</h4>
+         <ul>
+           <li><strong>Ideal Regions:</strong> Tamil Nadu, Karnataka, eastern India, parts of Odisha, Chhattisgarh, NE</li>
+           <li><strong>Best Crops:</strong> Groundnut, millets, pulses (arhar, black gram), castor, cotton, ragi, sugarcane, vegetables</li>
+           <li><strong>Weather Suitability:</strong> Moderately rainfed, can handle tropical humidity and variable rainfall</li>
+           <li><strong>Advice:</strong> Suitable for mixed and diversified cropping; practice moisture conservation</li>
+         </ul>
+         <h4>4. Alluvial Soils (Gangetic Plains, Brahmaputra Valley)</h4>
+         <ul>
+           <li><strong>Ideal Regions:</strong> Punjab, Haryana, UP, Bihar, West Bengal, Assam</li>
+           <li><strong>Best Crops:</strong> Rice (Kharif), wheat (Rabi), sugarcane, maize, jute (Bengal/Assam), potato, pulses, mustard, vegetables</li>
+           <li><strong>Weather Suitability:</strong> Moderate to heavy rainfall zones, well-drained, high nutrient content</li>
+           <li><strong>Advice:</strong> Both Kharif and Rabi crops can do well; careful water management required to prevent waterlogging in monsoons</li>
+         </ul>
+         <h4>5. Laterite Soils</h4>
+         <ul>
+           <li><strong>Ideal Regions:</strong> Western/Eastern Ghats (Kerala, Karnataka, Maharashtra, Odisha, Bengal hills)</li>
+           <li><strong>Best Crops:</strong> Cashew, tea, coffee, rubber, coconut, pineapple, some millets and pulses</li>
+           <li><strong>Weather Suitability:</strong> High rainfall/humid tropics</li>
+           <li><strong>Advice:</strong> Use organic amendments to maintain fertility, terrace cultivation in slopes</li>
+         </ul>
+         <h4>Examples of Crop Choices Based on Combined Soil and Weather Factors</h4>
+         <ul>
+           <li><strong>Rajasthan (Arid, sandy):</strong> Bajra, moth, moong (Kharif); gram, mustard (Rabi)</li>
+           <li><strong>Punjab/Haryana (Alluvial, irrigated):</strong> Rice (Kharif), wheat (Rabi), sugarcane, potato</li>
+           <li><strong>Maharashtra (Black soils, variable rainfall):</strong> Cotton, soybean, pigeon pea (Kharif), jowar (Rabi, irrigated)</li>
+           <li><strong>West Bengal/Assam (Alluvial, monsoon):</strong> Paddy (Kharif), jute, vegetables, wheat (Rabi), tea (hill areas)</li>
+           <li><strong>Tamil Nadu (Red loam, humid):</strong> Groundnut, millets (Kharif), rice (with irrigation, all seasons), sugarcane</li>
+         </ul>
+       </div>
+       <div id="msp-market-section">
+         <h3>STUBBLE ALTERNATIVES</h3>
+         <ul>
+           <li><strong>1. In-situ Decomposition/Bio-decomposers (e.g., PUSA Bio-enzyme)</strong><br>How it works: Special microbial solutions (like PUSA Decomposer) are sprayed on the crop residue; the enzyme breaks down stubble into valuable organic matter within 15–25 days.<br>Benefits for Pests: Fast residue decomposition reduces the habitat for stubble-borne pest larvae, cutworm, stem borer pupae, and fungal disease cycles (like rice blast, sheath blight).<br>Added Value: Adds organic carbon and nutrients to soil, improves microbial health, and reduces next-season fertilizer requirement.<br>Field Example: Tested and scaled in Delhi, Punjab, and Uttar Pradesh; showed increased wheat yield and effective residue management without burning.</li>
+           <li><strong>2. Happy Seeder, Super Seeder, Rotavator (Machinery Integration)</strong><br>How it works: These tractor-mounted machines cut and lift stubble, seed the new crop into the standing residue, and mulch leftover straw onto the soil.<br>Pest Benefit: Rapid recycling suppresses stubble pest carryover and allows decay before the next season’s pest peak.<br>Soil Health: Retains soil moisture, increases organic matter, suppresses weeds and some surface pests, reduces evaporation loss.</li>
+           <li><strong>3. Composting & Biochar Production</strong><br>Composting: Stubble is mixed and decomposed off-site (ex-situ or in compost pits) into rich organic fertilizer.<br>Pest Control: Composting temperatures kill pest eggs, larvae, and pathogens.<br>Adoption: Used in vegetable regions and promoted by urban-rural composting initiatives.<br>Biochar: Crop residue is converted at high temperature into biochar, which is then incorporated as a soil amendment.<br>Pest Effect: Biochar improves soil health, potentially suppressing soil-borne pests/diseases.<br>Economics: Valuable for both fertility and carbon markets.</li>
+           <li><strong>4. Mushroom Cultivation</strong><br>How it works: Residue (especially rice straw) is used as a substrate for edible mushroom production.<br>Pest Benefit: Competitive fungi (mushrooms) outcompete stubble-borne pests during decomposition.<br>Income: Adds secondary income from mushroom harvests after crop cycles.</li>
+           <li><strong>5. Fodder, Paper, and Bioenergy Use (Ex-situ Management)</strong><br>Fodder: Chopped stubble is processed for animal feed, removing pest habitats from the field.<br>Paper & Board: Collected residue is used in papermaking industries.<br>Bioenergy/Bioethanol: Paddy straw is used in power plants and for 2G ethanol, providing an economic use for pests’ habitat remnants.</li>
+           <li><strong>6. Changing Cropping Pattern</strong><br>Practice: Shifting away from monoculture paddy to diversified or low-residue crops reduces overall pest cycles and residue load.<br>Ecosystem Benefit: Helps break pest and disease cycles dependent on host-specific stubble.</li>
+         </ul>
+         <h4>Key Takeaways</h4>
+         <ul>
+           <li>Integrated Approach: Combining bio-decomposers, mechanized mulching, ex-situ uses, and crop rotation, farmers can manage both residue and field pest risks without burning.</li>
+           <li>Government Support: Indian states offer capital subsidies and supply PUSA Decomposer and machinery at reduced rates to promote adoption.</li>
+           <li>Recommendation: Farmers should consult with local Krishi Vigyan Kendras for training on stubble alternatives, machine rental, and to get region-specific bio-decomposer or composting kits for the most effective and sustainable pest and residue management.</li>
+         </ul>
+         <h3>Key Government Schemes for Agricultural Machines (2025)</h3>
+         <ul>
+           <li><strong>1. Sub-Mission on Agricultural Mechanization (SMAM)</strong><br>Availability: Wide range of machines—tractors, power tillers, harvesters, Happy Seeder, Super Seeder, rotavator, zero-till drills, laser levelers, transplanters, sprayers, threshers, balers, and more.<br>Scheme Features:<br>Subsidy: 40–60% of machine cost for most farmers, higher (up to 80%) for SC/ST, women, small/marginal farmers.<br>Custom Hiring Centers (CHC): Farmers unable to buy can rent machines at low cost.<br>How to Avail: Apply online via agrimachinery.nic.in or state portals. Subsidy is credited after purchase and field verification.</li>
+           <li><strong>2. State Mechanization Schemes</strong><br>Each state (e.g., UP, Haryana, MP, Rajasthan, West Bengal, etc.) runs its own mechanization programs under the central SMAM umbrella, with specific machine lists and subsidies, often through their agriculture department portals.<br>Booking & Availing: Users can view available machines, check rates, and book through state government machinery hubs or online booking systems.</li>
+           <li><strong>3. PM Kisan Samman Nidhi (Additional Benefits)</strong><br>While the main focus is income support, some states leverage PM-Kisan databases to target priority groups for machine subsidies.</li>
+           <li><strong>4. Agricultural Infrastructure Fund</strong><br>Supports the purchase and installation of large, shared machines (e.g., batch dryers, warehouses, processing units) via low-interest loans and grants—often for FPOs and SHGs.</li>
+           <li><strong>5. Custom Hiring Centers (CHC) and Hi-tech Hubs</strong><br>Availability: All key machines for small farmers, provided on a rental basis through registered centers. This allows farmers to use advanced equipment without direct purchase.<br>Subsidy: 40–50% capital subsidy for setting up CHCs.</li>
+         </ul>
+         <h4>How to Check and Apply for Machines:</h4>
+         <ul>
+           <li>Central Portal: agrimachinery.nic.in for pan-India machinery schemes, approved lists, dealer locators, and subsidy calculations.</li>
+           <li>State Agriculture Portals: Online booking/registration and scheme details (e.g., UP, Haryana, MP, WB, etc.).</li>
+           <li>Physical Availability: Through government-registered CHCs, Krishi Vigyan Grenras, and cooperative societies.</li>
+         </ul>
+         <h4>Common Machines Supported by Government Schemes</h4>
+         <ul>
+           <li>Tractors (all HP ranges)</li>
+           <li>Power tillers</li>
+           <li>Harvesters (with straw management)</li>
+           <li>Happy Seeder, Super Seeder, Rotavator</li>
+           <li>Laser land levelers, zero-till seed drills</li>
+           <li>Potato/sugarcane planters, vegetable transplanters, sprayers</li>
+           <li>Threshers, balers, fodder harvesters</li>
+           <li>Agricultural drones (expanding support in 2025 for precision spraying)</li>
+           <li>Mini processing units, dryers, mobile grading/cleaning units</li>
+         </ul>
+         <h4>Who Can Apply?</h4>
+         <ul>
+           <li>Individual farmers, women, SC/ST farmers, SHGs, FPOs, Custom Hiring Centers</li>
+         </ul>
+         <h4>Subsidy Details:</h4>
+         <ul>
+           <li>40–60% general subsidy</li>
+           <li>50–80% for target categories (women, SC/ST, NE states)</li>
+           <li>Direct Benefit Transfer post-validation</li>
+         </ul>
+         <h3>Disposal Alternatives for crop Residue</h3>
+         <p>Alternatives to burning crop stubble that are eco-friendly, often subsidized, and improve soil health include:</p>
+         <ul>
+           <li><strong>In-Situ Incorporation with Subsidized Machines:</strong> Happy Seeder, Super Seeder, Rotavator: Cut and incorporate residue into soil as mulch—suppresses pest cycles, adds organic carbon, reduces need to burn.</li>
+           <li><strong>Residue Retention & Mulching:</strong> Leaving residues in the field to conserve soil moisture, prevent erosion, improve soil health, and suppress weeds (especially useful in semi-arid/rainfed areas).</li>
+           <li><strong>Composting/Biofertilizer Production:</strong> Converting residues to compost using effective microbes or bio-decomposer sprays (like PUSA Decomposer); creates high-quality soil amendment and reduces pest/disease carryover.</li>
+           <li><strong>Livestock Feed/Fodder:</strong> Properly processed straw, husks, stalks serve as animal feed, supporting both residue disposal and livestock productivity.</li>
+           <li><strong>Bioenergy Production:</strong> Residue converted to biochar, biogas, or electricity via pyrolysis, gasification, or use in bioenergy plants. Briquetting crop residues is also promoted for industrial heating and rural energy.</li>
+           <li><strong>Mushroom Cultivation:</strong> Paddy and wheat straw used as substrate for edible mushrooms, creating additional farm income and utilizing residue sustainably.</li>
+           <li><strong>Paper, Board, Pulpmaking:</strong> Some areas collect stubble for commercial use in paper and board industries or emerging bioeconomy applications.</li>
+         </ul>
+         <h4>Government Initiatives for Disposal Alternatives</h4>
+         <ul>
+           <li><strong>National Policy for Management of Crop Residues (NPMCR):</strong> Encourages eco-friendly, scientific residue management and use.</li>
+           <li><strong>Schemes like SMAM:</strong> Subsidize machines required for sustainable stubble management, making them affordable and accessible to farmers across India.</li>
+         </ul>
+         <h3>SOIL HEALTH AND CROPS SUITABLE FOR THAT</h3>
+         <h4>1. Acidic Soils (pH < 6.0), often low P & Ca</h4>
+         <ul>
+           <li><strong>Typical Location:</strong> North East, parts of Jharkhand, Kerala, Odisha</li>
+           <li><strong>Best Crops:</strong> Rice, tea, potato, maize, ginger, turmeric, pineapples, Green gram (moong), black gram (urad), soybean, Pineapple, passion fruit (where high acidity, organic matter)</li>
+           <li><strong>Tip:</strong> Use lime for pH improvement if aiming to grow wheat or pulses.</li>
+         </ul>
+         <h4>2. Neutral Soils (pH 6–7.5), good organic carbon</h4>
+         <ul>
+           <li><strong>Locations:</strong> Indo-Gangetic plains, much of Punjab, Haryana, UP, Bihar</li>
+           <li><strong>Best Crops:</strong> Wheat, rice, maize, sugarcane, potato, Pulses (gram, lentil, pea), oilseeds (mustard, sunflower), All types of vegetables, fruits like mango, guava, citrus</li>
+           <li><strong>Tip:</strong> These soils are the most versatile—nearly all major crops thrive if NPK is adequate.</li>
+         </ul>
+         <h4>3. Alkaline Soils (pH > 7.5), often low in Fe, Zn</h4>
+         <ul>
+           <li><strong>Location:</strong> Arid/semi-arid regions, Haryana, Rajasthan, Gujarat</li>
+           <li><strong>Best Crops:</strong> Barley, pearl millet (bajra), sorghum (jowar), mustard, Wheat (with iron/zinc management), cotton, cumin, castor, Guar, cluster bean</li>
+           <li><strong>Tip:</strong> Apply organic matter and gypsum, and choose crops tolerant of alkalinity.</li>
+         </ul>
+         <h4>4. Low Organic Carbon (<0.5%)</h4>
+         <ul>
+           <li><strong>Best Crops:</strong> Millets (jowar, bajra, ragi), pulses (pigeon pea, cowpea, horsegram), guar, Castor, oilseeds, drought-tolerant crops</li>
+           <li><strong>Tip:</strong> Regular addition of compost, FYM, or green manure is advised.</li>
+         </ul>
+         <h4>5. High Salinity (EC >2 dS/m)</h4>
+         <ul>
+           <li><strong>Best Crops:</strong> Barley, pearl millet (bajra), cotton, spinach, sugar beet, Date palm, coconut (with management), asparagus</li>
+           <li><strong>Tip:</strong> Use salt-tolerant crop varieties and flush with fresh water when possible.</li>
+         </ul>
+         <h4>6. High Fertility (High N, P, K, Org. Carbon >0.75%)</h4>
+         <ul>
+           <li><strong>Best Crops:</strong> Intensive vegetable production (tomato, brinjal, cucumber, gourd), potato, sugar beet, High-yielding rice, wheat, maize, hybrid seed production</li>
+           <li><strong>Tip:</strong> Crop rotation and proper irrigation maximize returns and maintain the soil.</li>
+         </ul>
+         <h4>7. Low Phosphorus (<11 kg/ha) or Low Potassium (<141 kg/ha)</h4>
+         <ul>
+           <li><strong>Best Crops:</strong> Improved pulses, legumes (can fix own N, less P/K demanding), Kasturi methi, cluster beans, some oilseeds</li>
+           <li><strong>Tip:</strong> Apply single superphosphate (for P), muriate of potash (for K) as needed.</li>
+         </ul>
+         <h4>8. Waterlogged Areas</h4>
+         <ul>
+           <li><strong>Best Crops:</strong> Paddy (rice), taro (arbi), water chestnut, jute, Certain fodders (para grass)</li>
+         </ul>
+         <h3>SOIL HEALTH CARD (SHC)</h3>
+         <p>A Soil Health Card (SHC) is a government-issued document given to Indian farmers, detailing the vital parameters of their soil and providing personalized recommendations to improve soil fertility and crop yields.</p>
+         <h4>Key Features of the Soil Health Card</h4>
+         <ul>
+           <li><strong>Issued Under:</strong> Government of India’s Soil Health Card Scheme (ongoing since 2015).</li>
+           <li><strong>Purpose:</strong> To promote balanced use of fertilizers, correct nutrient deficiencies, and guide sustainable crop management.</li>
+           <li><strong>Frequency:</strong> Every farmer is intended to get their SHC every 2 years, covering all major agricultural land.</li>
+         </ul>
+         <h4>Information Provided</h4>
+         <ul>
+           <li>Soil pH (acidity/alkalinity)</li>
+           <li>Organic carbon content</li>
+           <li>Available primary nutrients (Nitrogen (N), Phosphorus (P), Potassium (K))</li>
+           <li>Secondary nutrients: (Sulphur)</li>
+           <li>Micronutrients: Zinc (Zn), Iron (Fe), Copper (Cu), Manganese (Mn), Boron (B)</li>
+           <li>Electrical Conductivity (EC)</li>
+           <li>Soil texture/class</li>
+         </ul>
+         <h4>How It Works</h4>
+         <ul>
+           <li><strong>Sample Collection:</strong> Soil samples collected (1/2 to 1 meter depth) from the farmer’s field in a scientific, grid-based manner.</li>
+           <li><strong>Laboratory Analysis:</strong> Soil samples are tested in government labs for key nutrients and properties.</li>
+           <li><strong>Card Generation:</strong> Lab results and crop-wise fertilizer/lime/gypsum recommendations are entered in data portals, generating a personalized SHC.</li>
+           <li><strong>Distribution:</strong> The card, often bilingual, is distributed to the farmer (physically or digitally).</li>
+         </ul>
+         <h4>Benefits</h4>
+         <ul>
+           <li>Farmers know exactly which nutrients their soil lacks or has in excess.</li>
+           <li>Helps avoid overuse of fertilizers, save money, and protect the environment.</li>
+           <li>Improves yield, optimizes input costs, and boosts profit.</li>
+           <li>Encourages soil-building, organic matter addition, right crop choice, and soil conservation.</li>
+         </ul>
+         <h4>How to Get a Soil Health Card</h4>
+         <ul>
+           <li><strong>Contact:</strong> Local Krishi Vigyan Grenra (KVK), State Agriculture Department, or Atal Seva Grenra/Common Service Centre.</li>
+           <li><strong>Online:</strong> Many state portals and soilhealth.dac.gov.in offer search, download, and status-check facilities.</li>
+           <li><strong>Cost:</strong> Usually free as part of government service.</li>
+         </ul>
+         <h4>Typical Contents of a Soil Health Card</h4>
+         <table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;margin:10px 0;">
+           <tr><th>Parameter</th><th>Value</th><th>Rating</th><th>Recommendation</th></tr>
+           <tr><td>pH</td><td>6.8</td><td>Neutral</td><td>Suitable for most crops</td></tr>
+           <tr><td>Organic C (%)</td><td>0.72</td><td>Medium</td><td>Add FYM/compost annually</td></tr>
+           <tr><td>N (kg/ha)</td><td>230</td><td>Medium</td><td>90 kg urea/acre for wheat; rotate with legumes</td></tr>
+           <tr><td>P (kg/ha)</td><td>12</td><td>Low</td><td>Add SSP/DAP for next crop</td></tr>
+           <tr><td>K (kg/ha)</td><td>180</td><td>Medium</td><td>Potash application optional</td></tr>
+           <tr><td>Zn (ppm)</td><td>0.7</td><td>Low</td><td>Use zinc sulphate</td></tr>
+         </table>
+       </div>
+       <div id="yield-comparison-section">
+         <h3>YIELD COMPARISON & IMPROVEMENT</h3>
+         <p>This section provides data and strategies for comparing yields across regions and improving farm productivity.</p>
+         <h4>Key Features</h4>
+         <ul>
+           <li><strong>Compare States/Crops:</strong> See historical yields all-India, state/zone, district level (main cereals, pulses, oilseeds, cash crops).</li>
+           <li><strong>Forecast Growth:</strong> Estimated improvements using the YES-TECH (Yield Estimation System—remote sensing, weather & satellite data).</li>
+           <li><strong>Best Practice Case Studies:</strong> Stepwise yield improvements in major crops (e.g., rice-wheat systems, high-protein pulses, mustard, soybean) using improved seeds, fertilizer, irrigation and IPM.</li>
+           <li><strong>Export Tools:</strong> Download charts/data for review or share with co-ops, buyers, or student groups.</li>
+         </ul>
+       </div>
+       <div id="machinery-section">
+         <h3>Key Government Schemes for Agricultural Machines (2025)</h3>
+         <ul>
+           <li><strong>1. Sub-Mission on Agricultural Mechanization (SMAM)</strong><br>Availability: Wide range of machines—tractors, power tillers, harvesters, Happy Seeder, Super Seeder, rotavator, zero-till drills, laser levelers, transplanters, sprayers, threshers, balers, and more.<br>Scheme Features:<br>Subsidy: 40–60% of machine cost for most farmers, higher (up to 80%) for SC/ST, women, small/marginal farmers.<br>Custom Hiring Centers (CHC): Farmers unable to buy can rent machines at low cost.<br>How to Avail: Apply online via agrimachinery.nic.in or state portals. Subsidy is credited after purchase and field verification.</li>
+           <li><strong>2. State Mechanization Schemes</strong><br>Each state (e.g., UP, Haryana, MP, Rajasthan, West Bengal, etc.) runs its own mechanization programs under the central SMAM umbrella, with specific machine lists and subsidies, often through their agriculture department portals.<br>Booking & Availing: Users can view available machines, check rates, and book through state government machinery hubs or online booking systems.</li>
+           <li><strong>3. PM Kisan Samman Nidhi (Additional Benefits)</strong><br>While the main focus is income support, some states leverage PM-Kisan databases to target priority groups for machine subsidies.</li>
+           <li><strong>4. Agricultural Infrastructure Fund</strong><br>Supports the purchase and installation of large, shared machines (e.g., batch dryers, warehouses, processing units) via low-interest loans and grants—often for FPOs and SHGs.</li>
+           <li><strong>5. Custom Hiring Centers (CHC) and Hi-tech Hubs</strong><br>Availability: All key machines for small farmers, provided on a rental basis through registered centers. This allows farmers to use advanced equipment without direct purchase.<br>Subsidy: 40–50% capital subsidy for setting up CHCs.</li>
+         </ul>
+         <h4>How to Check and Apply for Machines:</h4>
+         <ul>
+           <li>Central Portal: agrimachinery.nic.in for pan-India machinery schemes, approved lists, dealer locators, and subsidy calculations.</li>
+           <li>State Agriculture Portals: Online booking/registration and scheme details (e.g., UP, Haryana, MP, WB, etc.).</li>
+           <li>Physical Availability: Through government-registered CHCs, Krishi Vigyan Grenras, and cooperative societies.</li>
+         </ul>
+         <h4>Common Machines Supported by Government Schemes</h4>
+         <ul>
+           <li>Tractors (all HP ranges)</li>
+           <li>Power tillers</li>
+           <li>Harvesters (with straw management)</li>
+           <li>Happy Seeder, Super Seeder, Rotavator</li>
+           <li>Laser land levelers, zero-till seed drills</li>
+           <li>Potato/sugarcane planters, vegetable transplanters, sprayers</li>
+           <li>Threshers, balers, fodder harvesters</li>
+           <li>Agricultural drones (expanding support in 2025 for precision spraying)</li>
+           <li>Mini processing units, dryers, mobile grading/cleaning units</li>
+         </ul>
+         <h4>Who Can Apply?</h4>
+         <ul>
+           <li>Individual farmers, women, SC/ST farmers, SHGs, FPOs, Custom Hiring Centers</li>
+         </ul>
+         <h4>Subsidy Details:</h4>
+         <ul>
+           <li>40–60% general subsidy</li>
+           <li>50–80% for target categories (women, SC/ST, NE states)</li>
+           <li>Direct Benefit Transfer post-validation</li>
+         </ul>
+       </div>
      </div>
    </div>
  </div>
@@ -1093,29 +1122,44 @@
      document.getElementById('signupModal').style.display = 'none';
    };
  });
- // ---- CARD CLICK → TAB PANEL ----
+ // ---- CARD CLICK → SHOW FULL DETAIL LOCALLY ----
  document.querySelectorAll('.big-card').forEach(card => {
    card.onclick = function(e) {
      e.preventDefault();
      const cardId = this.id.replace('main-card-', '');
-     const detailId = 'detail-' + cardId;
-     const detailElement = document.getElementById(detailId);
-     
-     // Hide all detail panels first
+     const detailElement = document.getElementById('detail-' + cardId);
+     // Hide all other detail panels
      document.querySelectorAll('.card-detail').forEach(panel => {
        panel.style.display = 'none';
      });
-     
-     // Show the selected detail panel
+     // Define a mapping from card ID to the ID of the corresponding section in the tabPanel
+     const tabSectionMapping = {
+       'seeds': 'seed-availability-section',
+       'schemes': 'govt-schemes-section',
+       'weather': 'weather-section',
+       'calendar': 'crop-calendar-section',
+       'fertilizer': 'pest-fertilizer-section',
+       'soil': 'soil-weather-section',
+       'msp': 'msp-market-section',
+       'yield': 'yield-comparison-section',
+       'machines': 'machinery-section' // For the new card
+     };
+     // Get the ID of the section in the tabPanel that corresponds to this card
+     const targetTabSectionId = tabSectionMapping[cardId];
+     if (targetTabSectionId && detailElement) {
+       // Clone the content from the tabPanel
+       const sourceSection = document.getElementById(targetTabSectionId);
+       if (sourceSection) {
+         // Clear the current content of the detail panel
+         detailElement.innerHTML = '';
+         // Clone and append all children from the source section
+         for (let child of sourceSection.childNodes) {
+           detailElement.appendChild(child.cloneNode(true));
+         }
+       }
+     }
+     // Finally, display the (now populated) detail panel for this card
      detailElement.style.display = 'block';
-     
-     // Update the tab panel header
-     const tabHeader = document.querySelector('.tab-header span');
-     const cardTitle = this.querySelector('.title').textContent;
-     tabHeader.textContent = cardTitle + ' Guide';
-     
-     // Show the tab panel
-     document.getElementById('tabPanel').style.display = 'flex';
    };
  });
  // ---- CHATBOT LOGIC ----
@@ -1150,11 +1194,10 @@
  chatInput.addEventListener('keydown', e => {
    if (e.key === "Enter") sendBtn.click();
  });
- 
  // Language change functionality
  function changeLanguage() {
    const selectedLang = document.getElementById('langSel').value;
-   // Add language change logic here
+   // Show alert but do not change any text on the page
    alert(`Language changed to ${selectedLang}`);
  }
  </script>
