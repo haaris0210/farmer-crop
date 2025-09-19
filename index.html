@@ -108,11 +108,13 @@
   }
   .modal-content {
     background-color: white;
-    width: 380px;
+    width: 90%;
+    max-width: 800px;
     padding: 28px 20px 18px 20px;
     border-radius: 18px;
     box-shadow: 0 16px 64px rgba(15, 80, 40, 0.15);
-    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   .modal-header {
     display: flex;
@@ -760,7 +762,7 @@
          <li><strong>1. Sub-Mission on Agricultural Mechanization (SMAM)</strong><br>Availability: Wide range of machines—tractors, power tillers, harvesters, Happy Seeder, Super Seeder, rotavator, zero-till drills, laser levelers, transplanters, sprayers, threshers, balers, and more.<br>Scheme Features:<br>Subsidy: 40–60% of machine cost for most farmers, higher (up to 80%) for SC/ST, women, small/marginal farmers.<br>Custom Hiring Centers (CHC): Farmers unable to buy can rent machines at low cost.<br>How to Avail: Apply online via agrimachinery.nic.in or state portals. Subsidy is credited after purchase and field verification.</li>
          <li><strong>2. State Mechanization Schemes</strong><br>Each state (e.g., UP, Haryana, MP, Rajasthan, West Bengal, etc.) runs its own mechanization programs under the central SMAM umbrella, with specific machine lists and subsidies, often through their agriculture department portals.<br>Booking & Availing: Users can view available machines, check rates, and book through state government machinery hubs or online booking systems.</li>
          <li><strong>3. PM Kisan Samman Nidhi (Additional Benefits)</strong><br>While the main focus is income support, some states leverage PM-Kisan databases to target priority groups for machine subsidies.</li>
-         <li><strong>4. Agricultural Infrastructure Fund</strong><br>Supports the purchase and installation of large, shared machines (e.g., batch dryers, warehouses, processing units) via low-interest loans and grants—often for FPOs and SHGs.</li>
+         <li><strong>4. Agriculture Infrastructure Fund</strong><br>Supports the purchase and installation of large, shared machines (e.g., batch dryers, warehouses, processing units) via low-interest loans and grants—often for FPOs and SHGs.</li>
          <li><strong>5. Custom Hiring Centers (CHC) and Hi-tech Hubs</strong><br>Availability: All key machines for small farmers, provided on a rental basis through registered centers. This allows farmers to use advanced equipment without direct purchase.<br>Subsidy: 40–50% capital subsidy for setting up CHCs.</li>
        </ul>
        <h4>How to Check and Apply for Machines:</h4>
@@ -1188,7 +1190,7 @@
      this.closest('.modal-overlay').style.display = 'none';
    };
  });
- // ---- CARD CLICK → SHOW FULL DETAIL LOCALLY ----
+ // ---- CARD CLICK → MODAL POPUP ----
  document.querySelectorAll('.big-card').forEach(card => {
    card.onclick = function(e) {
      e.preventDefault();
@@ -1198,34 +1200,14 @@
      document.querySelectorAll('.card-detail').forEach(panel => {
        panel.style.display = 'none';
      });
-     // Define a mapping from card ID to the ID of the corresponding section in the tabPanel
-     const tabSectionMapping = {
-       'seeds': 'seed-availability-section',
-       'schemes': 'govt-schemes-section',
-       'weather': 'weather-section',
-       'calendar': 'crop-calendar-section',
-       'fertilizer': 'pest-fertilizer-section',
-       'soil': 'soil-weather-section',
-       'msp': 'msp-market-section',
-       'yield': 'yield-comparison-section',
-       'machines': 'machinery-section'
-     };
-     // Get the ID of the section in the tabPanel that corresponds to this card
-     const targetTabSectionId = tabSectionMapping[cardId];
-     if (targetTabSectionId && detailElement) {
-       // Clone the content from the tabPanel
-       const sourceSection = document.getElementById(targetTabSectionId);
-       if (sourceSection) {
-         // Clear the current content of the detail panel
-         detailElement.innerHTML = '';
-         // Clone and append all children from the source section
-         for (let child of sourceSection.childNodes) {
-           detailElement.appendChild(child.cloneNode(true));
-         }
-       }
-     }
-     // Finally, display the (now populated) detail panel for this card
+     // Show the selected detail panel
      detailElement.style.display = 'block';
+     // Update the tab panel header
+     const tabHeader = document.querySelector('.tab-header span');
+     const cardTitle = this.querySelector('.title').textContent;
+     tabHeader.textContent = cardTitle + ' Guide';
+     // Show the tab panel
+     document.getElementById('tabPanel').style.display = 'flex';
    };
  });
  // ---- CHATBOT LOGIC ----
@@ -1263,105 +1245,8 @@
  // Language change functionality
  function changeLanguage() {
    const selectedLang = document.getElementById('langSel').value;
-   // Update text elements based on language selection
-   if (selectedLang === 'hi') {
-     document.getElementById('nav-title').textContent = 'सोलूशनियर्स';
-     document.getElementById('nav-subtitle').textContent = 'स्मार्ट एग्रीकल्चर ग्रुप';
-     document.getElementById('hero').textContent = 'बढ़िया कृषि। बेहतर फसल।';
-     document.getElementById('herodesc').textContent = 'वास्तविक समय के सलाह, बाजार मूल्य, सब्सिडी और मैदान के लिए भूमि जानकारी प्रदान करने वाले खेती के लिए डेटा से बनाया गया।';
-     document.getElementById('btn-dashboard').textContent = 'डैशबोर्ड एक्सप्लोर करें';
-     document.getElementById('btn-how').textContent = 'कैसे काम करता है';
-     document.getElementById('about-head').textContent = 'सोलूशनियर्स के बारे में';
-     document.getElementById('about1').textContent = 'हम किसानों के लिए व्यावहारिक डिजिटल उपकरण लाते हैं: मौसम पूर्वानुमान, MSP अपडेट, मैदान के लिए स्वास्थ्य सुझाव और स्थानीय सलाह जो आपको यह बताती है कि क्या बोएं और कब।';
-     document.getElementById('abouttag').textContent = 'आपकी जमीन। आपके डेटा। बेहतर फसल।';
-     document.getElementById('news-head').textContent = 'नवीनतम समाचार';
-     document.getElementById('card-seeds').textContent = 'बीज उपलब्धता';
-     document.getElementById('card-seeds-desc').textContent = 'प्रमाणित बीजों, आपके गाँव के पास स्थानीय विक्रेताओं को ढूंढें।';
-     document.getElementById('card-schemes').textContent = 'सरकारी योजनाएं और नीतियां';
-     document.getElementById('card-schemes-desc').textContent = 'अपने क्षेत्र के लिए पात्रता, सब्सिडी और आवेदन की जाँच करें।';
-     document.getElementById('card-weather').textContent = 'मौसम पूर्वानुमान';
-     document.getElementById('card-weather-desc').textContent = 'सूखा, बारिश और गर्मी लहरों के लिए 7-दिन के पूर्वानुमान और चेतावनियां।';
-     document.getElementById('card-calendar').textContent = 'फसल कैलेंडर';
-     document.getElementById('card-calendar-desc').textContent = 'आपके लिए क्षेत्रीय बोई/कटाई अनुसूची।';
-     document.getElementById('card-fertilizer').textContent = 'उर्वरक और कीट अनुशंसा';
-     document.getElementById('card-fertilizer-desc').textContent = 'मैदान के आधार पर सुझाव, प्रारंभिक कीट चेतावनियां।';
-     document.getElementById('card-soil').textContent = 'मैदान के स्वास्थ्य';
-     document.getElementById('card-soil-desc').textContent = 'मैदान रिपोर्ट अपलोड करें, सुधार योजनाएं प्राप्त करें।';
-     document.getElementById('card-msp').textContent = 'MSP बाजार दरें';
-     document.getElementById('card-msp-desc').textContent = 'दैनिक मंडी दरें, eNAM कीमतें और ट्रेंड चार्ट।';
-     document.getElementById('card-yield').textContent = 'उत्पादन तुलना';
-     document.getElementById('card-yield-desc').textContent = 'ऐतिहासिक उत्पादन और सुधार के अनुमान की तुलना करें।';
-     document.getElementById('card-machines').textContent = 'नवीनतम कृषि मशीनरी';
-     document.getElementById('card-machines-desc').textContent = 'आधुनिक कृषि के लिए सरकारी सब्सिडी वाली मशीनरी खोजें।';
-     document.getElementById('btnLogin').textContent = 'लॉगिन';
-     document.getElementById('btnSignup').textContent = 'साइन अप';
-     document.getElementById('langSel').value = 'hi';
-   } else if (selectedLang === 'pa') {
-     document.getElementById('nav-title').textContent = 'ਸੋਲੂਸ਼ਨਿਅਰਜ਼';
-     document.getElementById('nav-subtitle').textContent = 'ਸਮ੍ਰਾਟ ਕ੍ਰਿਸ਼ਿਅਰ ਗ੍ਰੁੱਪ';
-     document.getElementById('hero').textContent = 'ਵਧੀਆ ਕ੍ਰਿਸ਼ਿਅਰ। ਵਧੀਆ ਫਸਲ।';
-     document.getElementById('herodesc').textContent = 'ਵਾਸਤਵਿਕ ਸਮੇਂ ਦੇ ਸਲਾਹ, ਬਾਜ਼ਾਰ ਦੀਆਂ ਕੀਮਤਾਂ, ਸਬਸਿਡੀ ਅਤੇ ਮਿੱਟੀ ਦੇ ਜਾਣਕਾਰੀ ਨਾਲ ਕਿਸਾਨਾਂ ਲਈ ਬਣਾਇਆ ਗਿਆ।';
-     document.getElementById('btn-dashboard').textContent = 'ਡੈਸ਼ਬੋਰਡ ਦੇਖੋ';
-     document.getElementById('btn-how').textContent = 'ਕੈਸੇ ਕੰਮ ਕਰਦਾ ਹੈ';
-     document.getElementById('about-head').textContent = 'ਸੋਲੂਸ਼ਨਿਅਰਜ਼ ਬਾਰੇ';
-     document.getElementById('about1').textContent = 'ਸਾਡੇ ਕੋਲ ਕਿਸਾਨਾਂ ਲਈ ਵਾਸਤਵਿਕ ਸਮੇਂ ਦੇ ਸਲਾਹ, MSP ਅਪਡੇਟ, ਮਿੱਟੀ ਦੇ ਸਵਾਸਥਿਕ ਸੁਝਾਅ ਅਤੇ ਸਥਾਨਕ ਸਲਾਹ ਹੈ, ਜੋ ਤੁਹਾਨੂੰ ਬੋਏਂ ਅਤੇ ਕਦੇ ਬੋਏਂ ਬਾਰੇ ਸੂਚਨਾ ਦਿੰਦੀ ਹੈ।';
-     document.getElementById('abouttag').textContent = 'ਤੁਹਾਡੀ ਜ਼ਮੀਨ। ਤੁਹਾਡੇ ਡੇਟਾ। ਬਿਹਤਰ ਫਸਲ।';
-     document.getElementById('news-head').textContent = 'ਨਵੀਨਤਮ ਖ਼ਬਰਾਂ';
-     document.getElementById('card-seeds').textContent = 'ਬੀਜ ਉਪਲਬਧਤਾ';
-     document.getElementById('card-seeds-desc').textContent = 'ਪ੍ਰਮਾਣਿਤ ਬੀਜ, ਤੁਹਾਡੇ ਗਾਂਵ ਦੇ ਨੇੜੇ ਸਥਾਨੀਅਕ ਵਿਕਰੇਤਾਵਾਂ ਨੂੰ ਲੱਭੋ।';
-     document.getElementById('card-schemes').textContent = 'ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ ਅਤੇ ਨੀਤੀਆਂ';
-     document.getElementById('card-schemes-desc').textContent = 'ਤੁਹਾਡੇ ਖੇਤਰ ਲਈ ਯੋਗਤਾ, ਸਬਸਿਡੀ, ਅਤੇ ਆਵੇਦਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ।';
-     document.getElementById('card-weather').textContent = 'ਮੌਸਮ ਪੂਰਵਾਨੁਮਾਨ';
-     document.getElementById('card-weather-desc').textContent = 'ਸੂਖਾ, ਬਾਰਿਸ਼, ਅਤੇ ਗਰਮੀ ਲਹਿਰਾਂ ਲਈ 7-ਦਿਨਾਂ ਦੇ ਪੂਰਵਾਨੁਮਾਨ ਅਤੇ ਚੇਤਾਵਨੀਆਂ।';
-     document.getElementById('card-calendar').textContent = 'ਫਸਲ ਕੈਲੰਡਰ';
-     document.getElementById('card-calendar-desc').textContent = 'ਤੁਹਾਡੇ ਲਈ ਕਸ਼ਤੀ ਸੀਜ਼ਨ ਅਨੁਸਾਰ ਬੋਏਂ/ਕੱਟੇ ਅਨੁਸੂਚੀ।';
-     document.getElementById('card-fertilizer').textContent = 'ਉਰਵਰਕ ਅਤੇ ਕੀਟ ਸੁਝਾਅ';
-     document.getElementById('card-fertilizer-desc').textContent = 'ਮਿੱਟੀ ਦੇ ਆਧਾਰ ਉੱਤੇ ਸੁਝਾਅ, ਪ੍ਰਾਰਂਭਿਕ ਕੀਟ ਚੇਤਾਵਨੀਆਂ।';
-     document.getElementById('card-soil').textContent = 'ਮਿੱਟੀ ਦਾ ਸਵਾਸਥਿਕ';
-     document.getElementById('card-soil-desc').textContent = 'ਮਿੱਟੀ ਰਿਪੋਰਟ ਅਪਲੋਡ ਕਰੋ, ਸੁਧਾਰ ਯੋਜਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰੋ।';
-     document.getElementById('card-msp').textContent = 'MSP ਬਾਜ਼ਾਰ ਦਰਾਂ';
-     document.getElementById('card-msp-desc').textContent = 'ਦੈਨਿਕ ਮੰਡੀ ਦਰਾਂ, eNAM ਕੀਮਤਾਂ, ਅਤੇ ਟ੍ਰੈਂਡ ਚਾਰਟ।';
-     document.getElementById('card-yield').textContent = 'ਉਤਪਾਦਨ ਤੁਲਨਾ';
-     document.getElementById('card-yield-desc').textContent = 'ਤਿਹਾਸਿਕ ਉਤਪਾਦਨ ਅਤੇ ਸੁਧਾਰ ਦੇ ਅਨੁਮਾਨ ਨੂੰ ਤੁਲਨਾ ਕਰੋ।';
-     document.getElementById('card-machines').textContent = 'ਨਵੀਨਤਮ ਕ੍ਰਿਸ਼ਿਅਰ ਮਸ਼ੀਨਰੀ';
-     document.getElementById('card-machines-desc').textContent = 'ਆਧੁਨਿਕ ਕ੍ਰਿਸ਼ਿਅਰ ਲਈ ਸਰਕਾਰੀ ਸਬਸਿਡੀ ਵਾਲੀ ਮਸ਼ੀਨਰੀ ਦੀ ਖੋਜ ਕਰੋ।';
-     document.getElementById('btnLogin').textContent = 'ਲ੉ਗਇਨ';
-     document.getElementById('btnSignup').textContent = 'ਸਾਇਨ ਅੱਪ';
-     document.getElementById('langSel').value = 'pa';
-   } else {
-     // Default to English
-     document.getElementById('nav-title').textContent = 'Solutioneers';
-     document.getElementById('nav-subtitle').textContent = 'Smart Agriculture Group';
-     document.getElementById('hero').textContent = 'Grow smarter. Harvest better.';
-     document.getElementById('herodesc').textContent = 'Real-time advisories, market prices, subsidies, and soil insights built for farmers, powered by data.';
-     document.getElementById('btn-dashboard').textContent = 'Explore Dashboard';
-     document.getElementById('btn-how').textContent = 'How it works';
-     document.getElementById('about-head').textContent = 'About Solutioneers';
-     document.getElementById('about1').textContent = 'We bring practical digital tools to farmers: weather forecasting, MSP updates, soil health recommendations and local advisories that help you decide what to plant and when.';
-     document.getElementById('abouttag').textContent = 'Your land. Your data. Better yields.';
-     document.getElementById('news-head').textContent = 'Latest News';
-     document.getElementById('card-seeds').textContent = 'Seeds Availability';
-     document.getElementById('card-seeds-desc').textContent = 'Find certified seeds, local vendors near your village.';
-     document.getElementById('card-schemes').textContent = 'Govt Schemes & Policies';
-     document.getElementById('card-schemes-desc').textContent = 'Check eligibility, subsidies, and applications for your area.';
-     document.getElementById('card-weather').textContent = 'Weather Forecast';
-     document.getElementById('card-weather-desc').textContent = '7-day forecasts & alerts for drought, rainfall, and heatwaves.';
-     document.getElementById('card-calendar').textContent = 'Crop Calendar';
-     document.getElementById('card-calendar-desc').textContent = 'Regional sowing/harvesting schedules tailored for you.';
-     document.getElementById('card-fertilizer').textContent = 'Fertilizer & Pest Advisory';
-     document.getElementById('card-fertilizer-desc').textContent = 'Soil-based recommendations, early pest warnings.';
-     document.getElementById('card-soil').textContent = 'Soil Health';
-     document.getElementById('card-soil-desc').textContent = 'Upload soil reports, get improvement plans.';
-     document.getElementById('card-msp').textContent = 'MSP Market Rates';
-     document.getElementById('card-msp-desc').textContent = 'Daily mandi rates, eNAM prices, and trend charts.';
-     document.getElementById('card-yield').textContent = 'Yield Comparison';
-     document.getElementById('card-yield-desc').textContent = 'Compare historical yields and forecast improvements.';
-     document.getElementById('card-machines').textContent = 'Latest Agricultural Machinery';
-     document.getElementById('card-machines-desc').textContent = 'Discover government-subsidized machinery for modern farming.';
-     document.getElementById('btnLogin').textContent = 'Login';
-     document.getElementById('btnSignup').textContent = 'Sign Up';
-     document.getElementById('langSel').value = 'en';
-   }
+   // Add language change logic here
+   alert(`Language changed to ${selectedLang}`);
  }
  </script>
 </body>
