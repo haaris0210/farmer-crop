@@ -24,6 +24,14 @@
     box-shadow:0 6px 60px rgba(50,85,70,0.14),0 1.5px 12px rgba(90,155,120,0.09);
     backdrop-filter:blur(8px);
   }
+  /* ADDED: White bar below Dashboard heading */
+  .dashboard-header-bar {
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    margin: 12px 0 24px 0; /* Space above and below the bar */
+    width: 80px; /* Adjust width as needed */
+  }
   .sidebar {
     position:fixed;left:0;top:0;bottom:0;width:350px;max-width:98vw;background:#1b5e33;z-index:2000;
     padding:22px 12px 24px 18px;overflow-y:auto;display:none;
@@ -32,47 +40,161 @@
   .sidebar.open{display:block;}
   .sidebar h3 {color: #fff;}
   .sidebar nav a {color:#fff;}
-  /* MODIFIED: Navbar background white */
-  .navbar{position:sticky;top:0;z-index:1200;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;background:white;box-shadow:0 6px 18px rgba(20,30,20,0.06);border-bottom:1px solid #e6f0ea;}
+  /* MODIFIED: Navbar background white, improved appearance */
+  .navbar{
+    position:sticky;top:0;z-index:1200;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;
+    background:white; /* Kept white as requested */
+    box-shadow:0 6px 18px rgba(20,30,20,0.06); /* Kept shadow for depth */
+    border-bottom:1px solid #e6f0ea; /* Kept subtle border */
+    /* ADDED: Improved navbar appearance */
+    border-radius: 0 0 12px 12px; /* Slight bottom rounding */
+  }
   .nav-left{display:flex;align-items:center;gap:14px;}
-  .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;border:none;background:linear-gradient(180deg,#fff,#f1f5f1);font-size:20px;cursor:pointer;}
+  .menu-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:10px;
+    border:1px solid #e0e0e0; /* Added border */
+    background:linear-gradient(180deg,#fff,#f8f8f8); /* Slightly refined gradient */
+    font-size:20px;cursor:pointer;
+    transition: background-color 0.2s, border-color 0.2s; /* Smooth transition */
+  }
+  .menu-btn:hover {
+    background: linear-gradient(180deg, #f1f1f1, #e8e8e8); /* Hover effect */
+    border-color: #ccc;
+  }
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#196f3d;}
-  .brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#dff6e8,#b9e8c1);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:20px;}
+  .brand .logo{
+    width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,#dff6e8,#b9e8c1); /* Kept original gradient */
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#1b5e33;font-size:20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for logo */
+  }
   .brand .title{font-size:18px;}
-  .nav-time{font-size:13px;color:#3a3a3a;margin-left:6px;}
+  .nav-time{
+    font-size:13px;color:#3a3a3a;margin-left:6px;
+    background-color: #f0f8f2; /* Light background for time */
+    padding: 4px 10px;
+    border-radius: 20px; /* Pill shape */
+  }
   .nav-right{display:flex;align-items:center;gap:8px;}
-  .lang-select{padding:8px 12px;border-radius:8px;border:1px solid #e6f0ea;background:#e8f6ee;}
-  .btn{padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:600;}
-  .btn.login{background:transparent;border:1px solid #ddd;color:#175a30;}
-  .btn.cta{background:#1e7b3f;color:#fff;}
-  .hero{margin:28px 0 0 0;border-radius:18px;background:linear-gradient(135deg,#e8f7ee,#f1f9f2);box-shadow:0 20px 40px rgba(25,111,61,0.06);display:flex;align-items:center;justify-content:space-between;gap:30px;padding:42px 42px 28px 42px;min-height:160px;}
+  .lang-select{
+    padding:8px 12px;border-radius:8px;
+    border:1px solid #e6f0ea; /* Kept border */
+    background:#e8f6ee; /* Kept background */
+    font-family: inherit; /* Inherit font */
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .lang-select:hover {
+    background-color: #d8eee2; /* Hover effect */
+  }
+  .btn{
+    padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-weight:600;
+    transition: background-color 0.2s, transform 0.1s; /* Smooth transitions */
+  }
+  .btn:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+  .btn.login{
+    background:transparent;border:1px solid #ddd;color:#175a30;
+    border-color: #a0d4b0; /* Slightly refined border color */
+  }
+  .btn.login:hover {
+    background-color: #f0f8f2; /* Background on hover */
+  }
+  .btn.cta{
+    background:#1e7b3f;color:#fff;
+    box-shadow: 0 4px 12px rgba(30, 123, 63, 0.15); /* Subtle shadow */
+  }
+  .btn.cta:hover {
+    background: #196a35; /* Darker green on hover */
+    box-shadow: 0 6px 16px rgba(30, 123, 63, 0.2);
+  }
+  .hero{
+    margin:28px 0 0 0;border-radius:18px;
+    background:linear-gradient(135deg,#e8f7ee,#f1f9f2); /* Kept gradient */
+    box-shadow:0 20px 40px rgba(25,111,61,0.06); /* Kept shadow */
+    display:flex;align-items:center;justify-content:space-between;gap:30px;padding:42px 42px 28px 42px;min-height:160px;
+  }
   .hero .left{max-width:72%;}
   .hero h1{font-size:34px;line-height:1.02;color:#114b27;margin-bottom:8px;font-weight:800;}
   .hero p{color:#2c5b3a;opacity:0.97;font-size:17px;}
   .hero .cta-row{margin-top:16px;display:flex;gap:12px;}
-  .hero .cta{padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700;}
-  .hero .cta.primary{background:#1e7b3f;color:#fff;box-shadow:0 10px 26px rgba(30,123,63,0.12);}
-  .hero .cta.ghost{background:transparent;border:1px solid #d6eee0;color:#1e7b3f;}
-  .hero .right{width:320px;height:120px;border-radius:12px;background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=700');background-size:cover;background-position:center;box-shadow:inset 0 0 0 120px rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;text-shadow:0 4px 20px rgba(0,0,0,0.3);}
-  .section{display:grid;grid-template-columns:1fr 420px;gap:32px;max-width:1300px;margin:32px auto 0 auto;}
-  .card-large{border-radius:18px;background:#fff;padding:32px 32px 20px 32px;box-shadow:0 10px 30px rgba(16,64,28,0.06);font-size:17px;}
+  .hero .cta{
+    padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:700;
+  }
+  .hero .cta.primary{
+    background:#1e7b3f;color:#fff;
+    box-shadow:0 10px 26px rgba(30,123,63,0.12); /* Kept shadow */
+  }
+  .hero .cta.primary:hover {
+    background: #196a35; /* Darker on hover */
+  }
+  .hero .cta.ghost{
+    background:transparent;border:1px solid #d6eee0;color:#1e7b3f;
+  }
+  .hero .cta.ghost:hover {
+    background-color: rgba(214, 238, 224, 0.2); /* Light background on hover */
+  }
+  .hero .right{
+    width:320px;height:120px;border-radius:12px;
+    background-image:url('https://images.pexels.com/photos/158827/field-cereal-farm-garden-158827.jpeg?auto=compress&w=700');
+    background-size:cover;background-position:center;
+    box-shadow:inset 0 0 0 120px rgba(255,255,255,0.18); /* Kept inset shadow */
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+    text-shadow:0 4px 20px rgba(0,0,0,0.3); /* Kept text shadow */
+  }
+  .section{
+    display:grid;grid-template-columns:1fr 420px;gap:32px;max-width:1300px;margin:32px auto 0 auto;
+  }
+  .card-large{
+    border-radius:18px;background:#fff;padding:32px 32px 20px 32px;
+    box-shadow:0 10px 30px rgba(16,64,28,0.06); /* Kept shadow */
+    font-size:17px;
+  }
   .about h3{color:#1b6b36;margin-bottom:10px;font-size:22px;}
   .about p{color:#2c4d3a;opacity:.93;font-size:17px;}
-  .news-box{border-radius:18px;background:linear-gradient(180deg,#fff,#fbfffd);padding:22px;box-shadow:0 10px 28px rgba(16,64,28,0.08);}
+  .news-box{
+    border-radius:18px;background:linear-gradient(180deg,#fff,#fbfffd); /* Kept gradient */
+    padding:22px;box-shadow:0 10px 28px rgba(16,64,28,0.08); /* Kept shadow */
+  }
   .news-box h3{color:#1b6b36;margin-bottom:12px;font-size:18px;}
   .news-scroll{height:175px;overflow:hidden;position:relative;}
   .news-track{display:flex;flex-direction:column;gap:9px;animation:newsScroll 12s linear infinite;}
-  .news-item{font-size:15px;color:#264c36;padding:8px 2px;margin-left:5px;background:linear-gradient(90deg,rgba(40,120,60,.03),transparent);border-radius:7px;}
+  .news-item{
+    font-size:15px;color:#264c36;padding:8px 2px;margin-left:5px;
+    background:linear-gradient(90deg,rgba(40,120,60,.03),transparent); /* Kept gradient */
+    border-radius:7px;
+  }
   @keyframes newsScroll {
    0%   { transform: translateY(0);}
    100% { transform: translateY(-50%);}
   }
-  .grid{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;}
-  .big-card{position:relative;overflow:hidden;border-radius:18px;height:180px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background-size:cover;background-position:center;text-decoration:none;box-shadow:0 6px 32px rgba(10,50,20,0.07);transition:transform .28s, box-shadow .28s;}
-  .big-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48));mix-blend-mode:multiply;}
-  .big-card .title{position:relative;font-weight:800;font-size:20px;z-index:2;}
-  .big-card .desc{position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:13px;}
-  .big-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 30px 60px rgba(12,48,22,0.12);}
+  .grid{
+    margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;
+  }
+  .big-card{
+    position:relative;overflow:hidden;border-radius:18px;height:180px;color:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:22px;
+    background-size:cover;background-position:center;text-decoration:none;
+    box-shadow:0 6px 32px rgba(10,50,20,0.07); /* Kept shadow */
+    transition:transform .28s, box-shadow .28s;
+  }
+  .big-card:after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 35%,rgba(5,35,15,0.48)); /* Kept overlay */
+    mix-blend-mode:multiply;
+  }
+  .big-card .title{
+    position:relative;font-weight:800;font-size:20px;z-index:2;
+  }
+  .big-card .desc{
+    position:relative;margin-top:8px;font-weight:600;opacity:.95;z-index:2;font-size:13px;
+  }
+  .big-card:hover{
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 30px 60px rgba(12,48,22,0.12); /* Kept hover shadow */
+  }
   .overlay-green{background:linear-gradient(135deg,rgba(26,139,87,0.60),rgba(18,95,50,0.55));}
   .overlay-yellow{background:linear-gradient(135deg,rgba(255,195,79,0.60),rgba(255,143,0,0.45));}
   .overlay-blue{background:linear-gradient(135deg,rgba(95,150,255,0.45),rgba(65,120,255,0.38));}
@@ -134,6 +256,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 15px;
+    box-sizing: border-box; /* Ensure padding is included in width */
   }
   .modal-footer {
     text-align: center;
@@ -185,8 +308,14 @@
     color: #256149;
   }
   /* Responsive */
-  @media (max-width:1200px){.section{grid-template-columns:1fr;max-width:96vw;}}
-  @media (max-width:960px){.sidebar{width:98vw;max-width:98vw;}.dashboard-bg{padding:10px;}.chat-window{width:99vw;}}
+  @media (max-width:1200px){
+    .section{grid-template-columns:1fr;max-width:96vw;}
+  }
+  @media (max-width:960px){
+    .sidebar{width:98vw;max-width:98vw;}
+    .dashboard-bg{padding:10px;}
+    .chat-window{width:99vw;}
+  }
   </style>
 </head>
 <body>
@@ -194,6 +323,8 @@
  <aside id="sidebar" class="sidebar" aria-hidden="true">
    <button id="closeSidebar" style="position:absolute;top:16px;right:18px;font-size:28px;background:transparent;border:none;cursor:pointer;color:#fff;z-index:10003;">×</button>
    <h3 style="margin-top:6px;color:#fff;" id="dashboardTitle">Dashboard</h3>
+   <!-- ADDED: White bar below Dashboard heading -->
+   <div class="dashboard-header-bar"></div>
    <nav style="margin:16px 0 20px 0;display:flex;flex-direction:column;gap:10px;">
     <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="navAbout">About Us</a>
     <a href="#dashboard" style="color:#fff;text-decoration:none;font-weight:600;" id="navMsp">MSP</a>
@@ -201,7 +332,7 @@
     <a href="#" style="color:#fff;text-decoration:none;font-weight:600;" id="navContact">Contact Us</a>
    </nav>
  </aside>
- <!-- NAVBAR (MODIFIED: background:white) -->
+ <!-- NAVBAR (MODIFIED: background:white and improved appearance) -->
  <header class="navbar">
   <div class="nav-left">
     <button id="menuBtn" class="menu-btn" title="Menu">☰</button>
@@ -453,6 +584,9 @@
    </aside>
   </section>
   <section class="dashboard-bg" id="dashboard">
+   <!-- ADDED: White bar below Dashboard heading (also added in sidebar) -->
+   <h3 style="color:#1b6b36;margin-bottom:0;font-size:22px;" id="dashboardTitleMain">Dashboard</h3>
+   <div class="dashboard-header-bar"></div>
    <section class="grid" aria-label="Features">
     <!-- CARD 1-->
      <div>
@@ -516,6 +650,7 @@
   en: {
     // DASHBOARD TITLE
     dashboardTitle: "Dashboard",
+    dashboardTitleMain: "Dashboard", // Added for main dashboard title
     navAbout: "About Us",
     navMsp: "MSP",
     navYield: "Yield Comparison",
@@ -523,20 +658,16 @@
     newsHead: "Latest News !!",
     aboutHead: "About Solutioneers",
     about1: "We bring practical digital tools to farmers: Latest Machinery, MSP updates and local advisories that help you decide what to plant and when.",
-
     // NAVBAR
     navTitle: "Solutioneers",
-    subtitle: "Smart Agriculture Group", 
-    
+    subtitle: "Smart Agriculture Group",
     // HERO
     hero: "Grow smarter. Harvest better.",
     heroDesc: "Real-time advisories, Latest Machinery, MSP updates and local advisories that help you decide what to plant and when.",
-
     // ABOUT
     aboutHead: "About Solutioneers",
     about1: "We bring practical digital tools to farmers: Latest Machinery, MSP updates and local advisories that help you decide what to plant and when.",
     abouttag: "Your land. Your data. Better yields.",
-
     // NEWS
     newsHead: "Latest News !!",
     newsitem1: "Latest machinery trends in agriculture.",
@@ -547,7 +678,6 @@
     newsitem7: "New high-yield seed variety released.",
     newsitem8: "Localized irrigation training programs starting next week.",
     newsitem9: "MSP updates pushed for rabi crops – check MSP page.",
-
     // CARDS
     cardMachines: "Latest Agricultural Machines",
     cardMachinesDesc: "Discover Latest machinery for modern farming.",
@@ -561,14 +691,12 @@
     cardCalendarDesc: "Regional sowing/harvesting schedules tailored for you.",
     cardMsp: "MSP Market Rates",
     cardMspDesc: "Daily mandi rates, eNAM prices, and trend charts.",
-
     // HOW IT WORKS
     howTitle: "How it works",
     how1: "1. Explore data and tools in the dashboard below.",
     how2: "2. Change language from the menu at top right.",
     how3: "3. Chat with the assistant about prices, crops, or tips.",
     how4: "4. Click cards for details and more services.",
-
     // SEEDS MODAL
     Seeds_Availability_Guide_Head: "Seeds Availability Guide",
     Major_Seed_Categories_Head: "Major Seed Categories",
@@ -577,7 +705,6 @@
     Seeds_Availability_Guide_Info3: "Vegetable & Fruit Seeds: Tomato, pepper, onion, cucumber, lettuce, melon, carrot, brassicas.",
     Seeds_Availability_Guide_Info4: "Legume & Pulse Seeds: Soybean, chickpea, lentil, pea, other protein-rich crops.",
     Seeds_Availability_Guide_Info5: "Specialty & Functional Seeds: Linseed, chia, hemp, nigella, thistle, fruit seeds.",
-
     // GOVT SCHEMES MODAL
     Government_Schemes_Policies_Head: "Government Schemes & Policies",
     Major_Govt_Schemes_for_Farmers_Head: "Major Govt Schemes for Farmers (2025)",
@@ -592,14 +719,12 @@
     Government_Schemes_Policies_Info9: "AIF: Grants for storage, cold chain, processing.",
     Government_Schemes_Policies_Info10: "PM Matsya Sampada Yojana: Infrastructure for fisheries.",
     Government_Schemes_Policies_Info11: "SMAM Mechanization: Farm machinery subsidy.",
-
     // CALENDAR MODAL
     Crop_Calendar_Guide_Head: "Crop Calendar Guide",
     Crop_Calendar_Guide: "Crop Calendar by Season, Region & Crop",
     Crop_Calendar_Guide_info1: "Kharif (June–Sep): Paddy rice, maize, millets, cotton, soybean, pulses.",
     Crop_Calendar_Guide_info2: "Rabi (Oct–Feb): Wheat, barley, chickpea, mustard, pea, lentil, potato.",
     Crop_Calendar_Guide_info3: "Zaid (Mar–May): Watermelon, muskmelon, cucumber, summer moong, cowpea.",
-
     // FERTILIZER MODAL
     Fertilizer_Pest_Advisory_Head: "Fertilizer & Pest Advisory",
     Fertilizer_Pest_Advisory_info1: "Rice: 90–120N, 40–60P, 40–60K per ha.",
@@ -608,7 +733,6 @@
     Fertilizer_Pest_Advisory_info4: "Soybean: 30–40N, 60–80P, 30–40K per ha.",
     Fertilizer_Pest_Advisory_info5: "Vegetables: 100–120N, 60–80P, 60–80K per ha.",
     Fertilizer_Pest_Advisory_info6: "Pulse Crops: 20N starter, 40–60P.",
-
     // MSP MODAL
     MSP_Market_Rates_Guide_Head: "MSP Market Rates Guide",
     MSP_Market_Rates_Guide: "MSP & Market Price Trends",
@@ -616,7 +740,6 @@
     MSP_Market_Rates_Guide_info2: "Mandi Prices: Local mandi rates & averages.",
     MSP_Market_Rates_Guide_info3: "Price Trends: 3-year trend graphs by crop.",
     MSP_Market_Rates_Guide_info4: "Downloadable Data: Export Excel/CSV.",
-
     // MACHINES MODAL
     Latest_Machine_Info1: "Autonomous Electric Tractor",
     Latest_Machine_Info1_Desc: "This electric, driverless tractor plows, plants, and sprays with precision.",
@@ -625,7 +748,6 @@
     Latest_Machine_Info1_Usage_Step2: "Select the task and parameters.",
     Latest_Machine_Info1_Usage_Step3: "Monitor remotely on smartphone.",
     Latest_Machine_Info1_Usage_Step4: "Charge at a high-power station.",
-
     Latest_Machine_Info2: "Agricultural Drones (Agri-Drones)",
     Latest_Machine_Info2_Desc: "Drones provide data on crop health & spray fertilizers/pesticides.",
     Latest_Machine_Info2_Usage: "How to Use",
@@ -634,10 +756,10 @@
     Latest_Machine_Info2_Usage_Step3: "Analyze maps for problems.",
     Latest_Machine_Info2_Usage_Step4: "Attach sprayer for targeted treatment."
   },
-
   hi: {
     // DASHBOARD TITLE
     dashboardTitle: "डैशबोर्ड",
+    dashboardTitleMain: "डैशबोर्ड", // Added for main dashboard title
     navAbout: "हमारे बारे में",
     navMsp: "एमएसपी",
     navYield: "उपज तुलना",
@@ -648,12 +770,10 @@
   // HERO
   hero: "स्मार्ट तरीके से उगाएँ। बेहतर फसल काटें।",
   heroDesc: "रियल-टाइम सलाह, नवीनतम मशीनरी, MSP अपडेट और स्थानीय सुझाव जो आपको यह तय करने में मदद करते हैं कि क्या और कब बोना है।",
-
   // ABOUT
   aboutHead: "सोल्यूशनियर्स के बारे में",
   about1: "हम किसानों के लिए व्यावहारिक डिजिटल टूल लाते हैं: नवीनतम मशीनरी, MSP अपडेट और स्थानीय सलाह।",
   abouttag: "आपकी ज़मीन। आपका डेटा। बेहतर उपज।",
-
   // NEWS
   newsHead: "नवीनतम समाचार !!",
   newsitem1: "कृषि में नवीनतम मशीनरी रुझान।",
@@ -664,7 +784,6 @@
   newsitem7: "नई उच्च उपज बीज किस्म जारी।",
   newsitem8: "स्थानीय सिंचाई प्रशिक्षण कार्यक्रम अगले सप्ताह से शुरू।",
   newsitem9: "रबी फसलों के लिए MSP अपडेट – MSP पेज देखें।",
-
   // CARDS
   cardMachines: "नवीनतम कृषि मशीनें",
   cardMachinesDesc: "आधुनिक खेती के लिए नवीनतम मशीनरी खोजें।",
@@ -678,14 +797,12 @@
   cardCalendarDesc: "क्षेत्रीय बोआई/कटाई कार्यक्रम।",
   cardMsp: "एमएसपी बाजार दरें",
   cardMspDesc: "दैनिक मंडी दरें, eNAM कीमतें और रुझान चार्ट।",
-
   // HOW IT WORKS
   howTitle: "यह कैसे काम करता है",
   how1: "1. नीचे डैशबोर्ड में डेटा और टूल्स देखें।",
   how2: "2. दाईं ओर ऊपर मेनू से भाषा बदलें।",
   how3: "3. सहायक से कीमतों, फसलों या सुझावों के बारे में बात करें।",
   how4: "4. अधिक सेवाओं के लिए कार्ड पर क्लिक करें।",
-
   // SEEDS MODAL
   Seeds_Availability_Guide_Head: "बीज उपलब्धता गाइड",
   Major_Seed_Categories_Head: "मुख्य बीज श्रेणियाँ",
@@ -694,7 +811,6 @@
   Seeds_Availability_Guide_Info3: "सब्ज़ी और फल बीज: टमाटर, मिर्च, प्याज़, खीरा, सलाद, खरबूजा, गाजर, गोभी।",
   Seeds_Availability_Guide_Info4: "दलहन बीज: सोयाबीन, चना, मसूर, मटर और अन्य प्रोटीन-समृद्ध फसलें।",
   Seeds_Availability_Guide_Info5: "विशेष बीज: अलसी, चिया, भांग, कलौंजी, थिसल, फल बीज।",
-
   // GOVT SCHEMES MODAL
   Government_Schemes_Policies_Head: "सरकारी योजनाएँ और नीतियाँ",
   Major_Govt_Schemes_for_Farmers_Head: "किसानों के लिए प्रमुख सरकारी योजनाएँ (2025)",
@@ -709,14 +825,12 @@
   Government_Schemes_Policies_Info9: "AIF: भंडारण, कोल्ड चेन और प्रसंस्करण के लिए अनुदान।",
   Government_Schemes_Policies_Info10: "पीएम मत्स्य संपदा योजना: मत्स्य पालन अवसंरचना।",
   Government_Schemes_Policies_Info11: "SMAM: कृषि मशीनरी सब्सिडी।",
-
   // CALENDAR MODAL
   Crop_Calendar_Guide_Head: "फसल कैलेंडर गाइड",
   Crop_Calendar_Guide: "मौसम, क्षेत्र और फसल के अनुसार कैलेंडर",
   Crop_Calendar_Guide_info1: "खरीफ (जून–सितंबर): धान, मक्का, ज्वार, कपास, सोयाबीन, दालें।",
   Crop_Calendar_Guide_info2: "रबी (अक्टूबर–फरवरी): गेहूँ, जौ, चना, सरसों, मटर, मसूर, आलू।",
   Crop_Calendar_Guide_info3: "ज़ैद (मार्च–मई): तरबूज, खरबूजा, खीरा, मूंग, लोबिया।",
-
   // FERTILIZER MODAL
   Fertilizer_Pest_Advisory_Head: "उर्वरक और कीट परामर्श",
   Fertilizer_Pest_Advisory_info1: "धान: 90–120N, 40–60P, 40–60K प्रति हेक्टेयर।",
@@ -725,7 +839,6 @@
   Fertilizer_Pest_Advisory_info4: "सोयाबीन: 30–40N, 60–80P, 30–40K प्रति हेक्टेयर।",
   Fertilizer_Pest_Advisory_info5: "सब्ज़ियाँ: 100–120N, 60–80P, 60–80K प्रति हेक्टेयर।",
   Fertilizer_Pest_Advisory_info6: "दलहन: 20N स्टार्टर, 40–60P।",
-
   // MSP MODAL
   MSP_Market_Rates_Guide_Head: "एमएसपी बाजार दर गाइड",
   MSP_Market_Rates_Guide: "एमएसपी और बाजार मूल्य प्रवृत्तियाँ",
@@ -733,7 +846,6 @@
   MSP_Market_Rates_Guide_info2: "मंडी दरें: स्थानीय मंडी मूल्य और औसत।",
   MSP_Market_Rates_Guide_info3: "मूल्य प्रवृत्ति: 3-वर्षीय ग्राफ़।",
   MSP_Market_Rates_Guide_info4: "डाउनलोड डेटा: एक्सेल/CSV निर्यात।",
-
   // MACHINES MODAL
   Latest_Machine_Info1: "स्वचालित इलेक्ट्रिक ट्रैक्टर",
   Latest_Machine_Info1_Desc: "यह इलेक्ट्रिक, चालक रहित ट्रैक्टर जुताई, बुवाई और स्प्रे करता है।",
@@ -742,7 +854,6 @@
   Latest_Machine_Info1_Usage_Step2: "कार्य और पैरामीटर चुनें।",
   Latest_Machine_Info1_Usage_Step3: "स्मार्टफोन से निगरानी करें।",
   Latest_Machine_Info1_Usage_Step4: "हाई-पावर स्टेशन पर चार्ज करें।",
-
   Latest_Machine_Info2: "कृषि ड्रोन",
   Latest_Machine_Info2_Desc: "ड्रोन फसल स्वास्थ्य का डेटा देते हैं और उर्वरक/कीटनाशक छिड़कते हैं।",
   Latest_Machine_Info2_Usage: "कैसे उपयोग करें",
@@ -751,10 +862,10 @@
   Latest_Machine_Info2_Usage_Step3: "समस्या क्षेत्रों की पहचान के लिए मानचित्र देखें।",
   Latest_Machine_Info2_Usage_Step4: "छिड़काव मॉड्यूल लगाकर छिड़काव करें।"
 },
-
   pa: {
     // DASHBOARD TITLE
     dashboardTitle: "ਡੈਸ਼ਬੋਰਡ",
+    dashboardTitleMain: "ਡੈਸ਼ਬੋਰਡ", // Added for main dashboard title
     navAbout: "ਸਾਡੇ ਬਾਰੇ",
     navMsp: "ਐਮਐਸਪੀ",
     navYield: "ਉਪਜ ਤੁਲਨਾ",
@@ -765,12 +876,10 @@
   // HERO
   hero: "ਸਮਾਰਟ ਤਰੀਕੇ ਨਾਲ ਉਗਾਓ। ਵਧੀਆ ਫਸਲ ਕੱਟੋ।",
   heroDesc: "ਅਸਲ-ਸਮੇਂ ਸਲਾਹਾਂ, ਨਵੀਆਂ ਮਸ਼ੀਨਾਂ, MSP ਅੱਪਡੇਟ ਅਤੇ ਸਥਾਨਕ ਸਲਾਹਾਂ ਜੋ ਤੁਹਾਨੂੰ ਇਹ ਫੈਸਲਾ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦੀਆਂ ਹਨ ਕਿ ਕੀ ਤੇ ਕਦੋਂ ਬੋਣਾ ਹੈ।",
-
   // ABOUT
   aboutHead: "ਸੋਲੂਸ਼ਨੀਅਰਸ ਬਾਰੇ",
   about1: "ਅਸੀਂ ਕਿਸਾਨਾਂ ਲਈ ਕਾਰਗਰ ਡਿਜ਼ੀਟਲ ਟੂਲ ਲਿਆਉਂਦੇ ਹਾਂ: ਨਵੀਆਂ ਮਸ਼ੀਨਾਂ, MSP ਅੱਪਡੇਟ ਅਤੇ ਸਥਾਨਕ ਸਲਾਹਾਂ।",
   abouttag: "ਤੁਹਾਡੀ ਜ਼ਮੀਨ। ਤੁਹਾਡਾ ਡਾਟਾ। ਵਧੀਆ ਪੈਦਾਵਾਰ।",
-
   // NEWS
   newsHead: "ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ !!",
   newsitem1: "ਖੇਤੀ ਵਿੱਚ ਨਵੀਆਂ ਮਸ਼ੀਨਾਂ ਦੇ ਰੁਝਾਨ।",
@@ -781,7 +890,6 @@
   newsitem7: "ਨਵੀਂ ਉੱਚ ਪੈਦਾਵਾਰ ਵਾਲੀ ਬੀਜ ਕਿਸਮ ਜਾਰੀ ਕੀਤੀ ਗਈ।",
   newsitem8: "ਸਥਾਨਕ ਸਿੰਚਾਈ ਤਾਲੀਮ ਪ੍ਰੋਗਰਾਮ ਅਗਲੇ ਹਫ਼ਤੇ ਤੋਂ ਸ਼ੁਰੂ।",
   newsitem9: "ਰਬੀ ਫਸਲਾਂ ਲਈ MSP ਅੱਪਡੇਟ – MSP ਪੇਜ ਵੇਖੋ।",
-
   // CARDS
   cardMachines: "ਨਵੀਆਂ ਖੇਤੀਬਾੜੀ ਮਸ਼ੀਨਾਂ",
   cardMachinesDesc: "ਆਧੁਨਿਕ ਖੇਤੀ ਲਈ ਨਵੀਆਂ ਮਸ਼ੀਨਾਂ ਖੋਜੋ।",
@@ -795,14 +903,12 @@
   cardCalendarDesc: "ਖੇਤਰੀ ਬੋਵਾਈ/ਕੱਟਾਈ ਸ਼ਡਿਊਲ।",
   cardMsp: "ਐਮਐਸਪੀ ਮਾਰਕੀਟ ਦਰਾਂ",
   cardMspDesc: "ਰੋਜ਼ਾਨਾ ਮੰਡੀ ਦਰਾਂ, eNAM ਕੀਮਤਾਂ ਅਤੇ ਰੁਝਾਨ ਚਾਰਟ।",
-
   // HOW IT WORKS
   howTitle: "ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
   how1: "1. ਹੇਠਾਂ ਡੈਸ਼ਬੋਰਡ ਵਿੱਚ ਡਾਟਾ ਅਤੇ ਟੂਲ ਵੇਖੋ।",
   how2: "2. ਉੱਪਰ ਸੱਜੇ ਮੀਨੂ ਤੋਂ ਭਾਸ਼ਾ ਬਦਲੋ।",
   how3: "3. ਸਹਾਇਕ ਨਾਲ ਕੀਮਤਾਂ, ਫਸਲਾਂ ਜਾਂ ਸੁਝਾਅ ਬਾਰੇ ਗੱਲ ਕਰੋ।",
   how4: "4. ਹੋਰ ਸੇਵਾਵਾਂ ਲਈ ਕਾਰਡਾਂ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
-
   // SEEDS MODAL
   Seeds_Availability_Guide_Head: "ਬੀਜ ਉਪਲਬਧਤਾ ਗਾਈਡ",
   Major_Seed_Categories_Head: "ਮੁੱਖ ਬੀਜ ਸ਼੍ਰੇਣੀਆਂ",
@@ -811,7 +917,6 @@
   Seeds_Availability_Guide_Info3: "ਸਬਜ਼ੀ ਅਤੇ ਫਲ ਬੀਜ: ਟਮਾਟਰ, ਮਿਰਚ, ਪਿਆਜ਼, ਖੀਰਾ, ਸਲਾਦ, ਖਰਬੂਜ਼ਾ, ਗਾਜਰ, ਗੋਭੀਆਂ।",
   Seeds_Availability_Guide_Info4: "ਦਾਲਾਂ ਦੇ ਬੀਜ: ਸੋਇਆਬੀਨ, ਚਨਾ, ਮਸੂਰ, ਮਟਰ ਅਤੇ ਹੋਰ ਪ੍ਰੋਟੀਨ ਵਾਲੀਆਂ ਫਸਲਾਂ।",
   Seeds_Availability_Guide_Info5: "ਖਾਸ ਬੀਜ: ਅਲਸੀ, ਚੀਆ, ਭੰਗ, ਕਲੌਂਜੀ, ਥਿਸਲ, ਫਲ ਬੀਜ।",
-
   // GOVT SCHEMES MODAL
   Government_Schemes_Policies_Head: "ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ ਅਤੇ ਨੀਤੀਆਂ",
   Major_Govt_Schemes_for_Farmers_Head: "ਕਿਸਾਨਾਂ ਲਈ ਮੁੱਖ ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ (2025)",
@@ -826,14 +931,12 @@
   Government_Schemes_Policies_Info9: "AIF: ਸਟੋਰੇਜ, ਕੋਲਡ ਚੇਨ ਅਤੇ ਪ੍ਰੋਸੈਸਿੰਗ ਲਈ ਗ੍ਰਾਂਟ।",
   Government_Schemes_Policies_Info10: "ਪੀਐਮ ਮੱਛੀ ਸਮਪਦਾ ਯੋਜਨਾ: ਮੱਛੀਪਾਲਨ ਢਾਂਚਾ।",
   Government_Schemes_Policies_Info11: "SMAM: ਖੇਤੀਬਾੜੀ ਮਸ਼ੀਨਾਂ ਸਬਸਿਡੀ।",
-
   // CALENDAR MODAL
   Crop_Calendar_Guide_Head: "ਫਸਲ ਕੈਲੰਡਰ ਗਾਈਡ",
   Crop_Calendar_Guide: "ਮੌਸਮ, ਖੇਤਰ ਅਤੇ ਫਸਲ ਮੁਤਾਬਕ ਕੈਲੰਡਰ",
   Crop_Calendar_Guide_info1: "ਖਰੀਫ (ਜੂਨ–ਸਤੰਬਰ): ਧਾਨ, ਮੱਕੀ, ਬਾਜਰਾ, ਕਪਾਹ, ਸੋਇਆਬੀਨ, ਦਾਲਾਂ।",
   Crop_Calendar_Guide_info2: "ਰਬੀ (ਅਕਤੂਬਰ–ਫਰਵਰੀ): ਗੇਹੂੰ, ਜੌ, ਚਨਾ, ਸਰੋਂ, ਮਟਰ, ਮਸੂਰ, ਆਲੂ।",
   Crop_Calendar_Guide_info3: "ਜ਼ੈਦ (ਮਾਰਚ–ਮਈ): ਤਰਬੂਜ਼, ਖਰਬੂਜ਼ਾ, ਖੀਰਾ, ਮੂੰਗ, ਲੋਬੀਆ।",
-
   // FERTILIZER MODAL
   Fertilizer_Pest_Advisory_Head: "ਖਾਦ ਅਤੇ ਕੀੜੇ-ਮਕੌੜੇ ਸਲਾਹ",
   Fertilizer_Pest_Advisory_info1: "ਧਾਨ: 90–120N, 40–60P, 40–60K ਪ੍ਰਤੀ ਹੈਕਟੇਅਰ।",
@@ -842,7 +945,6 @@
   Fertilizer_Pest_Advisory_info4: "ਸੋਇਆਬੀਨ: 30–40N, 60–80P, 30–40K ਪ੍ਰਤੀ ਹੈਕਟੇਅਰ।",
   Fertilizer_Pest_Advisory_info5: "ਸਬਜ਼ੀਆਂ: 100–120N, 60–80P, 60–80K ਪ੍ਰਤੀ ਹੈਕਟੇਅਰ।",
   Fertilizer_Pest_Advisory_info6: "ਦਾਲਾਂ: 20N ਸਟਾਰਟਰ, 40–60P।",
-
   // MSP MODAL
   MSP_Market_Rates_Guide_Head: "ਐਮਐਸਪੀ ਮਾਰਕੀਟ ਦਰਾਂ ਗਾਈਡ",
   MSP_Market_Rates_Guide: "ਐਮਐਸਪੀ ਅਤੇ ਮਾਰਕੀਟ ਕੀਮਤ ਰੁਝਾਨ",
@@ -850,7 +952,6 @@
   MSP_Market_Rates_Guide_info2: "ਮੰਡੀ ਦਰਾਂ: ਸਥਾਨਕ ਮੰਡੀ ਕੀਮਤਾਂ ਅਤੇ ਔਸਤ।",
   MSP_Market_Rates_Guide_info3: "ਕੀਮਤ ਰੁਝਾਨ: 3 ਸਾਲਾਂ ਦੇ ਗ੍ਰਾਫ਼।",
   MSP_Market_Rates_Guide_info4: "ਡਾਟਾ ਡਾਊਨਲੋਡ: Excel/CSV ਨਿਰਯਾਤ।",
-
   // MACHINES MODAL
   Latest_Machine_Info1: "ਸਵੈ-ਚਾਲਿਤ ਬਿਜਲੀ ਟਰੈਕਟਰ",
   Latest_Machine_Info1_Desc: "ਇਹ ਬਿਜਲੀ ਵਾਲਾ, ਬਿਨਾਂ ਡਰਾਈਵਰ ਦਾ ਟਰੈਕਟਰ ਜੁਤਾਈ, ਬੀਜਾਈ ਅਤੇ ਛਿੜਕਾਅ ਕਰਦਾ ਹੈ।",
@@ -859,9 +960,8 @@
   Latest_Machine_Info1_Usage_Step2: "ਕੰਮ ਅਤੇ ਪੈਰਾਮੀਟਰ ਚੁਣੋ।",
   Latest_Machine_Info1_Usage_Step3: "ਸਮਾਰਟਫੋਨ ਤੋਂ ਨਿਗਰਾਨੀ ਕਰੋ।",
   Latest_Machine_Info1_Usage_Step4: "ਹਾਈ-ਪਾਵਰ ਸਟੇਸ਼ਨ 'ਤੇ ਚਾਰਜ ਕਰੋ।",
-
   Latest_Machine_Info2: "ਖੇਤੀਬਾੜੀ ਡਰੋਨ",
-  Latest_Machine_Info2_Desc: "ਡਰੋਨ ਫਸਲ ਦੀ ਸਿਹਤ ਦਾ ਡਾਟਾ ਦਿੰਦੇ ਹਨ ਅਤੇ ਖਾਦ/ਕੀਟਨਾਸ਼ਕ ਛਿੜਕਦੇ ਹਨ।",
+  Latest_Machine_Info2_Desc: "ਡਰੋਨ ਫਸਲ ਦੀ ਸਿਹਤ ਦਾ ਡਾਟਾ ਦਿੰਦੇ ਹਨ ਅਤੇ ਖਾਦ/ਕੀਟਨਾਸ਼ਕ ਛਿੜਕਦੇ ਹਨ।",
   Latest_Machine_Info2_Usage: "ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ",
   Latest_Machine_Info2_Usage_Step1: "ਸੌਫਟਵੇਅਰ ਨਾਲ ਉਡਾਨ ਰਸਤਾ ਬਣਾਓ।",
   Latest_Machine_Info2_Usage_Step2: "ਡਾਟਾ ਇਕੱਠਾ ਕਰਨ ਲਈ ਡਰੋਨ ਚਲਾਓ।",
@@ -869,7 +969,6 @@
   Latest_Machine_Info2_Usage_Step4: "ਛਿੜਕਾਅ ਲਈ ਮੋਡੀਊਲ ਜੋੜੋ।"
 }
 };
-
 function translatePage(lang) {
   const texts = translations[lang] || translations['en'];
   for (const [id, text] of Object.entries(texts)) {
@@ -877,13 +976,11 @@ function translatePage(lang) {
     if (el) el.innerText = text;
   }
 }
-
 // Change language when dropdown changes
 function changeLanguage() {
   const selectedLang = document.getElementById('langSel').value;
   translatePage(selectedLang);
 }
-
 // IST time updater
 function updateIST(){
   const now=new Date(),
@@ -893,19 +990,16 @@ function updateIST(){
   document.getElementById('navTime').innerText=ist.toLocaleString('en-IN',opts)+" IST";
 }
 setInterval(updateIST,1000);updateIST();
-
 // Sidebar logic
 const sidebar=document.getElementById('sidebar'),
   menuBtn=document.getElementById('menuBtn'),
   closeSidebar=document.getElementById('closeSidebar');
 menuBtn.addEventListener('click',()=>sidebar.classList.add('open'));
 closeSidebar.addEventListener('click',()=>sidebar.classList.remove('open'));
-
 // Explore Dashboard and How it works
 document.getElementById('btn-dashboard').onclick=function(){document.getElementById('dashboard').scrollIntoView({behavior:"smooth"})}
 document.getElementById('btn-how').onclick=function(){document.getElementById('how-modal').style.display='block'};
 document.getElementById('how-close').onclick=function(){document.getElementById('how-modal').style.display='none'};
-
 // Login/Signup modal logic
 document.getElementById('btnLogin').onclick = function() {
   document.getElementById('loginModal').style.display = 'flex';
@@ -921,14 +1015,12 @@ function showSignUp() {
   document.getElementById('loginModal').style.display = 'none';
   document.getElementById('signupModal').style.display = 'flex';
 }
-
 // Close modals
 document.querySelectorAll('.modal-close').forEach(btn => {
   btn.onclick = function() {
     this.closest('.modal-overlay').style.display = 'none';
   };
 });
-
 // Card click → show detail modal
 document.querySelectorAll('.big-card').forEach(card => {
   card.onclick = function(e) {
