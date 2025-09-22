@@ -1059,6 +1059,93 @@ document.querySelectorAll('.big-card').forEach(card => {
     modalElement.style.display = 'flex';
   };
 });
+   // ============ AI CHATBOT LOGIC ============
+
+const chatWindow = document.getElementById('chat-window');
+const openChatBtn = document.getElementById('open-chat');
+const closeChatBtn = document.getElementById('close-chat');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const chatMessages = document.getElementById('chat-messages');
+
+// Open/Close Chat
+openChatBtn.addEventListener('click', () => {
+  chatWindow.style.display = 'flex';
+  userInput.focus();
+});
+
+closeChatBtn.addEventListener('click', () => {
+  chatWindow.style.display = 'none';
+});
+
+// Function to add a message to the chat
+function addMessage(text, isUser = false) {
+  const messageDiv = document.createElement('div');
+  messageDiv.style.padding = '8px 12px';
+  messageDiv.style.margin = '8px 0';
+  messageDiv.style.borderRadius = '12px';
+  messageDiv.style.maxWidth = '80%';
+
+  if (isUser) {
+    messageDiv.style.backgroundColor = '#e8f6ee';
+    messageDiv.style.marginLeft = 'auto';
+    messageDiv.style.textAlign = 'right';
+  } else {
+    messageDiv.style.backgroundColor = '#f0f0f0';
+  }
+
+  messageDiv.innerText = text;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to bottom
+}
+
+// Add a welcome message when chat opens
+openChatBtn.addEventListener('click', () => {
+  if (chatMessages.children.length === 0) {
+    addMessage("Hello! I'm your AI Farming Assistant. Ask me about MSP rates, crop calendars, pest control, or government schemes.");
+  }
+});
+
+// Handle sending a message
+function handleSendMessage() {
+  const userText = userInput.value.trim();
+  if (!userText) return;
+
+  addMessage(userText, true);
+  userInput.value = '';
+
+  // --- SIMPLE AI RESPONSE LOGIC ---
+  let botReply = "I'm sorry, I didn't understand that. Try asking about MSP, seeds, or weather.";
+
+  userTextLower = userText.toLowerCase();
+
+  if (userTextLower.includes("hello") || userTextLower.includes("hi")) {
+    botReply = "Hello! How can I help you with your farm today?";
+  } else if (userTextLower.includes("msp")) {
+    botReply = "You can find the latest MSP rates by clicking the 'MSP Market Rates' card on your dashboard. Current rates are updated monthly on e-NAM.";
+  } else if (userTextLower.includes("seed") || userTextLower.includes("seeds")) {
+    botReply = "Check the 'Seeds Availability' card for guides on cereal, oilseed, and vegetable seeds. Hybrid seeds for high yield are often available in the Rabi season.";
+  } else if (userTextLower.includes("weather") || userTextLower.includes("rain")) {
+    botReply = "I can't provide live weather yet, but remember: Kharif crops need monsoon rains (June-Sep), while Rabi crops rely on winter irrigation (Oct-Feb).";
+  } else if (userTextLower.includes("pest") || userTextLower.includes("insect")) {
+    botReply = "For pest control, check the 'Fertilizer & Pest Advisory' card. For example, use neem oil for aphids on wheat, or pheromone traps for bollworm in cotton.";
+  } else if (userTextLower.includes("scheme") || userTextLower.includes("subsidy")) {
+    botReply = "Visit the 'Govt Schemes & Policies' card. Popular ones include PM-KISAN (₹6000/yr), Kisan Credit Card (loans), and PMKSY (irrigation subsidies).";
+  } else if (userTextLower.includes("thank")) {
+    botReply = "You're very welcome! Happy farming!";
+  }
+
+  setTimeout(() => {
+    addMessage(botReply);
+  }, 500); // Simulate "thinking" time
+}
+
+sendBtn.addEventListener('click', handleSendMessage);
+userInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    handleSendMessage();
+  }
+});
  </script>
 </body>
 </html>
